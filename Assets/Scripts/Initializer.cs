@@ -17,9 +17,10 @@ public class Initializer : MonoBehaviour
     private void OnEnable()
     {
         _inputs = new();
-        _inputs.Player.Move.performed += context => _gameManager.PlayerController.OnMove(context);
-        _inputs.Player.Jump.started += _ => _gameManager.PlayerController.OnJump(_);
+        _inputs.Player.Move.performed += context => _gameManager.PlayerController.OnMove(context.ReadValue<Vector2>());
+        _inputs.Player.Move.canceled += context => _gameManager.PlayerController.OnMove(Vector2.zero); 
 
+        _inputs.Player.Jump.started += _ => _gameManager.PlayerController.OnJump();
     }
 
     private void Start()
