@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7336354857372526404}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,10 @@ MonoBehaviour:
   _gravity: -9.81
   _gravityMult: 1
   _velocity_Y: 0
+  _mouseSens: 0.1
+  _scrollSpeed: 0.2
+  _cameraOffset: {x: 0, y: 1, z: 0}
+  _zoomLimitsMax_YZ: {x: 0, y: 3, z: -3}
 --- !u!143 &1310443881866923459
 CharacterController:
   m_ObjectHideFlags: 0
