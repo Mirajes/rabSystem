@@ -1262,6 +1262,56 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CameraTest",
+            "id": "00b765de-be37-41cf-b3a3-8cf248d6d1aa",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "bbdc61ba-7a11-4e5c-b7de-8715adca35da",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "872137d5-af75-4a01-8f1d-8de105b0552b",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2909e56e-6ea0-4ae7-904e-ad920367ac41",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5cfb354-a8c0-4ee2-8bb8-6b1e9c023cd8",
+                    "path": "<Joystick>/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

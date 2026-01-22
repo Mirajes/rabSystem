@@ -7,11 +7,13 @@ public class GameManager: MonoBehaviour
     private PlayerController _playerController;
     private Initializer _initializer;
 
-    [SerializeField] private Transport _transport;
+    [SerializeField] private GameObject _transportPrefab;
+
+    private Transport _currentTransport;
     public Action CarSummon;
 
     public PlayerController PlayerController => _playerController;
-    public Transport Transport => _transport;
+    public Transport CurrentTransport => _currentTransport;
 
     public void Init(GameObject player)
     {
@@ -22,7 +24,7 @@ public class GameManager: MonoBehaviour
 
         CarSummon += OnCarSummon;
 
-        _transport = FindAnyObjectByType<Transport>(); // ya ne znaui kak poluchit' dostup k kodu bez obj
+        _currentTransport = FindAnyObjectByType<Transport>(); // ya ne znaui kak poluchit' dostup k kodu bez obj
     }
     
     public void OnCarSummon()
@@ -30,8 +32,10 @@ public class GameManager: MonoBehaviour
         Transport prevCar = FindAnyObjectByType<Transport>();
         if (prevCar != null) Destroy(prevCar.gameObject);
 
-        Transport newCar = Instantiate(_transport);
-        _transport = newCar;
+        GameObject carObj = Instantiate(_transportPrefab);
+        Transport newCar = carObj.GetComponent<Transport>();
+        _currentTransport = newCar;
+
         newCar.transform.position = _playerController.transform.position + _playerController.transform.forward * 5f;
         newCar.transform.rotation = Quaternion.LookRotation(_playerController.transform.forward);
 

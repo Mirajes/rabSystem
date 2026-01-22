@@ -1348,6 +1348,56 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraTest"",
+            ""id"": ""00b765de-be37-41cf-b3a3-8cf248d6d1aa"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""bbdc61ba-7a11-4e5c-b7de-8715adca35da"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""872137d5-af75-4a01-8f1d-8de105b0552b"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2909e56e-6ea0-4ae7-904e-ad920367ac41"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5cfb354-a8c0-4ee2-8bb8-6b1e9c023cd8"",
+                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1444,6 +1494,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Transport_Look = m_Transport.FindAction("Look", throwIfNotFound: true);
         m_Transport_Zoom = m_Transport.FindAction("Zoom", throwIfNotFound: true);
         m_Transport_CarExit = m_Transport.FindAction("CarExit", throwIfNotFound: true);
+        // CameraTest
+        m_CameraTest = asset.FindActionMap("CameraTest", throwIfNotFound: true);
+        m_CameraTest_Look = m_CameraTest.FindAction("Look", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1451,6 +1504,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Transport.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Transport.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CameraTest.enabled, "This will cause a leak and performance issues, InputSystem_Actions.CameraTest.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2052,6 +2106,102 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="TransportActions" /> instance referencing this action map.
     /// </summary>
     public TransportActions @Transport => new TransportActions(this);
+
+    // CameraTest
+    private readonly InputActionMap m_CameraTest;
+    private List<ICameraTestActions> m_CameraTestActionsCallbackInterfaces = new List<ICameraTestActions>();
+    private readonly InputAction m_CameraTest_Look;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "CameraTest".
+    /// </summary>
+    public struct CameraTestActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public CameraTestActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "CameraTest/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_CameraTest_Look;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_CameraTest; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="CameraTestActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(CameraTestActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="CameraTestActions" />
+        public void AddCallbacks(ICameraTestActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraTestActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraTestActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="CameraTestActions" />
+        private void UnregisterCallbacks(ICameraTestActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraTestActions.UnregisterCallbacks(ICameraTestActions)" />.
+        /// </summary>
+        /// <seealso cref="CameraTestActions.UnregisterCallbacks(ICameraTestActions)" />
+        public void RemoveCallbacks(ICameraTestActions instance)
+        {
+            if (m_Wrapper.m_CameraTestActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="CameraTestActions.AddCallbacks(ICameraTestActions)" />
+        /// <seealso cref="CameraTestActions.RemoveCallbacks(ICameraTestActions)" />
+        /// <seealso cref="CameraTestActions.UnregisterCallbacks(ICameraTestActions)" />
+        public void SetCallbacks(ICameraTestActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraTestActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraTestActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="CameraTestActions" /> instance referencing this action map.
+    /// </summary>
+    public CameraTestActions @CameraTest => new CameraTestActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2315,5 +2465,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCarExit(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraTest" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="CameraTestActions.AddCallbacks(ICameraTestActions)" />
+    /// <seealso cref="CameraTestActions.RemoveCallbacks(ICameraTestActions)" />
+    public interface ICameraTestActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
     }
 }

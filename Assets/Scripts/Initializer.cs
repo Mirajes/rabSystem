@@ -20,8 +20,8 @@ public class Initializer : MonoBehaviour
         _inputs.Transport.Look.performed += context => _gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
         _inputs.Transport.Look.canceled += _ => _gameManager.PlayerController.OnRotateInput(Vector2.zero);
 
-        _inputs.Transport.Move.performed += context => _gameManager.Transport.OnControllerInput(context.ReadValue<Vector2>());
-        _inputs.Transport.Move.canceled += _ => _gameManager.Transport.OnControllerInput(Vector2.zero);
+        _inputs.Transport.Move.performed += context => _gameManager.CurrentTransport.OnControllerInput(context.ReadValue<Vector2>());
+        _inputs.Transport.Move.canceled += _ => _gameManager.CurrentTransport.OnControllerInput(Vector2.zero);
 
         _inputs.Transport.CarExit.started += _ => _gameManager.ChangeMap(false);
     }

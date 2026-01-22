@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8d00515d978ad41a31137324fa00f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transport: {fileID: 470905947345607787}
+  _transport: {fileID: 8459482314693998717}
 --- !u!65 &509349044753879756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -810,7 +810,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3539680810218037782}
-  - component: {fileID: 470905947345607787}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -834,19 +833,6 @@ Transform:
   - {fileID: 5071190744575864930}
   m_Father: {fileID: 4884616286433242282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &470905947345607787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7221441584862294293}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52448ece94f146649bdac272e4ac5abb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Data: {fileID: 11400000, guid: 3c4ac0c237ac90c4f9f83c54e71dc1ee, type: 2}
 --- !u!1 &8212708150921181193
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4884616286433242282}
+  - component: {fileID: 8459482314693998717}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -879,3 +866,16 @@ Transform:
   - {fileID: 3539680810218037782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8459482314693998717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212708150921181193}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52448ece94f146649bdac272e4ac5abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Data: {fileID: 11400000, guid: 3c4ac0c237ac90c4f9f83c54e71dc1ee, type: 2}
