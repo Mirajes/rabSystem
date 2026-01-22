@@ -7,8 +7,6 @@ public class GameManager: MonoBehaviour
     private PlayerController _playerController;
     private Initializer _initializer;
 
-    [SerializeField] private GameObject _transportPrefab;
-
     private Transport _currentTransport;
     public Action CarSummon;
 
@@ -32,7 +30,7 @@ public class GameManager: MonoBehaviour
         Transport prevCar = FindAnyObjectByType<Transport>();
         if (prevCar != null) Destroy(prevCar.gameObject);
 
-        GameObject carObj = Instantiate(_transportPrefab);
+        GameObject carObj = Instantiate(_initializer.CarPrefab);
         Transport newCar = carObj.GetComponent<Transport>();
         _currentTransport = newCar;
 

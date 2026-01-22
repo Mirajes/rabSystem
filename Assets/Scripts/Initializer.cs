@@ -10,6 +10,35 @@ public class Initializer : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _carPrefab;
+
+    public GameObject CarPrefab => _carPrefab;
+
+    private void Awake()
+    {
+        _gameManager = FindAnyObjectByType<GameManager>();
+        _gameManager.Init(_player);
+    }
+
+    private void OnEnable()
+    {
+        _inputs = new();
+
+        InitDefaultPlayerControll();
+
+        InitCarControll();
+    }
+
+    private void Start()
+    {
+        _inputs.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputs.Disable();
+        _inputs.Dispose();
+    }
 
     public void InitCarControll()
     {
@@ -25,17 +54,8 @@ public class Initializer : MonoBehaviour
 
         _inputs.Transport.CarExit.started += _ => _gameManager.ChangeMap(false);
     }
-
-    private void Awake()
+    public void InitDefaultPlayerControll()
     {
-        _gameManager = FindAnyObjectByType<GameManager>();
-        _gameManager.Init(_player);
-    }
-
-    private void OnEnable()
-    {
-        _inputs = new();
-
         // Player
         _inputs.Player.Move.performed += context => _gameManager.PlayerController.OnMoveInput(context.ReadValue<Vector2>());
         _inputs.Player.Move.canceled += context => _gameManager.PlayerController.OnMoveInput(Vector2.zero);
@@ -48,18 +68,9 @@ public class Initializer : MonoBehaviour
         _inputs.Player.Zoom.performed += context => _gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
 
         _inputs.Player.CarSummon.started += _ => _gameManager.PlayerController.OnCarSummonInput();
-
-        InitCarControll();
     }
-
-    private void Start()
+    public void InitDoomPlayerControll()
     {
-        _inputs.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputs.Disable();
-        _inputs.Dispose();
+        //_inputs.CameraTest.Look.performed += callback => 
     }
 }
