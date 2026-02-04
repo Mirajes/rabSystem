@@ -3,7 +3,7 @@ using UnityEngine;
 public class Initializer : MonoBehaviour
 {
     [Header("Mono")]
-    private GameManager _gameManager;
+    private GM_NewInputSystem _gameManager;
 
     [Header("Main")]
     public static InputSystem_Actions _inputs;
@@ -16,7 +16,7 @@ public class Initializer : MonoBehaviour
 
     private void Awake()
     {
-        _gameManager = FindAnyObjectByType<GameManager>();
+        _gameManager = FindAnyObjectByType<GM_NewInputSystem>();
         _gameManager.Init(_player);
     }
 

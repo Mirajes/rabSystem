@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCarSummonInput()
     {
-        GameManager gm = FindAnyObjectByType<GameManager>();
+        GM_NewInputSystem gm = FindAnyObjectByType<GM_NewInputSystem>();
 
         gm.CarSummon?.Invoke();
     }

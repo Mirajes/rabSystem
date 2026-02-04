@@ -2,12 +2,12 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected GameManager _GM;
+    protected GM_NewInputSystem _GM;
 
     public abstract void Interact();
 
     private void Awake()
     {
-        _GM = FindAnyObjectByType<GameManager>();
+        _GM = FindAnyObjectByType<GM_NewInputSystem>();
     }
 }

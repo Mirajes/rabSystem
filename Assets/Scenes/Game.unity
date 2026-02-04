@@ -574,7 +574,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.95
+  m_fontSize: 21.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711414850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e0c41920a12f444ea09147bb244e392, type: 3}
   m_Name: 
@@ -1068,7 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060846310}
   - component: {fileID: 2060846313}
-  - component: {fileID: 2060846312}
+  - component: {fileID: 2060846314}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1091,19 +1091,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2060846312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060846309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d6f861c8a9f2af4c8cdabd1a564cde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnPos: {fileID: 521855907}
 --- !u!114 &2060846313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,6 +1105,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 4765763556452730142, guid: 07681499bbc169342a6a58af50efe365, type: 3}
   _carPrefab: {fileID: 8212708150921181193, guid: b4265901a3107f94cb260e2ff36cf137, type: 3}
+--- !u!114 &2060846314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060846309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18944d3f62fd9a44caf1571c0fcdfd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPos: {fileID: 521855907}
 --- !u!1001 &8304773419885826282
 PrefabInstance:
   m_ObjectHideFlags: 0

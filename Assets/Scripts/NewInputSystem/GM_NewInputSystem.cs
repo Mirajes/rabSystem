@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameManager: MonoBehaviour
+public class GM_NewInputSystem : GameManagerBase
 {
     [SerializeField] private Transform _spawnPos;
     private PlayerController _playerController;
@@ -24,7 +24,7 @@ public class GameManager: MonoBehaviour
 
         _currentTransport = FindAnyObjectByType<Transport>(); // ya ne znaui kak poluchit' dostup k kodu bez obj
     }
-    
+
     public void OnCarSummon()
     {
         Transport prevCar = FindAnyObjectByType<Transport>();

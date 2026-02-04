@@ -24,7 +24,7 @@ public class MenuUI : MonoBehaviour
 
     private void InitMenu()
     {
-        _loadButtonPrefab = Resources.Load<GameObject>("ButtonPrefab");
+        _loadButtonPrefab = Resources.Load<GameObject>("UI/ButtonPrefab");
 
         _backButton.onClick.AddListener(ResetMenu);
         _toListButton.onClick.AddListener(ShowSceneList);
@@ -38,8 +38,8 @@ public class MenuUI : MonoBehaviour
     {
         _sceneDictionary.Add("Menu", 0);
         _sceneDictionary.Add("NewInputSystem", 1);
-        _sceneDictionary.Add("DoomController (dotween)", 1);
-        _sceneDictionary.Add("2D Platformer", 1);
+        _sceneDictionary.Add("DoomController (dotween)", 0);
+        _sceneDictionary.Add("2D Platformer", 0);
     }
 
     private void InitSceneList()
