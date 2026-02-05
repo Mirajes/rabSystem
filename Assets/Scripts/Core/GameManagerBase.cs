@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-public class GameManagerBase : MonoBehaviour
+public abstract class GameManagerBase : MonoBehaviour
 {
     GameObject _initializerPrefab;
+    
+    protected abstract void InitGame();
 
     private void Awake()
     {

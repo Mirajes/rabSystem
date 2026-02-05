@@ -62,10 +62,17 @@ public class Initializer : MonoBehaviour
         _inputs.Player.CarSummon.started += _ => gameManager.PlayerController.OnCarSummonInput();
     }
 
-
-
     public void DOTween_InitDoomPlayerControll()
     {
         //_inputs.CameraTest.Look.performed += callback => 
+    }
+
+    public void TileMap_InitPlayerController(GM_Tilemap gameManager)
+    {
+        _inputs.Player_Tilemap.Move.performed += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
+        _inputs.Player_Tilemap.Move.canceled += _ => gameManager.Player.OnMoveInput(Vector2.zero);
+
+        _inputs.Player_Tilemap.Jump.started += context => gameManager.Player.OnJumpInput(true);
+        _inputs.Player_Tilemap.Jump.canceled += context => gameManager.Player.OnJumpInput(false);
     }
 }
