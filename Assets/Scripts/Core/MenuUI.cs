@@ -38,8 +38,8 @@ public class MenuUI : MonoBehaviour
     {
         _sceneDictionary.Add("Menu", 0);
         _sceneDictionary.Add("NewInputSystem", 1);
-        _sceneDictionary.Add("DoomController (dotween)", 0);
-        _sceneDictionary.Add("2D Platformer", 0);
+        _sceneDictionary.Add("DoomController (dotween)", 2);
+        _sceneDictionary.Add("2D Platformer", 3);
     }
 
     private void InitSceneList()

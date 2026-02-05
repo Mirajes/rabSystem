@@ -3,11 +3,7 @@ using UnityEngine;
 public class Initializer : MonoBehaviour
 {
     public static Initializer Instance { get; private set; }
-
-
-    [Header("Main")]
     public static InputSystem_Actions _inputs;
-
 
     private void Awake()
     {
