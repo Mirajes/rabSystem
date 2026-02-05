@@ -10,12 +10,17 @@ public class GM_NewInputSystem : GameManagerBase
     private Transport _currentTransport;
     public Action CarSummon;
 
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _carPrefab;
+
     public PlayerController PlayerController => _playerController;
     public Transport CurrentTransport => _currentTransport;
+    public GameObject CarPrefab => _carPrefab;
 
-    public void Init(GameObject player)
+    public void InitGame(GameObject player)
     {
         _initializer = FindAnyObjectByType<Initializer>();
+        if (_initializer == null) { Debug.LogWarning("gde initializer"); return; }
 
         GameObject newPlayer = Instantiate(player, _spawnPos.position, _spawnPos.rotation);
         _playerController = newPlayer.GetComponent<PlayerController>();
@@ -28,16 +33,16 @@ public class GM_NewInputSystem : GameManagerBase
     public void OnCarSummon()
     {
         Transport prevCar = FindAnyObjectByType<Transport>();
-        if (prevCar != null) Destroy(prevCar.gameObject);
+        //if (prevCar != null) Destroy(prevCar.gameObject);
 
-        GameObject carObj = Instantiate(_initializer.CarPrefab);
+        GameObject carObj = Instantiate(_carPrefab);
         Transport newCar = carObj.GetComponent<Transport>();
         _currentTransport = newCar;
 
         newCar.transform.position = _playerController.transform.position + _playerController.transform.forward * 5f;
         newCar.transform.rotation = Quaternion.LookRotation(_playerController.transform.forward);
 
-        _initializer.InitCarControll();
+        _initializer.NIS_InitCarControll(this);
     }
 
     public void ChangeMap(bool isInCar)
@@ -54,5 +59,20 @@ public class GM_NewInputSystem : GameManagerBase
             Initializer._inputs.Player.Enable();
             Initializer._inputs.Transport.Disable();
         }
+    }
+
+    private void Start()
+    {
+
+    }
+
+    private void OnEnable()
+    {
+        InitGame(_player);
+
+        _initializer.NIS_InitDefaultPlayerControll(this);
+        _initializer.NIS_InitCarControll(this);
+
+        _initializer.EnableInputs();
     }
 }
