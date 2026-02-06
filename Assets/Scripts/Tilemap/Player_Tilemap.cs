@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -25,6 +26,8 @@ public class Player_Tilemap : MonoBehaviour
     {
         Vector2 origin = transform.position;
         RaycastHit2D hit = Physics2D.CircleCast(origin, _radius, Vector2.down, _distance, _groundLayer);
+
+        Debug.DrawLine(origin, hit.point, Color.yellow, 0.5f);
 
         if (hit.collider !=  null) return true;
         else return false;
@@ -54,6 +57,14 @@ public class Player_Tilemap : MonoBehaviour
     private void ApplyMovement()
     {
         _rb.AddForce(new Vector2(_moveDirection.x * _moveSpeed, 0), ForceMode2D.Force);
+
+        Vector2 velocity = _rb.linearVelocity;
+
+        if (math.abs(velocity.x) > _moveSpeed) 
+            velocity.x = math.sign(velocity.x) * _moveSpeed;
+
+        _rb.linearVelocity = new Vector2(velocity.x, velocity.y);
+        
     }
 
     private void OnEnable()
