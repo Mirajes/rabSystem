@@ -9,7 +9,7 @@ public class Player_Tilemap : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Move")]
-    [SerializeField] private float _moveSpeed = 3f;
+    [SerializeField] private float _moveSpeed = 5f;
     private Vector2 _moveDirection = Vector2.zero;
 
     [Header("Jump")]
@@ -27,7 +27,7 @@ public class Player_Tilemap : MonoBehaviour
         Vector2 origin = transform.position;
         RaycastHit2D hit = Physics2D.CircleCast(origin, _radius, Vector2.down, _distance, _groundLayer);
 
-        Debug.DrawLine(origin, hit.point, Color.yellow, 0.5f);
+        Debug.DrawLine(origin, hit.point, Color.yellow, 0.2f);
 
         if (hit.collider !=  null) return true;
         else return false;
@@ -57,6 +57,8 @@ public class Player_Tilemap : MonoBehaviour
     private void ApplyMovement()
     {
         _rb.AddForce(new Vector2(_moveDirection.x * _moveSpeed, 0), ForceMode2D.Force);
+
+        if (_moveDirection.x == 0) { _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y); return; }
 
         Vector2 velocity = _rb.linearVelocity;
 
