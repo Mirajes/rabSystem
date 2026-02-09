@@ -549,8 +549,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 112643908}
   m_HandleRect: {fileID: 112643907}
   m_Direction: 2
-  m_Value: 1.000003
-  m_Size: 0.38264972
+  m_Value: 1.0000035
+  m_Size: 0.47348583
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.05
+  m_fontSize: 31.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124.95
+  m_fontSize: 152.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -1589,6 +1589,118 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player_DOT"",
+            ""id"": ""f2e8804c-6096-42f7-aa8a-1c0b3538a4db"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""bbf22414-015f-4c1c-849e-6d43c4b4ed86"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""48eb955e-96c1-44c7-b98a-75f4ad210cb8"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""0add5a06-3668-44ec-b8d7-f6e11068c6d7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""KeyBoard"",
+                    ""id"": ""ffccff7f-0002-4803-a635-fb646963e7f6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a079fd14-7291-4ea8-a998-4ab28e218d06"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""38873cb0-d15a-4d29-83bd-7d9a6bfed645"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""KeyBoard"",
+                    ""id"": ""26dc0c21-559d-4210-8c6a-b9df574d177a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""4c76bd96-d8a3-4d72-bb71-0543fdb07c82"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""24a97203-b7d5-49c5-a9e5-af66f2ee077b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40aa0e20-8a26-4a6e-9df6-d1efcbfb69e9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press(pressPoint=1.401298E-45,behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1692,6 +1804,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Tilemap = asset.FindActionMap("Player_Tilemap", throwIfNotFound: true);
         m_Player_Tilemap_Move = m_Player_Tilemap.FindAction("Move", throwIfNotFound: true);
         m_Player_Tilemap_Jump = m_Player_Tilemap.FindAction("Jump", throwIfNotFound: true);
+        // Player_DOT
+        m_Player_DOT = asset.FindActionMap("Player_DOT", throwIfNotFound: true);
+        m_Player_DOT_Move = m_Player_DOT.FindAction("Move", throwIfNotFound: true);
+        m_Player_DOT_Rotate = m_Player_DOT.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_DOT_Jump = m_Player_DOT.FindAction("Jump", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1701,6 +1818,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Transport.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Transport.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_CameraTest.enabled, "This will cause a leak and performance issues, InputSystem_Actions.CameraTest.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Tilemap.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Tilemap.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player_DOT.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_DOT.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2505,6 +2623,124 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="Player_TilemapActions" /> instance referencing this action map.
     /// </summary>
     public Player_TilemapActions @Player_Tilemap => new Player_TilemapActions(this);
+
+    // Player_DOT
+    private readonly InputActionMap m_Player_DOT;
+    private List<IPlayer_DOTActions> m_Player_DOTActionsCallbackInterfaces = new List<IPlayer_DOTActions>();
+    private readonly InputAction m_Player_DOT_Move;
+    private readonly InputAction m_Player_DOT_Rotate;
+    private readonly InputAction m_Player_DOT_Jump;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Player_DOT".
+    /// </summary>
+    public struct Player_DOTActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public Player_DOTActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Player_DOT/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Player_DOT_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_DOT/Rotate".
+        /// </summary>
+        public InputAction @Rotate => m_Wrapper.m_Player_DOT_Rotate;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_DOT/Jump".
+        /// </summary>
+        public InputAction @Jump => m_Wrapper.m_Player_DOT_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Player_DOT; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="Player_DOTActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(Player_DOTActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="Player_DOTActions" />
+        public void AddCallbacks(IPlayer_DOTActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Player_DOTActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_DOTActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="Player_DOTActions" />
+        private void UnregisterCallbacks(IPlayer_DOTActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_DOTActions.UnregisterCallbacks(IPlayer_DOTActions)" />.
+        /// </summary>
+        /// <seealso cref="Player_DOTActions.UnregisterCallbacks(IPlayer_DOTActions)" />
+        public void RemoveCallbacks(IPlayer_DOTActions instance)
+        {
+            if (m_Wrapper.m_Player_DOTActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="Player_DOTActions.AddCallbacks(IPlayer_DOTActions)" />
+        /// <seealso cref="Player_DOTActions.RemoveCallbacks(IPlayer_DOTActions)" />
+        /// <seealso cref="Player_DOTActions.UnregisterCallbacks(IPlayer_DOTActions)" />
+        public void SetCallbacks(IPlayer_DOTActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Player_DOTActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Player_DOTActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="Player_DOTActions" /> instance referencing this action map.
+    /// </summary>
+    public Player_DOTActions @Player_DOT => new Player_DOTActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2798,6 +3034,35 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnJump(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_DOT" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="Player_DOTActions.AddCallbacks(IPlayer_DOTActions)" />
+    /// <seealso cref="Player_DOTActions.RemoveCallbacks(IPlayer_DOTActions)" />
+    public interface IPlayer_DOTActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotate(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

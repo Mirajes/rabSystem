@@ -3,7 +3,7 @@
 public abstract class GameManagerBase : MonoBehaviour
 {
     GameObject _initializerPrefab;
-    
+
     protected abstract void InitGame();
 
     private void Awake()
@@ -12,6 +12,6 @@ public abstract class GameManagerBase : MonoBehaviour
         {
             _initializerPrefab = Resources.Load<GameObject>("Core/Initializer");
             Instantiate(_initializerPrefab);
-        }
+        }   
     }
 }

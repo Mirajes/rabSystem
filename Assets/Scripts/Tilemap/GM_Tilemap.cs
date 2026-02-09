@@ -5,7 +5,7 @@ public class GM_Tilemap : GameManagerBase
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _playerPrefab;
 
-    [SerializeField] private CameraController_Tilemap _cameraController;
+    [SerializeField] private CameraController_2D _cameraController;
 
     private Player_Tilemap _player;
 
@@ -18,7 +18,8 @@ public class GM_Tilemap : GameManagerBase
         GameObject newPlayer = Instantiate(_playerPrefab, _spawnPos.position, _spawnPos.rotation);
         _player = newPlayer.GetComponent<Player_Tilemap>();
 
-        if (_cameraController == null) { Debug.LogWarning("where CameraController"); return; }
+        _cameraController = FindAnyObjectByType<CameraController_2D>();
+        if (_cameraController == null) { Debug.LogWarning("where CameraController_2D"); return; }
 
         _cameraController.Init(_player.transform);
     }

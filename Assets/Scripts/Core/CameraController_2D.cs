@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraController_Tilemap : MonoBehaviour
+public class CameraController_2D : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Vector3 _cameraOffset = new Vector3(0f, -1.7f, -25f);

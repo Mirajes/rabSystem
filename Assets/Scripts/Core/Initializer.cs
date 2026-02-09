@@ -19,6 +19,7 @@ public class Initializer : MonoBehaviour
         }
 
         _inputs = new();
+        print("Dont forget to Enable Inputs");
     }
 
     private void OnDisable()
@@ -62,9 +63,17 @@ public class Initializer : MonoBehaviour
         _inputs.Player.CarSummon.started += _ => gameManager.PlayerController.OnCarSummonInput();
     }
 
-    public void DOTween_InitDoomPlayerControll()
+    public void DOTween_InitDoomPlayerControll(GM_Doom gameManager)
     {
-        //_inputs.CameraTest.Look.performed += callback => 
+        _inputs.Player_DOT.Move.started += context => gameManager.Player.OnSelectDirection(context.ReadValue<float>(), ref gameManager.Player.WalkDirection);
+        _inputs.Player_DOT.Move.performed += context => gameManager.Player.OnMoveInput(context);
+        _inputs.Player_DOT.Move.canceled += _ => gameManager.Player.OnSelectDirection(0, ref gameManager.Player.WalkDirection);
+
+        _inputs.Player_DOT.Rotate.started += context => gameManager.Player.OnSelectDirection(context.ReadValue<float>(), ref gameManager.Player.RotateDirection);
+        _inputs.Player_DOT.Rotate.performed += context => gameManager.Player.OnRotateInput(context);
+        _inputs.Player_DOT.Rotate.canceled += _ => gameManager.Player.OnSelectDirection(0, ref gameManager.Player.RotateDirection);
+
+        _inputs.Player_DOT.Jump.performed += context => gameManager.Player.OnJumpInput(context);
     }
 
     public void TileMap_InitPlayerController(GM_Tilemap gameManager)

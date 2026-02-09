@@ -56,17 +56,26 @@ public class Player_Tilemap : MonoBehaviour
 
     private void ApplyMovement()
     {
-        _rb.AddForce(new Vector2(_moveDirection.x * _moveSpeed, 0), ForceMode2D.Force);
+        if (_moveDirection.x == 0) return;
 
-        if (_moveDirection.x == 0) { _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y); return; }
+        _rb.AddForceX(_moveDirection.x * _moveSpeed, ForceMode2D.Force);
 
-        Vector2 velocity = _rb.linearVelocity;
+        if (math.abs(_rb.linearVelocityX) > _moveSpeed)
+            _rb.linearVelocityX = _rb.linearVelocity.normalized.x * _moveSpeed;
 
-        if (math.abs(velocity.x) > _moveSpeed) 
-            velocity.x = math.sign(velocity.x) * _moveSpeed;
+        //Vector2 velocity = _rb.linearVelocity;
+        //if (math.abs(velocity.x) > _moveSpeed)
+        //    _rb.linearVelocity = new Vector2(velocity.x, velocity.y);
+            //velocity.x = math.sign(velocity.x) * _moveSpeed;
 
-        _rb.linearVelocity = new Vector2(velocity.x, velocity.y);
-        
+
+        //_rb.AddForce(new Vector2(_moveDirection.x * _moveSpeed, 0), ForceMode2D.Force);
+        //if (_moveDirection.x == 0) { _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y); return; }
+        //Vector2 velocity = _rb.linearVelocity;
+        //if (math.abs(velocity.x) > _moveSpeed) 
+        //    velocity.x = math.sign(velocity.x) * _moveSpeed;
+        //_rb.linearVelocity = new Vector2(velocity.x, velocity.y);
+
     }
 
     private void OnEnable()
