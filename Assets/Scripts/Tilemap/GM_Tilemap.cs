@@ -11,7 +11,7 @@ public class GM_Tilemap : GameManagerBase
 
     public Player_Tilemap Player => _player;
 
-    protected override void InitGame()
+    protected override void Init()
     {
         _playerPrefab = Resources.Load<GameObject>("KT_Tilemap/Player");
 
@@ -26,7 +26,7 @@ public class GM_Tilemap : GameManagerBase
 
     private void Start()
     {
-        InitGame();
+        Init();
 
         Initializer.Instance.TileMap_InitPlayerController(this);
 

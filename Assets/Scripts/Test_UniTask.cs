@@ -27,7 +27,7 @@ public class Test_UniTask: MonoBehaviour
 		while (token.IsCancellationRequested)
 		{
 			_coins++;
-			await UniTask.Delay(TimeSpan.FromSeconds(_coinDelay), cancellationToken: token); // token ne obyazatelen, mozhono ne zaparivaetca
+			await UniTask.Delay(TimeSpan.FromSeconds(_coinDelay), cancellationToken: token); // token ne obyazatelen, mozhono ne zaparivatca
 			// eto delaetca chtobi vse taski stopit' 
 		}
 	}

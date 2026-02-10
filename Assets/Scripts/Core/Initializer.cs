@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Initializer : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class Initializer : MonoBehaviour
     public void EnableInputs()
     {
         _inputs.Enable();
+    }
+
+    public void DisableInputs()
+    {
+        _inputs.Disable();
     }
 
     public void NIS_InitCarControll(GM_NewInputSystem gameManager)
@@ -74,6 +80,8 @@ public class Initializer : MonoBehaviour
         _inputs.Player_DOT.Rotate.canceled += _ => gameManager.Player.OnSelectDirection(0, ref gameManager.Player.RotateDirection);
 
         _inputs.Player_DOT.Jump.performed += context => gameManager.Player.OnJumpInput(context);
+
+        _inputs.Player_DOT.Pause.started += _ => gameManager.TogglePauseMinigame();
     }
 
     public void TileMap_InitPlayerController(GM_Tilemap gameManager)

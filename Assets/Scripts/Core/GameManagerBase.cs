@@ -4,7 +4,7 @@ public abstract class GameManagerBase : MonoBehaviour
 {
     GameObject _initializerPrefab;
 
-    protected abstract void InitGame();
+    protected abstract void Init();
 
     private void Awake()
     {

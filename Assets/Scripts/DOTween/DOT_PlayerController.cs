@@ -15,7 +15,6 @@ public class DOT_PlayerController : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float _jumpPower = 3f;
-    [SerializeField] private float _jumpPowerMin = 1f;
     [SerializeField] private float _jumpPowerMax = 7f;
 
     private float _rotateDirection = 0f;

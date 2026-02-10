@@ -16,7 +16,7 @@ public class GM_NewInputSystem : GameManagerBase
     public Transport CurrentTransport => _currentTransport;
     public GameObject CarPrefab => _carPrefab;
 
-    protected override void InitGame()
+    protected override void Init()
     {
         GameObject newPlayer = Instantiate(_player, _spawnPos.position, _spawnPos.rotation);
         _playerController = newPlayer.GetComponent<PlayerController>();
@@ -59,7 +59,7 @@ public class GM_NewInputSystem : GameManagerBase
 
     private void Start()
     {
-        InitGame();
+        Init();
 
         Initializer.Instance.NIS_InitDefaultPlayerControll(this);
         Initializer.Instance.NIS_InitCarControll(this);
