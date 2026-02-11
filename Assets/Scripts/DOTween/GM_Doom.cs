@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class GM_Doom : GameManagerBase
 {
     public DOT_PlayerController Player => _player;
-    private DOT_PlayerController _player;
+    public bool IsPlaying => _isPlaying;
 
     [Header("Main")]
     [SerializeField] private Transform _spawnPos;
+    private DOT_PlayerController _player;
     private GameObject _playerPrefab;
 
     [Header("Camera")]
@@ -28,8 +29,8 @@ public class GM_Doom : GameManagerBase
     [SerializeField] private Transform _ceilingStartTransform;
     [SerializeField] private Transform _ceilingEndTransform;
 
-    private Tween _tweenFallingCeiling;
-    private Tween _tweenBar;
+    [Header("UI")]
+    private Image _inputProgressPanel;
 
     private void Start()
     { 
@@ -46,6 +47,11 @@ public class GM_Doom : GameManagerBase
         CountTimer();
     }
 
+    private void OnDestroy()
+    {
+        DOTween.KillAll();
+    }
+
     private void InitTimer()
     {
         if (_progressBar == null) { Debug.LogWarning("no bar"); return; }
@@ -56,7 +62,7 @@ public class GM_Doom : GameManagerBase
         _remainingTime = _timeToDie;
         _timerText.text = _remainingTime.ToString();
 
-        _tweenBar = _progressBar.DOValue(1f, _timeToDie);
+        _progressBar.DOValue(1f, _timeToDie);
     }
     
     private void InitMinigame()
@@ -64,33 +70,8 @@ public class GM_Doom : GameManagerBase
         if (_ceiling == null || _ceilingStartTransform == null || _ceilingEndTransform == null) { Debug.LogWarning("no ref to ceiling"); return; }
 
         _ceiling.transform.position = _ceilingStartTransform.position;
-        _tweenFallingCeiling = _ceiling.transform.DOMove(_ceilingEndTransform.position, _timeToDie);
+        _ceiling.transform.DOMove(_ceilingEndTransform.position, _timeToDie);
     }
-
-    public void TogglePauseMinigame()
-    {
-        _isPlaying = !_isPlaying;
-        _tweenFallingCeiling.TogglePause();
-        _tweenBar.TogglePause();
-
-        if (_isPlaying)
-            Initializer.Instance.EnableInputs();
-        else 
-            Initializer.Instance.DisableInputs();
-    }
-
-    private void CountTimer()
-    {
-        if (!_isPlaying) return;
-
-        _remainingTime -= Time.deltaTime;
-
-        int minutes = (int)_remainingTime / 60;
-        int secs = (int)_remainingTime % 60;
-
-        _timerText.text = $"{minutes}:{secs}";
-    }
-
     protected override void Init()
     {
         _playerPrefab = Resources.Load<GameObject>("KT_DOTween/DoomPlayer");
@@ -104,9 +85,21 @@ public class GM_Doom : GameManagerBase
         _camera.transform.parent = _player.transform;
     }
 
-
-    private void OnDestroy()
+    public void TogglePauseMinigame()
     {
-        DOTween.KillAll();
+        _isPlaying = !_isPlaying;
+        DOTween.TogglePauseAll();
+    }
+
+    private void CountTimer()
+    {
+        if (!_isPlaying) return;
+
+        _remainingTime -= Time.deltaTime;
+
+        int minutes = (int)_remainingTime / 60;
+        int secs = (int)_remainingTime % 60;
+
+        _timerText.text = $"{minutes}:{secs}";
     }
 }

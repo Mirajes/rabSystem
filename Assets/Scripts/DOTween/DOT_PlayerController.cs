@@ -27,10 +27,13 @@ public class DOT_PlayerController : MonoBehaviour
     private Transform _playerTransform;
     private Vector2 _moveDirection;
     private float _rotateAmount;
+    private GM_Doom _gameManager;
 
     #region Inputs
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if (!_gameManager.IsPlaying) return;
+
         _moveDirection.x = _moveSpeed * (float)context.duration * _walkDirection;
 
         if (Mathf.Abs(_moveDirection.x) > _moveDistanceMax)
@@ -46,6 +49,8 @@ public class DOT_PlayerController : MonoBehaviour
 
     public void OnRotateInput(InputAction.CallbackContext context)
     {
+        if (!_gameManager.IsPlaying) return;
+
         _rotateAmount = _rotateSpeed * (float)context.duration * _rotateDirection;
 
         if (Mathf.Abs(_rotateAmount) > _rotateMax)
@@ -56,7 +61,9 @@ public class DOT_PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-         _moveDirection.y = _jumpPower * (float)context.duration;
+        if (!_gameManager.IsPlaying) return;
+
+        _moveDirection.y = _jumpPower * (float)context.duration;
 
         if (_moveDirection.y > _jumpPowerMax) _moveDirection.y = _jumpPowerMax;
 
@@ -66,6 +73,7 @@ public class DOT_PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        _gameManager = FindAnyObjectByType<GM_Doom>();
         _rb = GetComponent<Rigidbody>();
         _playerTransform = this.transform;
     }
