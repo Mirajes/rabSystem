@@ -7,6 +7,7 @@ public class Player_Tilemap : MonoBehaviour
 {
     [Header("Main")]
     private Rigidbody2D _rb;
+    private Animator _animator;
 
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 5f;
@@ -39,10 +40,8 @@ public class Player_Tilemap : MonoBehaviour
         _moveDirection = direction;
     }
 
-    public void OnJumpInput(bool isJumping)
+    public void OnJumpInput()
     {
-        if (!isJumping) return;
-
         if (_isGrounded()) _usedJumps = 0;
 
         if (_usedJumps < _maxJumps)
@@ -63,6 +62,8 @@ public class Player_Tilemap : MonoBehaviour
         if (math.abs(_rb.linearVelocityX) > _moveSpeed)
             _rb.linearVelocityX = _rb.linearVelocity.normalized.x * _moveSpeed;
 
+        _animator.SetFloat("horizontal", _rb.linearVelocityX);
+
         //Vector2 velocity = _rb.linearVelocity;
         //if (math.abs(velocity.x) > _moveSpeed)
         //    _rb.linearVelocity = new Vector2(velocity.x, velocity.y);
@@ -81,6 +82,7 @@ public class Player_Tilemap : MonoBehaviour
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _groundLayer = LayerMask.GetMask("Ground");
     }
 

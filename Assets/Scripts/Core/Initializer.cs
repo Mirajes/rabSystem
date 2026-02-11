@@ -89,7 +89,6 @@ public class Initializer : MonoBehaviour
         _inputs.Player_Tilemap.Move.performed += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
         _inputs.Player_Tilemap.Move.canceled += _ => gameManager.Player.OnMoveInput(Vector2.zero);
 
-        _inputs.Player_Tilemap.Jump.started += context => gameManager.Player.OnJumpInput(true);
-        _inputs.Player_Tilemap.Jump.canceled += context => gameManager.Player.OnJumpInput(false);
+        _inputs.Player_Tilemap.Jump.started += context => gameManager.Player.OnJumpInput();
     }
 }
