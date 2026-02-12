@@ -73,17 +73,29 @@ public class Initializer : MonoBehaviour
 
     public void DOTween_InitDoomPlayerControll(GM_Doom gameManager)
     {
-        _inputs.Player_DOT.Move.started += context => gameManager.Player.OnSelectDirection(context.ReadValue<float>(), ref gameManager.Player.WalkDirection);
+        _inputs.Player_DOT.Move.started += context => gameManager.Player.OnWalkDirectionChoose(context.ReadValue<float>(), ref gameManager.Player.WalkDirection);
         _inputs.Player_DOT.Move.performed += context => gameManager.Player.OnMoveInput(context);
-        _inputs.Player_DOT.Move.canceled += _ => gameManager.Player.OnSelectDirection(0, ref gameManager.Player.WalkDirection);
 
-        _inputs.Player_DOT.Rotate.started += context => gameManager.Player.OnSelectDirection(context.ReadValue<float>(), ref gameManager.Player.RotateDirection);
+        _inputs.Player_DOT.Move.canceled += context => gameManager.Player.OnActionStop(Actions.Move);
+        _inputs.Player_DOT.Move.canceled += _ => gameManager.Player.OnWalkDirectionChoose(0, ref gameManager.Player.WalkDirection);
+
+        _inputs.Player_DOT.Rotate.started += context => gameManager.Player.OnWalkDirectionChoose(context.ReadValue<float>(), ref gameManager.Player.RotateDirection);
         _inputs.Player_DOT.Rotate.performed += context => gameManager.Player.OnRotateInput(context);
-        _inputs.Player_DOT.Rotate.canceled += _ => gameManager.Player.OnSelectDirection(0, ref gameManager.Player.RotateDirection);
+        _inputs.Player_DOT.Rotate.canceled += _ => gameManager.Player.OnActionStop(Actions.Rotate);
+        _inputs.Player_DOT.Rotate.canceled += _ => gameManager.Player.OnWalkDirectionChoose(0, ref gameManager.Player.RotateDirection);
 
         _inputs.Player_DOT.Jump.performed += context => gameManager.Player.OnJumpInput(context);
+        _inputs.Player_DOT.Jump.canceled += _ => gameManager.Player.OnActionStop(Actions.Jump);
 
         _inputs.Player_DOT.Pause.started += _ => gameManager.TogglePauseMinigame();
+
+        _inputs.Player_DOT.Move.started += _ => gameManager.Player.OnActionChoose(Actions.Move);
+        _inputs.Player_DOT.Rotate.started += _ => gameManager.Player.OnActionChoose(Actions.Rotate);
+        _inputs.Player_DOT.Jump.started += _ => gameManager.Player.OnActionChoose(Actions.Jump);
+
+        _inputs.Player_DOT.Move.started += _ => gameManager.Player.OnActionChoose(Actions.Move);
+        _inputs.Player_DOT.Rotate.started += _ => gameManager.Player.OnActionChoose(Actions.Rotate);
+        _inputs.Player_DOT.Jump.started += _ => gameManager.Player.OnActionChoose(Actions.Jump);
     }
 
     public void TileMap_InitPlayerController(GM_Tilemap gameManager)

@@ -29,8 +29,8 @@ public class GM_Doom : GameManagerBase
     [SerializeField] private Transform _ceilingStartTransform;
     [SerializeField] private Transform _ceilingEndTransform;
 
-    [Header("UI")]
-    private Image _inputProgressPanel;
+    [Header("DisplayInput")]
+    [SerializeField] private Image _inputProgressPanel;
 
     private void Start()
     { 
@@ -64,14 +64,26 @@ public class GM_Doom : GameManagerBase
 
         _progressBar.DOValue(1f, _timeToDie);
     }
-    
+
     private void InitMinigame()
     {
         if (_ceiling == null || _ceilingStartTransform == null || _ceilingEndTransform == null) { Debug.LogWarning("no ref to ceiling"); return; }
 
         _ceiling.transform.position = _ceilingStartTransform.position;
         _ceiling.transform.DOMove(_ceilingEndTransform.position, _timeToDie);
+
+        for (int i = 0; i < _inputProgressPanel.transform.childCount; i++) // to turn all images to black
+        {
+            TurnInputImageToBlack(i);
+
+        }
     }
+
+    public void TurnInputImageToBlack(int index)
+    {
+        _inputProgressPanel.transform.GetChild(index).GetChild(0).GetComponent<Image>().fillAmount = 0;
+    }
+
     protected override void Init()
     {
         _playerPrefab = Resources.Load<GameObject>("KT_DOTween/DoomPlayer");
@@ -102,4 +114,19 @@ public class GM_Doom : GameManagerBase
 
         _timerText.text = $"{minutes}:{secs}";
     }
+
+    public void OnInputAction(int index, float fillTime)
+    {
+        _inputProgressPanel.transform.GetChild(index).GetChild(0).GetComponent<Image>().DOFillAmount(1, fillTime);
+    }
+
+    public void OnInputCancelled(int index) => TurnInputImageToBlack(index);
+}
+
+
+public enum Actions
+{
+    Move,
+    Rotate,
+    Jump
 }

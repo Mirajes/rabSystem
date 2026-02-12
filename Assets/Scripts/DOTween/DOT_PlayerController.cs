@@ -30,21 +30,54 @@ public class DOT_PlayerController : MonoBehaviour
     private GM_Doom _gameManager;
 
     #region Inputs
+
+    public void OnActionChoose(Actions action)
+    {
+        if (action == Actions.Move && _walkDirection > 0f)
+            _gameManager.OnInputAction(3, _moveDistanceMax / _moveSpeed);
+        else if (action == Actions.Move && _walkDirection < 0f)
+            _gameManager.OnInputAction(1, _moveDistanceMax / _moveSpeed);
+        else if (action == Actions.Jump)
+            _gameManager.OnInputAction(2, _jumpPowerMax / _jumpPower);
+        else if (action == Actions.Rotate && _rotateDirection > 0f)
+            _gameManager.OnInputAction(4, _rotateMax / _rotateSpeed);
+        else if (action == Actions.Rotate && _rotateDirection < 0f)
+            _gameManager.OnInputAction(0, _rotateMax / _rotateSpeed);
+    }
+
+    public void OnActionStop(Actions action)
+    {
+        if (action == Actions.Move)
+        {
+            _gameManager.OnInputCancelled(3);
+            _gameManager.OnInputCancelled(1);
+        }
+        else if (action == Actions.Jump)
+            _gameManager.OnInputCancelled(2);
+        else if (action == Actions.Rotate)
+        {
+            _gameManager.OnInputCancelled(4);
+            _gameManager.OnInputCancelled(0);
+        }
+    }
+
+    public void OnWalkDirectionChoose(float input, ref float controller)
+    {
+        controller = input;
+    }
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (!_gameManager.IsPlaying) return;
 
-        _moveDirection.x = _moveSpeed * (float)context.duration * _walkDirection;
+        float chargingTime = _moveSpeed * (float)context.duration;
+
+        _moveDirection.x = chargingTime * _walkDirection;
 
         if (Mathf.Abs(_moveDirection.x) > _moveDistanceMax)
             _moveDirection.x = _moveDistanceMax * _walkDirection;
 
         _playerTransform.DOMove(_playerTransform.position + _playerTransform.forward * _moveDirection.x, 1);
-    }
-
-    public void OnSelectDirection(float input, ref float controller)
-    {
-        controller = input;
     }
 
     public void OnRotateInput(InputAction.CallbackContext context)
