@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
 public class Initializer : MonoBehaviour
@@ -86,6 +87,7 @@ public class Initializer : MonoBehaviour
 
     public void TileMap_InitPlayerController(GM_Tilemap gameManager)
     {
+        _inputs.Player_Tilemap.Move.started += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
         _inputs.Player_Tilemap.Move.performed += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
         _inputs.Player_Tilemap.Move.canceled += _ => gameManager.Player.OnMoveInput(Vector2.zero);
 

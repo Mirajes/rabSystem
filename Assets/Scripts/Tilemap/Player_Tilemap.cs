@@ -8,6 +8,7 @@ public class Player_Tilemap : MonoBehaviour
     [Header("Main")]
     private Rigidbody2D _rb;
     private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
 
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 5f;
@@ -38,6 +39,10 @@ public class Player_Tilemap : MonoBehaviour
     public void OnMoveInput(Vector2 direction)
     {
         _moveDirection = direction;
+
+        if (_moveDirection.x > 0) { _spriteRenderer.flipX = false; _animator.SetBool("Move", true); }
+        else if (_moveDirection.x < 0) { _spriteRenderer.flipX = true; _animator.SetBool("Move", true); }
+        else _animator.SetBool("Move", false);
     }
 
     public void OnJumpInput()
@@ -46,6 +51,8 @@ public class Player_Tilemap : MonoBehaviour
 
         if (_usedJumps < _maxJumps)
         {
+            _animator.SetTrigger("Jump");
+
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); // сброс вертикальной скорости
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse); // происходит сложение сил без верхней строчки
             _usedJumps++;
@@ -62,8 +69,6 @@ public class Player_Tilemap : MonoBehaviour
         if (math.abs(_rb.linearVelocityX) > _moveSpeed)
             _rb.linearVelocityX = _rb.linearVelocity.normalized.x * _moveSpeed;
 
-        _animator.SetFloat("horizontal", _rb.linearVelocityX);
-
         //Vector2 velocity = _rb.linearVelocity;
         //if (math.abs(velocity.x) > _moveSpeed)
         //    _rb.linearVelocity = new Vector2(velocity.x, velocity.y);
@@ -79,15 +84,24 @@ public class Player_Tilemap : MonoBehaviour
 
     }
 
+    private void KnowVelocityY()
+    {
+        _animator.SetFloat("Vertical", _rb.linearVelocityY);
+    }
+
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
         _groundLayer = LayerMask.GetMask("Ground");
+
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         ApplyMovement();
+
+        KnowVelocityY();
     }
 }
