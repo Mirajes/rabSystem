@@ -35,9 +35,10 @@ public class Initializer : MonoBehaviour
         _inputs.Enable();
     }
 
-    public void DisableInputs()
+    public void DisableInputs(InputSystem_Actions.PlayerActions actionMap,
+        InputSystem_Actions.IPlayerActions actions)
     {
-        _inputs.Disable();
+        actionMap.RemoveCallbacks(actions);
     }
 
     public void NIS_InitCarControll(GM_NewInputSystem gameManager)

@@ -89,7 +89,7 @@ public class Player_Tilemap : MonoBehaviour
         _animator.SetFloat("Vertical", _rb.linearVelocityY);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _groundLayer = LayerMask.GetMask("Ground");
