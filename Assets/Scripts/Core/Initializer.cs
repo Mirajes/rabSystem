@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class Initializer : MonoBehaviour
 {
@@ -21,7 +19,6 @@ public class Initializer : MonoBehaviour
         }
 
         _inputs = new();
-        print("Dont forget to Enable Inputs");
     }
 
     private void OnDisable()
@@ -35,11 +32,27 @@ public class Initializer : MonoBehaviour
         _inputs.Enable();
     }
 
-    public void DisableInputs(InputSystem_Actions.PlayerActions actionMap,
-        InputSystem_Actions.IPlayerActions actions)
+    public void RemoveInputs(InputSystem_Actions.Player_NISActions map,
+        InputSystem_Actions.IPlayer_NISActions actions)
     {
-        actionMap.RemoveCallbacks(actions);
+        map.RemoveCallbacks(actions);
     }
+    //public void RemoveInputs(InputSystem_Actions.Player_NISActions map,
+    //InputSystem_Actions.IPlayer_NISActions actions)
+    //{
+    //    map.RemoveCallbacks(actions);
+    //}
+    //public void RemoveInputs(InputSystem_Actions.Player_NISActions map,
+    //InputSystem_Actions.IPlayer_NISActions actions)
+    //{
+    //    map.RemoveCallbacks(actions);
+    //}
+    public void RemoveInputs(InputSystem_Actions.Player_Advc2DActions map,
+    InputSystem_Actions.IPlayer_Advc2DActions actions)
+    {
+        map.RemoveCallbacks(actions);
+    }
+
 
     public void NIS_InitCarControll(GM_NewInputSystem gameManager)
     {
@@ -58,17 +71,17 @@ public class Initializer : MonoBehaviour
     public void NIS_InitDefaultPlayerControll(GM_NewInputSystem gameManager)
     {
         // Player
-        _inputs.Player.Move.performed += context => gameManager.PlayerController.OnMoveInput(context.ReadValue<Vector2>());
-        _inputs.Player.Move.canceled += context => gameManager.PlayerController.OnMoveInput(Vector2.zero);
+        _inputs.Player_NIS.Move.performed += context => gameManager.PlayerController.OnMoveInput(context.ReadValue<Vector2>());
+        _inputs.Player_NIS.Move.canceled += context => gameManager.PlayerController.OnMoveInput(Vector2.zero);
 
-        _inputs.Player.Jump.started += _ => gameManager.PlayerController.OnJumpInput();
+        _inputs.Player_NIS.Jump.started += _ => gameManager.PlayerController.OnJumpInput();
 
-        _inputs.Player.Look.performed += context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
-        _inputs.Player.Look.canceled += context => gameManager.PlayerController.OnRotateInput(Vector2.zero);
+        _inputs.Player_NIS.Look.performed += context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
+        _inputs.Player_NIS.Look.canceled += context => gameManager.PlayerController.OnRotateInput(Vector2.zero);
 
-        _inputs.Player.Zoom.performed += context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
+        _inputs.Player_NIS.Zoom.performed += context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
 
-        _inputs.Player.CarSummon.started += _ => gameManager.PlayerController.OnCarSummonInput();
+        _inputs.Player_NIS.CarSummon.started += _ => gameManager.PlayerController.OnCarSummonInput();
     }
 
     public void DOTween_InitDoomPlayerControll(GM_Doom gameManager)
@@ -105,5 +118,10 @@ public class Initializer : MonoBehaviour
         _inputs.Player_Tilemap.Move.canceled += _ => gameManager.Player.OnMoveInput(Vector2.zero);
 
         _inputs.Player_Tilemap.Jump.started += context => gameManager.Player.OnJumpInput();
+    }
+
+    public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
+    {
+        print("init controller");
     }
 }

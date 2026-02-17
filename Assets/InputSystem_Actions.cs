@@ -89,7 +89,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Player_NIS"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -1721,6 +1721,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player_Advc2D"",
+            ""id"": ""fcf17f0c-999b-4161-8f42-eea02cda9963"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e6bf326-ed99-422e-910d-8d60170f85ac"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""198a6da1-6267-44ba-82fa-775bc321cd79"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1786,19 +1814,19 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
-        m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_CarSummon = m_Player.FindAction("CarSummon", throwIfNotFound: true);
-        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        // Player_NIS
+        m_Player_NIS = asset.FindActionMap("Player_NIS", throwIfNotFound: true);
+        m_Player_NIS_Move = m_Player_NIS.FindAction("Move", throwIfNotFound: true);
+        m_Player_NIS_Look = m_Player_NIS.FindAction("Look", throwIfNotFound: true);
+        m_Player_NIS_Attack = m_Player_NIS.FindAction("Attack", throwIfNotFound: true);
+        m_Player_NIS_Interact = m_Player_NIS.FindAction("Interact", throwIfNotFound: true);
+        m_Player_NIS_Crouch = m_Player_NIS.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_NIS_Jump = m_Player_NIS.FindAction("Jump", throwIfNotFound: true);
+        m_Player_NIS_Previous = m_Player_NIS.FindAction("Previous", throwIfNotFound: true);
+        m_Player_NIS_Next = m_Player_NIS.FindAction("Next", throwIfNotFound: true);
+        m_Player_NIS_Sprint = m_Player_NIS.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_NIS_CarSummon = m_Player_NIS.FindAction("CarSummon", throwIfNotFound: true);
+        m_Player_NIS_Zoom = m_Player_NIS.FindAction("Zoom", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1830,16 +1858,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_DOT_Rotate = m_Player_DOT.FindAction("Rotate", throwIfNotFound: true);
         m_Player_DOT_Jump = m_Player_DOT.FindAction("Jump", throwIfNotFound: true);
         m_Player_DOT_Pause = m_Player_DOT.FindAction("Pause", throwIfNotFound: true);
+        // Player_Advc2D
+        m_Player_Advc2D = asset.FindActionMap("Player_Advc2D", throwIfNotFound: true);
+        m_Player_Advc2D_Newaction = m_Player_Advc2D.FindAction("New action", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
     {
-        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player_NIS.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_NIS.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Transport.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Transport.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_CameraTest.enabled, "This will cause a leak and performance issues, InputSystem_Actions.CameraTest.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Tilemap.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Tilemap.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_DOT.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_DOT.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player_Advc2D.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Advc2D.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1912,79 +1944,79 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Previous;
-    private readonly InputAction m_Player_Next;
-    private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_CarSummon;
-    private readonly InputAction m_Player_Zoom;
+    // Player_NIS
+    private readonly InputActionMap m_Player_NIS;
+    private List<IPlayer_NISActions> m_Player_NISActionsCallbackInterfaces = new List<IPlayer_NISActions>();
+    private readonly InputAction m_Player_NIS_Move;
+    private readonly InputAction m_Player_NIS_Look;
+    private readonly InputAction m_Player_NIS_Attack;
+    private readonly InputAction m_Player_NIS_Interact;
+    private readonly InputAction m_Player_NIS_Crouch;
+    private readonly InputAction m_Player_NIS_Jump;
+    private readonly InputAction m_Player_NIS_Previous;
+    private readonly InputAction m_Player_NIS_Next;
+    private readonly InputAction m_Player_NIS_Sprint;
+    private readonly InputAction m_Player_NIS_CarSummon;
+    private readonly InputAction m_Player_NIS_Zoom;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Player".
+    /// Provides access to input actions defined in input action map "Player_NIS".
     /// </summary>
-    public struct PlayerActions
+    public struct Player_NISActions
     {
         private @InputSystem_Actions m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public Player_NISActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Player/Move".
+        /// Provides access to the underlying input action "Player_NIS/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Move => m_Wrapper.m_Player_NIS_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Look".
+        /// Provides access to the underlying input action "Player_NIS/Look".
         /// </summary>
-        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Look => m_Wrapper.m_Player_NIS_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Attack".
+        /// Provides access to the underlying input action "Player_NIS/Attack".
         /// </summary>
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Attack => m_Wrapper.m_Player_NIS_Attack;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Interact".
+        /// Provides access to the underlying input action "Player_NIS/Interact".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Interact => m_Wrapper.m_Player_NIS_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Crouch".
+        /// Provides access to the underlying input action "Player_NIS/Crouch".
         /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Crouch => m_Wrapper.m_Player_NIS_Crouch;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Jump".
+        /// Provides access to the underlying input action "Player_NIS/Jump".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Jump => m_Wrapper.m_Player_NIS_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Previous".
+        /// Provides access to the underlying input action "Player_NIS/Previous".
         /// </summary>
-        public InputAction @Previous => m_Wrapper.m_Player_Previous;
+        public InputAction @Previous => m_Wrapper.m_Player_NIS_Previous;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Next".
+        /// Provides access to the underlying input action "Player_NIS/Next".
         /// </summary>
-        public InputAction @Next => m_Wrapper.m_Player_Next;
+        public InputAction @Next => m_Wrapper.m_Player_NIS_Next;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Sprint".
+        /// Provides access to the underlying input action "Player_NIS/Sprint".
         /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Sprint => m_Wrapper.m_Player_NIS_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "Player/CarSummon".
+        /// Provides access to the underlying input action "Player_NIS/CarSummon".
         /// </summary>
-        public InputAction @CarSummon => m_Wrapper.m_Player_CarSummon;
+        public InputAction @CarSummon => m_Wrapper.m_Player_NIS_CarSummon;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Zoom".
+        /// Provides access to the underlying input action "Player_NIS/Zoom".
         /// </summary>
-        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @Zoom => m_Wrapper.m_Player_NIS_Zoom;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public InputActionMap Get() { return m_Wrapper.m_Player_NIS; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -1992,9 +2024,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="Player_NISActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(Player_NISActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -2002,11 +2034,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="PlayerActions" />
-        public void AddCallbacks(IPlayerActions instance)
+        /// <seealso cref="Player_NISActions" />
+        public void AddCallbacks(IPlayer_NISActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_Player_NISActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_NISActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -2048,8 +2080,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="PlayerActions" />
-        private void UnregisterCallbacks(IPlayerActions instance)
+        /// <seealso cref="Player_NISActions" />
+        private void UnregisterCallbacks(IPlayer_NISActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -2087,12 +2119,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_NISActions.UnregisterCallbacks(IPlayer_NISActions)" />.
         /// </summary>
-        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-        public void RemoveCallbacks(IPlayerActions instance)
+        /// <seealso cref="Player_NISActions.UnregisterCallbacks(IPlayer_NISActions)" />
+        public void RemoveCallbacks(IPlayer_NISActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_Player_NISActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -2102,21 +2134,21 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-        public void SetCallbacks(IPlayerActions instance)
+        /// <seealso cref="Player_NISActions.AddCallbacks(IPlayer_NISActions)" />
+        /// <seealso cref="Player_NISActions.RemoveCallbacks(IPlayer_NISActions)" />
+        /// <seealso cref="Player_NISActions.UnregisterCallbacks(IPlayer_NISActions)" />
+        public void SetCallbacks(IPlayer_NISActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_Player_NISActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_Player_NISActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
+    /// Provides a new <see cref="Player_NISActions" /> instance referencing this action map.
     /// </summary>
-    public PlayerActions @Player => new PlayerActions(this);
+    public Player_NISActions @Player_NIS => new Player_NISActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -2773,6 +2805,102 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="Player_DOTActions" /> instance referencing this action map.
     /// </summary>
     public Player_DOTActions @Player_DOT => new Player_DOTActions(this);
+
+    // Player_Advc2D
+    private readonly InputActionMap m_Player_Advc2D;
+    private List<IPlayer_Advc2DActions> m_Player_Advc2DActionsCallbackInterfaces = new List<IPlayer_Advc2DActions>();
+    private readonly InputAction m_Player_Advc2D_Newaction;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Player_Advc2D".
+    /// </summary>
+    public struct Player_Advc2DActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public Player_Advc2DActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc2D/Newaction".
+        /// </summary>
+        public InputAction @Newaction => m_Wrapper.m_Player_Advc2D_Newaction;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Player_Advc2D; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="Player_Advc2DActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(Player_Advc2DActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="Player_Advc2DActions" />
+        public void AddCallbacks(IPlayer_Advc2DActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Player_Advc2DActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_Advc2DActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="Player_Advc2DActions" />
+        private void UnregisterCallbacks(IPlayer_Advc2DActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_Advc2DActions.UnregisterCallbacks(IPlayer_Advc2DActions)" />.
+        /// </summary>
+        /// <seealso cref="Player_Advc2DActions.UnregisterCallbacks(IPlayer_Advc2DActions)" />
+        public void RemoveCallbacks(IPlayer_Advc2DActions instance)
+        {
+            if (m_Wrapper.m_Player_Advc2DActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="Player_Advc2DActions.AddCallbacks(IPlayer_Advc2DActions)" />
+        /// <seealso cref="Player_Advc2DActions.RemoveCallbacks(IPlayer_Advc2DActions)" />
+        /// <seealso cref="Player_Advc2DActions.UnregisterCallbacks(IPlayer_Advc2DActions)" />
+        public void SetCallbacks(IPlayer_Advc2DActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Player_Advc2DActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Player_Advc2DActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="Player_Advc2DActions" /> instance referencing this action map.
+    /// </summary>
+    public Player_Advc2DActions @Player_Advc2D => new Player_Advc2DActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2839,11 +2967,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_NIS" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-    /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-    public interface IPlayerActions
+    /// <seealso cref="Player_NISActions.AddCallbacks(IPlayer_NISActions)" />
+    /// <seealso cref="Player_NISActions.RemoveCallbacks(IPlayer_NISActions)" />
+    public interface IPlayer_NISActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -3109,5 +3237,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_Advc2D" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="Player_Advc2DActions.AddCallbacks(IPlayer_Advc2DActions)" />
+    /// <seealso cref="Player_Advc2DActions.RemoveCallbacks(IPlayer_Advc2DActions)" />
+    public interface IPlayer_Advc2DActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

@@ -270,7 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _cameraOffset: {x: 0, y: -1.7, z: -25}
+  _cameraOffset: {x: 0, y: -1.7, z: 20}
+  _cameraOrthographicSize: 6.5
 --- !u!1 &223080331
 GameObject:
   m_ObjectHideFlags: 0
