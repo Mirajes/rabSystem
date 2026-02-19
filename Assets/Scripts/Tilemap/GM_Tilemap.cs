@@ -24,6 +24,8 @@ public class GM_Tilemap : GameManagerBase
         _cameraController.Init(_player.transform);
     }
 
+
+
     private void Start()
     {
         Init();
@@ -31,5 +33,9 @@ public class GM_Tilemap : GameManagerBase
         Initializer.Instance.TileMap_InitPlayerController(this);
 
         Initializer.Instance.EnableInputs();
+    }
+    protected override void OnDestroy()
+    {
+        Initializer.Instance.RemoveInputs(this);
     }
 }

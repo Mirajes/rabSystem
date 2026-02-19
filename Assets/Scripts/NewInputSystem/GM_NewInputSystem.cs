@@ -47,13 +47,13 @@ public class GM_NewInputSystem : GameManagerBase
 
         if (_playerController._isInsideCar)
         {
-            Initializer._inputs.Player_NIS.Disable();
-            Initializer._inputs.Transport.Enable();
+            Initializer.Inputs.Player_NIS.Disable();
+            Initializer.Inputs.Transport.Enable();
         }
         else
         {
-            Initializer._inputs.Player_NIS.Enable();
-            Initializer._inputs.Transport.Disable();
+            Initializer.Inputs.Player_NIS.Enable();
+            Initializer.Inputs.Transport.Disable();
         }
     }
 
@@ -65,5 +65,10 @@ public class GM_NewInputSystem : GameManagerBase
         Initializer.Instance.NIS_InitCarControll(this);
 
         Initializer.Instance.EnableInputs();
+    }
+
+    protected override void OnDestroy()
+    {
+        Initializer.Instance.RemoveInputs(this);
     }
 }

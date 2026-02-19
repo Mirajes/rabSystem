@@ -33,6 +33,11 @@ public class GM_Advanced2D : GameManagerBase
         _cameraController = GetComponent<CameraController_2D>();
         _cameraController.Init(_player.transform);
     }
+
+    protected override void OnDestroy()
+    {
+        Initializer.Instance.RemoveInputs(this);
+    }
 }
 
 public class Advc2D_IntetactableObject : MonoBehaviour
