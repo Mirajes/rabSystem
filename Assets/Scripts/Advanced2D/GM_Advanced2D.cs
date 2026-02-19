@@ -1,5 +1,7 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CameraController_2D))]
 public class GM_Advanced2D : GameManagerBase
@@ -13,16 +15,29 @@ public class GM_Advanced2D : GameManagerBase
 
     private CameraController_2D _cameraController;
 
+    public static Action PlayerDeath;
+
     private void Start()
     {
         Init();
+    }
 
+    private void OnEnable()
+    {
+        PlayerDeath += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        Initializer.Instance.RemoveInputs(this);
+
+        PlayerDeath -= OnPlayerDeath;
     }
 
     protected override void Init()
     {
         _playerPrefab = Resources.Load<GameObject>("KT_Advc2D/Player");
-        GameObject newPlayer = Instantiate(_playerPrefab, _spawnPos);
+        GameObject newPlayer = Instantiate(_playerPrefab, _spawnPos.position, _spawnPos.rotation);
 
         _player = newPlayer.GetComponent<Advc2D_PlayerController>();
 
@@ -34,9 +49,9 @@ public class GM_Advanced2D : GameManagerBase
         _cameraController.Init(_player.transform);
     }
 
-    private void OnDisable()
+    private void OnPlayerDeath()
     {
-        Initializer.Instance.RemoveInputs(this);   
+        SceneManager.LoadScene("Advanced2D");
     }
 }
 

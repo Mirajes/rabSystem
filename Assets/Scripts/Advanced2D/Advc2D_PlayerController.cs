@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Advc2D_PlayerController : MonoBehaviour
 {
-    private CharacterController _charController;
+    private Rigidbody2D _rigidBody;
 
     [Header("Settings")]
     [SerializeField] private int _currentHealth = 1;
@@ -21,12 +22,12 @@ public class Advc2D_PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        _charController.Move(_moveDirection);
+        _rigidBody.MovePosition(_rigidBody.position + (_moveDirection * _moveSpeed * Time.deltaTime));
     }
 
     private void OnEnable()
     {
-        _charController = GetComponent<CharacterController>();
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

@@ -102,7 +102,8 @@ public class Initializer : MonoBehaviour
 
     public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
     {
-        print("init controller");
+        Inputs.Player_Advc2D.Move.performed += context => gameManager.Player.OnMoveInput(context);
+        Inputs.Player_Advc2D.Move.canceled += _ => gameManager.Player.OnMoveInput(_);
     }
     #endregion
 
