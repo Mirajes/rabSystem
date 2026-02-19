@@ -19,6 +19,4 @@ public abstract class GameManagerBase : MonoBehaviour
     {
         Initializer.Instance.EnableInputs();
     }
-
-    protected abstract void OnDestroy();
 }

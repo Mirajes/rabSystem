@@ -47,10 +47,14 @@ public class GM_Doom : GameManagerBase
         CountTimer();
     }
 
-    protected override void OnDestroy()
+    private void OnDisable()
+    {
+        Initializer.Instance.RemoveInputs(this);
+    }
+
+    private void OnDestroy()
     {
         DOTween.KillAll();
-        Initializer.Instance.RemoveInputs(this);
     }
 
     private void InitTimer()

@@ -34,9 +34,9 @@ public class GM_Advanced2D : GameManagerBase
         _cameraController.Init(_player.transform);
     }
 
-    protected override void OnDestroy()
+    private void OnDisable()
     {
-        Initializer.Instance.RemoveInputs(this);
+        Initializer.Instance.RemoveInputs(this);   
     }
 }
 

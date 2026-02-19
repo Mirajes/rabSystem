@@ -67,7 +67,7 @@ public class GM_NewInputSystem : GameManagerBase
         Initializer.Instance.EnableInputs();
     }
 
-    protected override void OnDestroy()
+    private void OnDisable()
     {
         Initializer.Instance.RemoveInputs(this);
     }
