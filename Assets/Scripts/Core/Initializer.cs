@@ -104,6 +104,7 @@ public class Initializer : MonoBehaviour
     {
         Inputs.Player_Advc2D.Move.performed += context => gameManager.Player.OnMoveInput(context);
         Inputs.Player_Advc2D.Move.canceled += _ => gameManager.Player.OnMoveInput(_);
+        print(gameManager.Player);
     }
     #endregion
 

@@ -35,7 +35,7 @@ public class GM_Tilemap : GameManagerBase
         Initializer.Instance.EnableInputs();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         Initializer.Instance.RemoveInputs(this);
     }

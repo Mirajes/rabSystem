@@ -14,9 +14,4 @@ public abstract class GameManagerBase : MonoBehaviour
             Instantiate(_initializerPrefab);
         }   
     }
-
-    private void OnEnable()
-    {
-        Initializer.Instance.EnableInputs();
-    }
 }

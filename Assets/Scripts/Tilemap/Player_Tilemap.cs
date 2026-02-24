@@ -1,8 +1,8 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D), typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class Player_Tilemap : MonoBehaviour
 {
     [Header("Main")]
@@ -24,7 +24,7 @@ public class Player_Tilemap : MonoBehaviour
     [SerializeField] private float _distance = 0.1f;
     [SerializeField] private LayerMask _groundLayer;
 
-    private bool _isGrounded()
+    private bool IsGrounded()
     {
         Vector2 origin = transform.position;
         RaycastHit2D hit = Physics2D.CircleCast(origin, _radius, Vector2.down, _distance, _groundLayer);
@@ -47,7 +47,7 @@ public class Player_Tilemap : MonoBehaviour
 
     public void OnJumpInput()
     {
-        if (_isGrounded()) _usedJumps = 0;
+        if (IsGrounded()) _usedJumps = 0;
 
         if (_usedJumps < _maxJumps)
         {
