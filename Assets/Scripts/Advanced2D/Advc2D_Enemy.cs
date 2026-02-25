@@ -3,6 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public abstract class Advc2D_Enemy : MonoBehaviour
 {
+    protected Rigidbody2D _RigidBody;
+
+    private void OnEnable()
+    {
+        _RigidBody = GetComponent<Rigidbody2D>();
+    }
+
     protected virtual void Attack() { print("pew"); }
 }
 
