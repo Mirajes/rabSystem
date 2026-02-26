@@ -25,9 +25,16 @@ public class Advc2D_PlayerController : MonoBehaviour
         _rigidBody.MovePosition(_rigidBody.position + (_moveDirection * _moveSpeed * Time.deltaTime));
     }
 
-    private void OnEnable()
+    private void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+
+        float angle = Vector2.Angle(Vector2.zero, transform.forward);
+        
+    }
+
+    private void OnEnable()
+    {
     }
 
     private void Update()

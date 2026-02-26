@@ -41,7 +41,6 @@ public class GM_Advanced2D : GameManagerBase
 
         _player = newPlayer.GetComponent<Advc2D_PlayerController>();
 
-        Debug.Log("try to init");
         Initializer.Instance.Advc2D_InitPlayerController(this);
 
 

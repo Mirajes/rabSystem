@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 1
-  _moveSpeed: 7.5
+  _moveSpeed: 10
 --- !u!50 &4566528862911187769
 Rigidbody2D:
   serializedVersion: 5
@@ -115,10 +115,10 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 1
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:

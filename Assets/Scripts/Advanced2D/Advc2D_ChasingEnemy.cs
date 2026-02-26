@@ -34,7 +34,7 @@ public class Advc2D_ChasingEnemy : Advc2D_Enemy
     {
         if (collision.collider.tag != "Player") return;
 
-
+        GM_Advanced2D.PlayerDeath?.Invoke();
     }
 }
 
