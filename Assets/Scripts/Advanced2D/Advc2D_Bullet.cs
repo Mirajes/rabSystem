@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Advc2D_Bullet : MonoBehaviour
 {
+    public Rigidbody2D Rigidbody => _rigidBody;
+
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _timeToDisappear = 10f;
 
@@ -15,6 +17,7 @@ public class Advc2D_Bullet : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
 
+        print(direction);
         _rigidBody.AddForce(direction * _moveSpeed, ForceMode2D.Impulse);
 
         DestroyBulletAsync().Forget();

@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Advc2D_ChasingEnemy : Advc2D_Enemy 
 {
-
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private Transform _target;
     
-
     private void ApplyMove()
     {
         Vector2 direction = (transform.position - _target.position); // можно нормализовать чтобы была постоянная скорость
