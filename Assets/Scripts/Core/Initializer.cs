@@ -1,4 +1,3 @@
-using DG.Tweening.Core.Easing;
 using UnityEngine;
 
 public class Initializer : MonoBehaviour
@@ -12,14 +11,14 @@ public class Initializer : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(Instance);
+
+            Inputs = new();
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        Inputs = new();
     }
 
     private void OnDisable()
@@ -93,11 +92,11 @@ public class Initializer : MonoBehaviour
 
     public void TileMap_InitPlayerController(GM_Tilemap gameManager)
     {
-        Inputs.Player_Tilemap.Move.started += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
-        Inputs.Player_Tilemap.Move.performed += context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
-        Inputs.Player_Tilemap.Move.canceled += _ => gameManager.Player.OnMoveInput(Vector2.zero);
+        Inputs.Player_Tilemap.Move.started += gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.canceled += gameManager.Player.OnMoveInput;
 
-        Inputs.Player_Tilemap.Jump.started += context => gameManager.Player.OnJumpInput();
+        Inputs.Player_Tilemap.Jump.started += gameManager.Player.OnJumpInput;
     }
 
     public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
@@ -148,13 +147,13 @@ public class Initializer : MonoBehaviour
     }
     public void RemoveInputs(GM_Tilemap gameManager)
     {
-        Inputs.Player_Tilemap.Move.started -= _ => gameManager.Player.OnMoveInput(_.ReadValue<Vector2>());
-        Inputs.Player_Tilemap.Move.performed -= context => gameManager.Player.OnMoveInput(context.ReadValue<Vector2>());
-        Inputs.Player_Tilemap.Move.canceled -= _ => gameManager.Player.OnMoveInput(Vector2.zero);
-        Inputs.Player_Tilemap.Jump.started -= context => gameManager.Player.OnJumpInput();
+        Inputs.Player_Tilemap.Move.started -= gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.performed -= gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.canceled -= gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Jump.started -= gameManager.Player.OnJumpInput;
 
-        Inputs.Player_Tilemap.Move.Reset();
-        Inputs.Player_Tilemap.Jump.Reset();
+        //Inputs.Player_Tilemap.Move.Reset();
+        //Inputs.Player_Tilemap.Jump.Reset();
     }
     public void RemoveInputs(GM_Advanced2D gameManager)
     {

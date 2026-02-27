@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D), typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
@@ -36,16 +37,16 @@ public class Player_Tilemap : MonoBehaviour
     }
 
     #region OnInput
-    public void OnMoveInput(Vector2 direction)
+    public void OnMoveInput(CallbackContext context)
     {
-        _moveDirection = direction;
+        _moveDirection = context.ReadValue<Vector2>();
 
         if (_moveDirection.x > 0) { _spriteRenderer.flipX = false; _animator.SetBool("Move", true); }
         else if (_moveDirection.x < 0) { _spriteRenderer.flipX = true; _animator.SetBool("Move", true); }
         else _animator.SetBool("Move", false);
     }
 
-    public void OnJumpInput()
+    public void OnJumpInput(CallbackContext context)
     {
         if (IsGrounded()) _usedJumps = 0;
 
