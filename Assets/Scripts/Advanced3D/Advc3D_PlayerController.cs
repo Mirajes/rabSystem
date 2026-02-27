@@ -1,0 +1,81 @@
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(BoxCollider))]
+public class Advc3D_PlayerController : MonoBehaviour 
+{
+    private CharacterController _charController;
+
+    [Header("Walk")]
+    [SerializeField] private float _moveSpeed = 3f;
+    private Vector2 _moveDirection;
+
+    [Header("Rotate")]
+    [SerializeField] private float _rotateSpeed = 15f;
+    private float _rotateDirection = 0f;
+
+    [Header("Jump")]
+    [SerializeField] private float _jumpPower = 10f;
+    [SerializeField] private int _maxJumps = 1;
+    private int _usedJumps = 0;
+    public bool IsGrounded => _charController.isGrounded;
+
+    [Header("Gravity")]
+    [SerializeField] private float _gravity = -9.81f;
+    [SerializeField] private float _gravityMult = 1f;
+
+    public void OnControllInput(InputAction.CallbackContext context)
+    {
+        Vector2 controllDirection = context.ReadValue<Vector2>();
+
+        _moveDirection.x = controllDirection.y * _moveSpeed * Time.deltaTime;
+        _rotateDirection = controllDirection.x * _rotateSpeed * Time.deltaTime;
+    }
+
+    public void OnJumpInput(InputAction.CallbackContext context)
+    {
+        if (_usedJumps >= _maxJumps) return;
+
+        _usedJumps++;
+        _moveDirection.y = _jumpPower;
+    }
+
+    private void SetGravity()
+    {
+        if (IsGrounded && _moveDirection.y < 0)
+        {
+            _moveDirection.y = -1f;
+            _usedJumps = 0;
+        }
+        else
+        {
+            _moveDirection.y += _gravity * _gravityMult * Time.deltaTime;
+        }
+    }
+
+    private void ApplyMovement()
+    {
+        Vector3 move = (transform.forward * _moveDirection.x + transform.up * _moveDirection.y);
+        _charController.Move(move);
+    }
+
+    private void ApplyRotation()
+    {
+        Vector3 rotate = (transform.up * _rotateDirection);
+        transform.Rotate(rotate);
+    }
+
+    private void Start()
+    {
+        _charController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        SetGravity();
+
+        ApplyRotation();
+        ApplyMovement();
+    }
+}

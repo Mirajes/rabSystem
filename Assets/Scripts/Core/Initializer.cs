@@ -105,6 +105,13 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc2D.Move.canceled += _ => gameManager.Player.OnMoveInput(_);
         print(gameManager.Player);
     }
+
+    public void Advc3D_InitPlayerController(GM_Advc3D gameManager)
+    {
+        Inputs.Player_Advc3D.Controll.performed += gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Controll.canceled += gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Jump.started += gameManager.Player.OnJumpInput;
+    }
     #endregion
 
     #region RemoveInputs
@@ -158,6 +165,13 @@ public class Initializer : MonoBehaviour
     public void RemoveInputs(GM_Advanced2D gameManager)
     {
         
+    }
+
+    public void RemoveInputs(GM_Advc3D gameManager)
+    {
+        Inputs.Player_Advc3D.Controll.performed -= gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Controll.canceled -= gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Jump.started -= gameManager.Player.OnJumpInput;
     }
     #endregion
 }
