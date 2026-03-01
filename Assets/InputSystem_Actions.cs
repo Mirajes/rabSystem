@@ -41,7 +41,7 @@ using UnityEngine.InputSystem.Utilities;
 ///
 ///     void OnDestroy()
 ///     {
-///         m_Actions.Dispose();                              // Destroy asset object.
+///         m_Actions.Dispose();                              // DestroyShield asset object.
 ///     }
 ///
 ///     void OnEnable()
@@ -1734,6 +1734,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb673a98-5929-4fca-a9ca-2cd8dec719ba"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrosshairPos"",
+                    ""type"": ""Value"",
+                    ""id"": ""66e93dea-a4eb-4c28-b48d-c8d9e6bc8d02"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1866,6 +1884,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Joystick"",
                     ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c6c94b8-d27f-4a85-aa37-2ae427ad7ee0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad4528e7-28cb-4482-8064-f378f4a7f2aa"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrosshairPos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2151,6 +2191,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Player_Advc2D
         m_Player_Advc2D = asset.FindActionMap("Player_Advc2D", throwIfNotFound: true);
         m_Player_Advc2D_Move = m_Player_Advc2D.FindAction("Move", throwIfNotFound: true);
+        m_Player_Advc2D_Shoot = m_Player_Advc2D.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_Advc2D_CrosshairPos = m_Player_Advc2D.FindAction("CrosshairPos", throwIfNotFound: true);
         // Player_Advc3D
         m_Player_Advc3D = asset.FindActionMap("Player_Advc3D", throwIfNotFound: true);
         m_Player_Advc3D_Controll = m_Player_Advc3D.FindAction("Controll", throwIfNotFound: true);
@@ -3105,6 +3147,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player_Advc2D;
     private List<IPlayer_Advc2DActions> m_Player_Advc2DActionsCallbackInterfaces = new List<IPlayer_Advc2DActions>();
     private readonly InputAction m_Player_Advc2D_Move;
+    private readonly InputAction m_Player_Advc2D_Shoot;
+    private readonly InputAction m_Player_Advc2D_CrosshairPos;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player_Advc2D".
     /// </summary>
@@ -3120,6 +3164,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player_Advc2D/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Advc2D_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc2D/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Player_Advc2D_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc2D/CrosshairPos".
+        /// </summary>
+        public InputAction @CrosshairPos => m_Wrapper.m_Player_Advc2D_CrosshairPos;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -3149,6 +3201,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @CrosshairPos.started += instance.OnCrosshairPos;
+            @CrosshairPos.performed += instance.OnCrosshairPos;
+            @CrosshairPos.canceled += instance.OnCrosshairPos;
         }
 
         /// <summary>
@@ -3163,6 +3221,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @CrosshairPos.started -= instance.OnCrosshairPos;
+            @CrosshairPos.performed -= instance.OnCrosshairPos;
+            @CrosshairPos.canceled -= instance.OnCrosshairPos;
         }
 
         /// <summary>
@@ -3654,6 +3718,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CrosshairPos" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCrosshairPos(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_Advc3D" which allows adding and removing callbacks.

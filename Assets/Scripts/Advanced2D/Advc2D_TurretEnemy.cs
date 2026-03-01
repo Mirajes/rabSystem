@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Advc2D_TurretEnemy : Advc2D_Enemy
 {
-    [SerializeField] private Advc2D_Bullet _bullet;
+    [SerializeField] private Advc2D_BulletEnemy _bullet;
     [SerializeField] private float _shootDelay = 3f;
+    [SerializeField] private float _shootForce = 15f;
 
     [SerializeField] private Vector3 _shootOffset = new Vector3(0, 0.3f);
 
@@ -18,8 +19,8 @@ public class Advc2D_TurretEnemy : Advc2D_Enemy
     {
         base.Attack();
 
-        Advc2D_Bullet newBullet = Instantiate(_bullet, transform.position + (_shootOffset.y * transform.up), transform.rotation);
-        newBullet.SpawnBullet(transform.up);
+        Advc2D_BulletEnemy newBullet = Instantiate(_bullet, transform.position + (_shootOffset.y * transform.up), transform.rotation);
+        newBullet.SpawnBullet(transform.up, _shootForce);
     }
 
     private async UniTask ShootingLoop()
@@ -41,7 +42,7 @@ public class Advc2D_TurretEnemy : Advc2D_Enemy
 
     private void Start()
     {
-        _bullet = Resources.Load<Advc2D_Bullet>("KT_Advc2D/Bullet");
+        _bullet = Resources.Load<Advc2D_BulletEnemy>("KT_Advc2D/EnemyBullet");
     }
 
     private void OnEnable()

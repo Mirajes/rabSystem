@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -8,24 +9,30 @@ public class Advc2D_Bullet : MonoBehaviour
 {
     public Rigidbody2D Rigidbody => _rigidBody;
 
-    [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _timeToDisappear = 10f;
 
     private Rigidbody2D _rigidBody;
+    private CancellationTokenSource _cts;
 
-    public void SpawnBullet(Vector2 direction)
+    public void SpawnBullet(Vector2 direction, float bulletForce)
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _cts = new CancellationTokenSource();
 
-        print(direction);
-        _rigidBody.AddForce(direction * _moveSpeed, ForceMode2D.Impulse);
+        _rigidBody.AddForce(direction * bulletForce, ForceMode2D.Impulse);
 
-        DestroyBulletAsync().Forget();
+        DestroyBulletAsync(_cts.Token).Forget();
     }
 
-    async UniTask DestroyBulletAsync()
+    async UniTask DestroyBulletAsync(CancellationToken token)
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(_moveSpeed));
+        await UniTask.Delay(TimeSpan.FromSeconds(_timeToDisappear), cancellationToken: token);
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
     }
 }

@@ -10,7 +10,7 @@ public abstract class Advc2D_Enemy : MonoBehaviour
         _RigidBody = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Attack() { print("pew"); }
+    protected virtual void Attack() { }
 }
 
 //public class Advc2D_TurretEnemy : Advc2D_Enemy { }

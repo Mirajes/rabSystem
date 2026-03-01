@@ -9,7 +9,7 @@ public class Advc2D_ChasingEnemy : Advc2D_Enemy
     {
         Vector2 direction = (transform.position - _target.position); // можно нормализовать чтобы была постоянная скорость
 
-        _RigidBody.MovePosition(_RigidBody.position - (direction * _moveSpeed * Time.deltaTime));
+        _RigidBody.MovePosition(_RigidBody.position - (direction * _moveSpeed * Time.fixedDeltaTime));
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,7 +31,7 @@ public class Advc2D_ChasingEnemy : Advc2D_Enemy
     {
         if (collision.collider.tag != "Player") return;
 
-        GM_Advanced2D.PlayerDeath?.Invoke();
+        GM_Advanced2D.PlayerHit?.Invoke();
     }
 }
 

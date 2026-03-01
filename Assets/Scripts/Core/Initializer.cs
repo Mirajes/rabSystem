@@ -101,9 +101,11 @@ public class Initializer : MonoBehaviour
 
     public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
     {
-        Inputs.Player_Advc2D.Move.performed += context => gameManager.Player.OnMoveInput(context);
-        Inputs.Player_Advc2D.Move.canceled += _ => gameManager.Player.OnMoveInput(_);
-        print(gameManager.Player);
+        Inputs.Player_Advc2D.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.Player_Advc2D.Move.canceled += gameManager.Player.OnMoveInput;
+
+        Inputs.Player_Advc2D.Shoot.started += gameManager.Player.OnShootInput;
+        Inputs.Player_Advc2D.CrosshairPos.performed += gameManager.Player.OnMouseInput;
     }
 
     public void Advc3D_InitPlayerController(GM_Advc3D gameManager)
@@ -164,7 +166,10 @@ public class Initializer : MonoBehaviour
     }
     public void RemoveInputs(GM_Advanced2D gameManager)
     {
-        
+        Inputs.Player_Advc2D.Move.performed -= gameManager.Player.OnMoveInput;
+        Inputs.Player_Advc2D.Move.canceled -= gameManager.Player.OnMoveInput;
+        Inputs.Player_Advc2D.Shoot.started -= gameManager.Player.OnShootInput;
+        Inputs.Player_Advc2D.CrosshairPos.performed -= gameManager.Player.OnMouseInput;
     }
 
     public void RemoveInputs(GM_Advc3D gameManager)

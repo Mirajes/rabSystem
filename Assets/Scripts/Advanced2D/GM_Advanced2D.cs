@@ -1,5 +1,4 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,31 +6,31 @@ using UnityEngine.SceneManagement;
 public class GM_Advanced2D : GameManagerBase
 {
     // + CameraController_2D from Core folder
-    public Advc2D_PlayerController Player => _player;
+    public Advc2D_Player Player => _player;
 
     [SerializeField] private Transform _spawnPos;
     private GameObject _playerPrefab;
-    private Advc2D_PlayerController _player;
+    private Advc2D_Player _player;
 
     private CameraController_2D _cameraController;
 
-    public static Action PlayerDeath;
+    public static Action PlayerHit;
 
     private void Start()
     {
         Init();
     }
-
+    
     private void OnEnable()
     {
-        PlayerDeath += OnPlayerDeath;
+        PlayerHit += OnPlayerHit;
     }
 
     private void OnDisable()
     {
         Initializer.Instance.RemoveInputs(this);
 
-        PlayerDeath -= OnPlayerDeath;
+        PlayerHit -= OnPlayerHit;
     }
 
     protected override void Init()
@@ -39,7 +38,7 @@ public class GM_Advanced2D : GameManagerBase
         _playerPrefab = Resources.Load<GameObject>("KT_Advc2D/Player");
         GameObject newPlayer = Instantiate(_playerPrefab, _spawnPos.position, _spawnPos.rotation);
 
-        _player = newPlayer.GetComponent<Advc2D_PlayerController>();
+        _player = newPlayer.GetComponent<Advc2D_Player>();
 
         Initializer.Instance.Advc2D_InitPlayerController(this);
 
@@ -50,9 +49,17 @@ public class GM_Advanced2D : GameManagerBase
         Initializer.Instance.EnableInputs();
     }
 
-    private void OnPlayerDeath()
+    private void OnPlayerHit()
     {
-        SceneManager.LoadScene("Advanced2D");
+        if (_player.IsShielded)
+        {
+            _player.DestroyShield();
+        }
+        else
+        {
+            SceneManager.LoadScene("Advanced2D");
+        }
+
     }
 }
 
