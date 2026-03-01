@@ -172,7 +172,7 @@ MonoBehaviour:
   _shieldSize: 1.3
   _moveSpeed: 4
   _shieldExplosionRange: 3.5
-  _isArmed: 1
+  _isArmed: 0
   _bulletSpeed: 3
   _shootOffset: {x: 0, y: 0.7, z: 0}
   _cannon: {fileID: 5523339770807587196}

@@ -71,6 +71,7 @@ public class Advc2D_Player : MonoBehaviour
     {
         _isShielded = true;
         _shieldCol.transform.localScale = Vector3.one;
+        _shield.gameObject.SetActive(true);
     }
 
     public void DestroyShield()
@@ -78,6 +79,12 @@ public class Advc2D_Player : MonoBehaviour
         _isShielded = false;
         _shieldCol.transform.localScale *= _shieldExplosionRange;
         _shield.SetExploding(true);
+    }
+
+    public void SetGun(bool isArmed)
+    {
+        _isArmed = isArmed;
+        GunInteract();
     }
 
     public void GunInteract()

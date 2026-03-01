@@ -14,7 +14,7 @@ public class Advc2D_ChasingEnemy : Advc2D_Enemy
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag != "Player") return;
+        if (!collision.CompareTag("Player")) return;
 
         _target = collision.transform;
         ApplyMove();
@@ -22,19 +22,15 @@ public class Advc2D_ChasingEnemy : Advc2D_Enemy
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Player") return;
+        if (!collision.CompareTag("Player")) return;
 
         _target = null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag != "Player") return;
+        if (!collision.collider.CompareTag("Player")) return;
 
         GM_Advanced2D.PlayerHit?.Invoke();
     }
 }
-
-//public class Advc2D_TurretEnemy : Advc2D_Enemy { }
-
-//public class Advc2D_ShooterEnemy : Advc2D_Enemy { }

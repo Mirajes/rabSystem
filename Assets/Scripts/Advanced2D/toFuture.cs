@@ -11,5 +11,3 @@ public class toFuture
 {
 
 }
-
-//public class Advc2D_ShooterEnemy : Advc2D_Enemy { }

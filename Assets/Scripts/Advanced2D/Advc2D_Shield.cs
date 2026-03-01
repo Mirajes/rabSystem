@@ -31,8 +31,14 @@ public class Advc2D_Shield : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
+        _cts = new CancellationTokenSource();
+    }
+
+    private void OnDisable()
+    {
+        _cts.Cancel();
         _cts.Dispose();
     }
 
@@ -40,7 +46,6 @@ public class Advc2D_Shield : MonoBehaviour
     {
         _isExploding = isExploding;
 
-        _cts = new CancellationTokenSource();
         DestroyShield(_cts.Token).Forget();
     }
 
