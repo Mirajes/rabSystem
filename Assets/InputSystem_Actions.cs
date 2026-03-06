@@ -41,7 +41,7 @@ using UnityEngine.InputSystem.Utilities;
 ///
 ///     void OnDestroy()
 ///     {
-///         m_Actions.Dispose();                              // DestroyShield asset object.
+///         m_Actions.Dispose();                              // Destroy asset object.
 ///     }
 ///
 ///     void OnEnable()

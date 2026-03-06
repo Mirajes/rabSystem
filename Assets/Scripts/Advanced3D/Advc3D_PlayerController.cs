@@ -29,8 +29,8 @@ public class Advc3D_PlayerController : MonoBehaviour
     {
         Vector2 controllDirection = context.ReadValue<Vector2>();
 
-        _moveDirection.x = controllDirection.y * _moveSpeed * Time.deltaTime;
-        _rotateDirection = controllDirection.x * _rotateSpeed * Time.deltaTime;
+        _moveDirection.x = controllDirection.y * _moveSpeed;
+        _rotateDirection = controllDirection.x * _rotateSpeed;
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -56,7 +56,7 @@ public class Advc3D_PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        Vector3 move = (transform.forward * _moveDirection.x + transform.up * _moveDirection.y);
+        Vector3 move = (transform.forward * _moveDirection.x + transform.up * _moveDirection.y) * Time.deltaTime;
         _charController.Move(move);
     }
 
