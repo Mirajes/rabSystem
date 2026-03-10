@@ -62,7 +62,7 @@ public class Advc3D_PlayerController : MonoBehaviour
 
     private void ApplyRotation()
     {
-        Vector3 rotate = (transform.up * _rotateDirection);
+        Vector3 rotate = (transform.up * _rotateDirection * Time.deltaTime);
         transform.Rotate(rotate);
     }
 
