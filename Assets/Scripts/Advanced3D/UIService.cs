@@ -26,4 +26,9 @@ public class UIService
 
         return null;
     }
+
+    public void Clear()
+    {
+        _uiList.Clear();
+    }
 }

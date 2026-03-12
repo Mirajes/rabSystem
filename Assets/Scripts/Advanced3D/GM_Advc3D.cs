@@ -32,4 +32,9 @@ public class GM_Advc3D : GameManagerBase
     {
         Initializer.Instance.RemoveInputs(this);
     }
+
+    private void OnDestroy()
+    {
+        UIService.Instance.Clear();
+    }
 }
