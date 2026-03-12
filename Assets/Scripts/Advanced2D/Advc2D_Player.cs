@@ -8,7 +8,6 @@ public class Advc2D_Player : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int _currentHealth = 1;
     [SerializeField] private bool _isShielded = false;
-    [SerializeField] private float _shieldSize = 1.3f;
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _shieldExplosionRange = 3.5f;
     [SerializeField] private bool _isArmed = false;

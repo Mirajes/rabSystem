@@ -2,25 +2,29 @@ using UnityEngine;
 
 public class GM_Advc3D : GameManagerBase
 {
-    [SerializeField] private Transform _spawnPos;
-    private Advc3D_PlayerController _playerPrefab;
-
-    private Advc3D_PlayerController _player;
-
     public Advc3D_PlayerController Player => _player;
+
+    [Header("Core")]
+    [SerializeField] private Advc3D_GameUI _gameUI;
+
+    [Header("Main")]
+    [SerializeField] private Transform _spawnPos;
+    private Advc3D_PlayerController _player;
 
     protected override void Init()
     {
-        _playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
-        _player = Instantiate(_playerPrefab, _spawnPos.position, _spawnPos.rotation);
+        Advc3D_PlayerController playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
+        _player = Instantiate(playerPrefab, _spawnPos.position, _spawnPos.rotation);
 
-        Initializer.Instance.Advc3D_InitPlayerController(this);
+        if (_gameUI == null) { Debug.LogWarning("—сылки где"); }
+        UIService.Instance.Register(_gameUI);
     }
 
     private void Start()
     {
-
         Init();
+
+        Initializer.Instance.Advc3D_InitPlayerController(this);
         Initializer.Instance.EnableInputs();
     }
 

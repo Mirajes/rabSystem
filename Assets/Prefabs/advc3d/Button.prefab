@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104666685025444547}
   - component: {fileID: 564624715276167219}
+  - component: {fileID: 6326730336798336034}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -55,6 +56,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6326730336798336034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781842467839631743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7a8a52a2a0aa54ba582e40a1f8d3cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ButtonCollider: {fileID: 4926623286305783515}
+  _msg: ku
 --- !u!1 &5372102808638249186
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +189,7 @@ GameObject:
   - component: {fileID: 7707774044212248639}
   - component: {fileID: 6327112315885445263}
   - component: {fileID: 3235184152437013955}
+  - component: {fileID: 4926623286305783515}
   m_Layer: 0
   m_Name: button
   m_TagString: Untagged
@@ -249,3 +265,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4926623286305783515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7646245840220443629}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.9999998, z: 1.2455429}
+  m_Center: {x: 0, y: 0, z: 0.37722838}
