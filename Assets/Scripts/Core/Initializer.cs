@@ -113,6 +113,7 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc3D.Controll.performed += gameManager.Player.OnControllInput;
         Inputs.Player_Advc3D.Controll.canceled += gameManager.Player.OnControllInput;
         Inputs.Player_Advc3D.Jump.started += gameManager.Player.OnJumpInput;
+        Inputs.Player_Advc3D.Interact.started += gameManager.Player.OnInteractInput;
     }
     #endregion
 
@@ -177,6 +178,7 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc3D.Controll.performed -= gameManager.Player.OnControllInput;
         Inputs.Player_Advc3D.Controll.canceled -= gameManager.Player.OnControllInput;
         Inputs.Player_Advc3D.Jump.started -= gameManager.Player.OnJumpInput;
+        Inputs.Player_Advc3D.Interact.started -= gameManager.Player.OnInteractInput;
     }
     #endregion
 }

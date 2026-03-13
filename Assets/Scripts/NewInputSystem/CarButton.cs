@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarButton : Interactable
+public class CarButton : NIS_Interactable
 {
     [SerializeField] private Transport _transport;
 

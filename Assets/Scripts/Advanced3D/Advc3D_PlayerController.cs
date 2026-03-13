@@ -25,6 +25,38 @@ public class Advc3D_PlayerController : MonoBehaviour
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _gravityMult = 1f;
 
+    [Header("Grab")]
+    [SerializeField] private float _interactDistance = 2f;
+    [SerializeField] private bool _isHandFull = false;
+    [SerializeField] private GameObject _grabbedObj;
+    [SerializeField] private Vector3 _grabOffset = new Vector3(0f, 2f, 2f);
+
+    private void Start()
+    {
+        _charController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        SetGravity();
+
+        ApplyRotation();
+        ApplyMovement();
+    }
+
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if (_isHandFull)
+        {
+            ReleaseGrab();
+            _isHandFull = false;
+        }
+        else
+        {
+            CheckForInteract();
+        }
+    }
+
     public void OnControllInput(InputAction.CallbackContext context)
     {
         Vector2 controllDirection = context.ReadValue<Vector2>();
@@ -66,16 +98,43 @@ public class Advc3D_PlayerController : MonoBehaviour
         transform.Rotate(rotate);
     }
 
-    private void Start()
+    private void CheckForInteract()
     {
-        _charController = GetComponent<CharacterController>();
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, _interactDistance))
+        {
+            var grabbable = hit.collider.GetComponent<IGrabbable>();
+            if (grabbable != null)
+            {
+                _grabbedObj = hit.collider.gameObject;
+                _grabbedObj.transform.parent = this.transform;
+                _grabbedObj.transform.localPosition = _grabOffset;
+                _grabbedObj.transform.localRotation = Quaternion.identity;
+
+                grabbable.OnGrab();
+                _isHandFull = true;
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, _interactDistance))
+        {
+            var readable = hit.collider.GetComponent<IReadable>();
+            if (readable != null)
+            {
+                readable.OnRead();
+            }
+        }
     }
 
-    private void Update()
+    private void ReleaseGrab()
     {
-        SetGravity();
+        _grabbedObj.transform.parent = null;
+        var grabbed = _grabbedObj.GetComponent<IGrabbable>();
+        if (grabbed != null)
+            grabbed.OnRelease();
 
-        ApplyRotation();
-        ApplyMovement();
+        _grabbedObj = null;
     }
 }

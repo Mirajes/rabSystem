@@ -2,12 +2,12 @@ using UnityEngine;
 
 public abstract class Advc3D_Button : MonoBehaviour
 {
+    [Header("Main")]
     [SerializeField] protected Transform _ButtonTransform;
     [SerializeField] protected Collider _ButtonCollider;
-
-    [SerializeField] protected float _ButtonPressureForce;
-
-    [SerializeField] protected bool _isPressed;
+    [SerializeField] protected float _ButtonPressureForce = 0.3f;
+    [SerializeField] protected bool _IsPressed = false;
+    [SerializeField] protected LayerMask _EntityLayerMask = 7;
 
     protected virtual void ButtonPressed()
     {
@@ -21,20 +21,33 @@ public abstract class Advc3D_Button : MonoBehaviour
         _ButtonTransform.localScale = Vector3.one;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (_isPressed) return;
+        if (_IsPressed) return;
 
         ButtonPressed();
-        _isPressed = true;
+        _IsPressed = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
-        if (_isPressed && !Physics.SphereCast(this.transform.position, 2.5f, Vector3.up, out RaycastHit info, 2.5f, 7))
+        if (_IsPressed && !IsEntityInside())
         {
             ButtonReleased();
-            _isPressed = false;
+            _IsPressed = false;
         }
+    }
+
+    private bool IsEntityInside()
+    {
+        Collider[] hit = Physics.OverlapBox(transform.position, _ButtonCollider.transform.localScale * 0.5f, Quaternion.identity, _EntityLayerMask);
+        print(hit.Length);
+        return hit.Length > 0;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, _ButtonCollider.transform.localScale);
     }
 }
