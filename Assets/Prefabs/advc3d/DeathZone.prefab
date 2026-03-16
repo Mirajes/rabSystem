@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6626405454079154852}
   - component: {fileID: 9146643486553717483}
   - component: {fileID: 5290046349437352659}
-  - component: {fileID: 8810258975953339805}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: Untagged
@@ -109,18 +108,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 1, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8810258975953339805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938578487117431374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc37828de0dffad45ba7af6fc4395387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathZone3D: {fileID: 5290046349437352659}
-  _deathZone2D: {fileID: 0}
-  _resetSceneName: Advanced3D

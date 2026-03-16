@@ -130,7 +130,6 @@ public class Advc3D_PlayerController : MonoBehaviour
 
     private void ReleaseGrab()
     {
-        _grabbedObj.transform.parent = null;
         var grabbed = _grabbedObj.GetComponent<IGrabbable>();
         if (grabbed != null)
             grabbed.OnRelease();

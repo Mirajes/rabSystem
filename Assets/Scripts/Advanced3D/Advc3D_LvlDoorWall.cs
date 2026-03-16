@@ -26,4 +26,10 @@ public class Advc3D_LvlDoorWall : Advc3D_InteractableObject
         _moveTween.Kill();
         _moveTween = this.transform.DOMove(_startPos, _moveTime);
     }
+
+    private void OnDisable()
+    {
+        _moveTween.Kill();
+        transform.position = _startPos;
+    }
 }

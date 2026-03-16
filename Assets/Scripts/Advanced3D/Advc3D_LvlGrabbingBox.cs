@@ -20,5 +20,8 @@ public class Advc3D_LvlGrabbingBox : Advc3D_InteractableObject, IGrabbable
     public void OnRelease()
     {
         _rb.isKinematic = false;
+
+        var gameContext = Advc3D_GameContext.Instance;
+        this.transform.parent = gameContext.CurrentLevel.transform;
     }
 }

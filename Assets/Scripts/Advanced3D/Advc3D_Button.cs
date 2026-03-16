@@ -41,7 +41,7 @@ public abstract class Advc3D_Button : MonoBehaviour
     private bool IsEntityInside()
     {
         Collider[] hit = Physics.OverlapBox(transform.position, _ButtonCollider.transform.localScale * 0.5f, Quaternion.identity, _EntityLayerMask);
-        print(hit.Length);
+        print($"colliders inside -- {hit.Length}");
         return hit.Length > 0;
     }
 
