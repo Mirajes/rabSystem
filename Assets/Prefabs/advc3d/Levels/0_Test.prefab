@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb63a77ec234a547aaac94761fba624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Key: sosal
 --- !u!1 &577326680120913525
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,8 +223,9 @@ MonoBehaviour:
   _EntityLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  _Key: sosal
+  _keyBox: {fileID: 4331652663076943384}
   _interactableObj: {fileID: 8905902849923104643}
-  _key: 
 --- !u!1 &1011425920498691785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,6 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35de9043e0637e4190d70e8c49ba264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Key: 
   _moveTime: 3
   _startPos: {x: 0, y: 0, z: 0}
   _endPosOffset: {x: 0, y: -15, z: 0}
@@ -1947,6 +1950,8 @@ MonoBehaviour:
   _EntityLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  _Key: 
+  _keyBox: {fileID: 0}
   _msg: qq
 --- !u!65 &3365533380270540281
 BoxCollider:

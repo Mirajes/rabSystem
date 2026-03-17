@@ -8,6 +8,9 @@ public abstract class Advc3D_Button : MonoBehaviour
     [SerializeField] protected float _ButtonPressureForce = 0.3f;
     [SerializeField] protected bool _IsPressed = false;
     [SerializeField] protected LayerMask _EntityLayerMask = 7;
+    [SerializeField] protected string _Key;
+    [SerializeField] protected Advc3D_InteractableObject _keyBox;
+    public string Key => _Key;
 
     protected virtual void ButtonPressed()
     {
@@ -25,8 +28,20 @@ public abstract class Advc3D_Button : MonoBehaviour
     {
         if (_IsPressed) return;
 
-        ButtonPressed();
-        _IsPressed = true;
+        if (_Key == "")
+        {
+            ButtonPressed();
+            _IsPressed = true;
+        }
+        else if (_Key != "" && other.gameObject.GetType() == _keyBox.gameObject.GetType() && _keyBox.Key == _Key) 
+        {
+            ButtonPressed();
+            _IsPressed = true;
+        }
+        else
+        {
+            // be red
+        }
     }
 
     protected virtual void OnTriggerExit(Collider other)

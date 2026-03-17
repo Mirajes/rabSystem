@@ -17,4 +17,9 @@ public class Advc3D_GameUI : MonoBehaviour
         _msgText.text = "";
         _msgPanel.gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        _msgPanel.gameObject.SetActive(false);
+    }
 }
