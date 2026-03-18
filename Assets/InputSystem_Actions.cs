@@ -1941,6 +1941,42 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrevCameraPos"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5112f55-9dbe-41a6-9280-a1c83d5ab871"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextCameraPos"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2babf4e-7ef5-4b31-9593-11582b23ad50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchView"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e458e9f-6a3f-4ec1-b963-592ad1d086be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e207a41-761e-464d-88f8-c4c70ed9308d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -2097,6 +2133,50 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7893864-3967-475f-9f89-5cf00f64d5aa"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextCameraPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14a499c1-c73c-4103-843c-5f805d2fdd08"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrevCameraPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fd07fc1-4d2b-407f-bf87-4bfbb9061d27"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ad48825-2f16-4736-8fff-2051c00974c7"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -2218,6 +2298,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Advc3D_Controll = m_Player_Advc3D.FindAction("Controll", throwIfNotFound: true);
         m_Player_Advc3D_Jump = m_Player_Advc3D.FindAction("Jump", throwIfNotFound: true);
         m_Player_Advc3D_Interact = m_Player_Advc3D.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Advc3D_PrevCameraPos = m_Player_Advc3D.FindAction("PrevCameraPos", throwIfNotFound: true);
+        m_Player_Advc3D_NextCameraPos = m_Player_Advc3D.FindAction("NextCameraPos", throwIfNotFound: true);
+        m_Player_Advc3D_SwitchView = m_Player_Advc3D.FindAction("SwitchView", throwIfNotFound: true);
+        m_Player_Advc3D_Restart = m_Player_Advc3D.FindAction("Restart", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -3288,6 +3372,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Advc3D_Controll;
     private readonly InputAction m_Player_Advc3D_Jump;
     private readonly InputAction m_Player_Advc3D_Interact;
+    private readonly InputAction m_Player_Advc3D_PrevCameraPos;
+    private readonly InputAction m_Player_Advc3D_NextCameraPos;
+    private readonly InputAction m_Player_Advc3D_SwitchView;
+    private readonly InputAction m_Player_Advc3D_Restart;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player_Advc3D".
     /// </summary>
@@ -3311,6 +3399,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player_Advc3D/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Advc3D_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc3D/PrevCameraPos".
+        /// </summary>
+        public InputAction @PrevCameraPos => m_Wrapper.m_Player_Advc3D_PrevCameraPos;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc3D/NextCameraPos".
+        /// </summary>
+        public InputAction @NextCameraPos => m_Wrapper.m_Player_Advc3D_NextCameraPos;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc3D/SwitchView".
+        /// </summary>
+        public InputAction @SwitchView => m_Wrapper.m_Player_Advc3D_SwitchView;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_Advc3D/Restart".
+        /// </summary>
+        public InputAction @Restart => m_Wrapper.m_Player_Advc3D_Restart;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -3346,6 +3450,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @PrevCameraPos.started += instance.OnPrevCameraPos;
+            @PrevCameraPos.performed += instance.OnPrevCameraPos;
+            @PrevCameraPos.canceled += instance.OnPrevCameraPos;
+            @NextCameraPos.started += instance.OnNextCameraPos;
+            @NextCameraPos.performed += instance.OnNextCameraPos;
+            @NextCameraPos.canceled += instance.OnNextCameraPos;
+            @SwitchView.started += instance.OnSwitchView;
+            @SwitchView.performed += instance.OnSwitchView;
+            @SwitchView.canceled += instance.OnSwitchView;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
         }
 
         /// <summary>
@@ -3366,6 +3482,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @PrevCameraPos.started -= instance.OnPrevCameraPos;
+            @PrevCameraPos.performed -= instance.OnPrevCameraPos;
+            @PrevCameraPos.canceled -= instance.OnPrevCameraPos;
+            @NextCameraPos.started -= instance.OnNextCameraPos;
+            @NextCameraPos.performed -= instance.OnNextCameraPos;
+            @NextCameraPos.canceled -= instance.OnNextCameraPos;
+            @SwitchView.started -= instance.OnSwitchView;
+            @SwitchView.performed -= instance.OnSwitchView;
+            @SwitchView.canceled -= instance.OnSwitchView;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
         }
 
         /// <summary>
@@ -3793,5 +3921,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PrevCameraPos" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPrevCameraPos(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextCameraPos" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextCameraPos(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwitchView" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchView(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

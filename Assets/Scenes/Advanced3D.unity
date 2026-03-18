@@ -396,6 +396,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _msgPanel: {fileID: 250012574}
   _msgText: {fileID: 603349187}
+  _coinBag: {fileID: 0}
+  _coinText: {fileID: 0}
 --- !u!4 &694581378
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameUI: {fileID: 694581377}
+  _cameraController: {fileID: 0}
 --- !u!4 &1012769748
 Transform:
   m_ObjectHideFlags: 0
@@ -607,9 +610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffc6046b5f6b6d4ab43f7454347bcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentLvl: 0
+  _currentLevelIndex: 0
   _levels:
   - {fileID: 3302744959282896706, guid: e3747c852fbdf5047821e451b6d85393, type: 3}
+  - {fileID: 6144233821080036745, guid: 6238d50488198be4fbda5f9867be97ad, type: 3}
+  _coinCollectedIndex: 
 --- !u!1 &1204371820
 GameObject:
   m_ObjectHideFlags: 0

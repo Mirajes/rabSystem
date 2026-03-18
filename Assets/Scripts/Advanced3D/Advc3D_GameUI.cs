@@ -6,6 +6,9 @@ public class Advc3D_GameUI : MonoBehaviour
     [SerializeField] private RectTransform _msgPanel;
     [SerializeField] private TMP_Text _msgText;
 
+    [SerializeField] private RectTransform _coinBag;
+    [SerializeField] private TMP_Text _coinText;
+
     public void ShowMsgPanel(string msg)
     {
         _msgText.text = msg;

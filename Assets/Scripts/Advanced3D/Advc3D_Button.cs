@@ -30,16 +30,19 @@ public abstract class Advc3D_Button : MonoBehaviour
 
         if (_Key == "")
         {
+            print("no key");
             ButtonPressed();
             _IsPressed = true;
         }
-        else if (_Key != "" && other.gameObject.GetType() == _keyBox.gameObject.GetType() && _keyBox.Key == _Key) 
+        else if (other.gameObject == _keyBox.gameObject) 
         {
+            print("key correct");
             ButtonPressed();
             _IsPressed = true;
         }
         else
         {
+            print("incorrect key");
             // be red
         }
     }
