@@ -27,12 +27,15 @@ public class Advc3D_CameraController : MonoBehaviour
         if (_isFirstView)
         {
             _mainCamera.transform.parent = _playerTransform;
-            _mainCamera.transform.localPosition = _playerTransform.position + _firstViewOffset;
+            _mainCamera.transform.localPosition = _firstViewOffset;
+            _mainCamera.transform.localEulerAngles = _playerTransform.localEulerAngles;
         }
         else
         {
+            var cameraTransform = _cameraPoses[_lastViewPos];
             _mainCamera.transform.parent = null;
-            _mainCamera.transform.position = _cameraPoses[_lastViewPos].position;
+            _mainCamera.transform.position = cameraTransform.position;
+            _mainCamera.transform.localEulerAngles = cameraTransform.localEulerAngles;
         }
     }
 

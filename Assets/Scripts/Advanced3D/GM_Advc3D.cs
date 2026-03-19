@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +31,7 @@ public class GM_Advc3D : GameManagerBase
         Advc3D_PlayerController playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
         _level = Instantiate(level, Vector3.zero, Quaternion.identity);
         _player = Instantiate(playerPrefab, spawnPos.position, spawnPos.rotation);
+        _cameraController.SetPlayerTransform(_player.transform);
         gameContext.InitLevel(_level);
 
         if (_gameUI == null) { Debug.LogWarning("—сылки где"); }
@@ -48,6 +50,7 @@ public class GM_Advc3D : GameManagerBase
         var spawnPos = gameContext.Levels[gameContext.CurrentLevelIndex].SpawnPos;
         var level = gameContext.Levels[gameContext.CurrentLevelIndex];
 
+        DOTween.KillAll();
         Initializer.Instance.RemoveInputs(this);
 
         // не лучша€ практика -> Advc3D_Level
