@@ -1891,6 +1891,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "testPunishment",
+                    "type": "Button",
+                    "id": "f2b5f8fe-7dab-4e68-b40c-e8ca2d26298b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2089,6 +2098,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1624e81f-7e4a-4e79-bfc8-656b74e0c52e",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "testPunishment",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
