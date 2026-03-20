@@ -7,6 +7,7 @@ public class GM_Advc3D : GameManagerBase
 {
     public Advc3D_PlayerController Player => _player;
     public Advc3D_CameraController CameraController => _cameraController;
+    public Advc3D_GameUI GameUI => _gameUI;
 
     [Header("Core")]
     [SerializeField] private Advc3D_GameUI _gameUI;
@@ -31,7 +32,10 @@ public class GM_Advc3D : GameManagerBase
         Advc3D_PlayerController playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
         _level = Instantiate(level, Vector3.zero, Quaternion.identity);
         _player = Instantiate(playerPrefab, spawnPos.position, spawnPos.rotation);
+
         _cameraController.SetPlayerTransform(_player.transform);
+        _cameraController.OnLevelChange(_level.CameraPoses);
+
         gameContext.InitLevel(_level);
 
         if (_gameUI == null) { Debug.LogWarning("—сылки где"); }
@@ -53,6 +57,8 @@ public class GM_Advc3D : GameManagerBase
         DOTween.KillAll();
         Initializer.Instance.RemoveInputs(this);
 
+        _cameraController.MainCamera.transform.parent = null;
+
         // не лучша€ практика -> Advc3D_Level
         Destroy(_level.gameObject);
         Destroy(_player.gameObject);
@@ -60,11 +66,10 @@ public class GM_Advc3D : GameManagerBase
         var playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
         _player = Instantiate(playerPrefab, spawnPos.position,spawnPos.rotation);
 
-        _cameraController.SetPlayerTransform(_player.transform);
-        
         _level = Instantiate(level, Vector3.zero, Quaternion.identity);
         gameContext.InitLevel(_level); // бред
-
+        
+        _cameraController.SetPlayerTransform(_player.transform);
         _cameraController.OnLevelChange(_level.CameraPoses);
 
         Initializer.Instance.Advc3D_InitPlayerController(this);
@@ -84,6 +89,9 @@ public class GM_Advc3D : GameManagerBase
         Advc3D_GameContext.Instance.AddCoinToCollected(coin.Index);
         _coinBag += coin.CoinValue;
         coin.OnCoinCollect();
+
+        var gameUI = UIService.Instance.Get<Advc3D_GameUI>();
+        gameUI.UpdateCoinBagValue(_coinBag);
     }
 
     private void Start()

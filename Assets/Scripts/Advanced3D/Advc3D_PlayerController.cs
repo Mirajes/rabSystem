@@ -31,6 +31,10 @@ public class Advc3D_PlayerController : MonoBehaviour
     [SerializeField] private GameObject _grabbedObj;
     [SerializeField] private Vector3 _grabOffset = new Vector3(0f, 2f, 2f);
 
+    [Header("Visual")]
+    [SerializeField] private Renderer _renderer;
+    public Renderer Renderer => _renderer;
+
     private void Start()
     {
         _charController = GetComponent<CharacterController>();

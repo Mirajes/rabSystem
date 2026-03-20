@@ -1893,9 +1893,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "testPunishment",
+                    "name": "Info",
                     "type": "Button",
-                    "id": "f2b5f8fe-7dab-4e68-b40c-e8ca2d26298b",
+                    "id": "ded752e6-9e95-4a4c-b485-ae7666a2145a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -2103,12 +2103,12 @@
                 },
                 {
                     "name": "",
-                    "id": "1624e81f-7e4a-4e79-bfc8-656b74e0c52e",
-                    "path": "<Keyboard>/x",
+                    "id": "8e06a54e-1c5a-4d2f-9d16-ee3efbbc575c",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "testPunishment",
+                    "action": "Info",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

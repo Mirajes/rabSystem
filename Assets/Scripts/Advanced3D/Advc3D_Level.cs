@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,4 +13,21 @@ public class Advc3D_Level : MonoBehaviour
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private List<Advc3D_Coin> _coins;
     [SerializeField] private List<Transform> _cameraPoses;
+
+    public static Action<Transform, Transform> SpawnObjectInsideLevel;
+
+    private void OnSpawnObject(Transform obj, Transform spawnPos)
+    {
+        Instantiate(obj, spawnPos.position, spawnPos.rotation, this.transform);
+    }
+
+    private void OnEnable()
+    {
+        SpawnObjectInsideLevel += OnSpawnObject;
+    }
+
+    private void OnDisable()
+    {
+        SpawnObjectInsideLevel -= OnSpawnObject;
+    }
 }

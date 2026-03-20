@@ -118,6 +118,7 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc3D.PrevCameraPos.started += gameManager.CameraController.OnPrevPosInput;
         Inputs.Player_Advc3D.NextCameraPos.started += gameManager.CameraController.OnNextPosInput;
         Inputs.Player_Advc3D.SwitchView.started += gameManager.CameraController.OnSwitchViewInput;
+        Inputs.Player_Advc3D.Info.started += gameManager.GameUI.OnInfoInput;
     }
     #endregion
 
@@ -187,6 +188,7 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc3D.PrevCameraPos.started -= gameManager.CameraController.OnPrevPosInput;
         Inputs.Player_Advc3D.NextCameraPos.started -= gameManager.CameraController.OnNextPosInput;
         Inputs.Player_Advc3D.SwitchView.started -= gameManager.CameraController.OnSwitchViewInput;
+        Inputs.Player_Advc3D.Info.started -= gameManager.GameUI.OnInfoInput;
     }
     #endregion
 }

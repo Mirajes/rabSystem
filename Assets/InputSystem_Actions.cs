@@ -1979,9 +1979,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""testPunishment"",
+                    ""name"": ""Info"",
                     ""type"": ""Button"",
-                    ""id"": ""f2b5f8fe-7dab-4e68-b40c-e8ca2d26298b"",
+                    ""id"": ""ded752e6-9e95-4a4c-b485-ae7666a2145a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -2189,12 +2189,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1624e81f-7e4a-4e79-bfc8-656b74e0c52e"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""id"": ""8e06a54e-1c5a-4d2f-9d16-ee3efbbc575c"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""testPunishment"",
+                    ""action"": ""Info"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2322,7 +2322,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Advc3D_NextCameraPos = m_Player_Advc3D.FindAction("NextCameraPos", throwIfNotFound: true);
         m_Player_Advc3D_SwitchView = m_Player_Advc3D.FindAction("SwitchView", throwIfNotFound: true);
         m_Player_Advc3D_Restart = m_Player_Advc3D.FindAction("Restart", throwIfNotFound: true);
-        m_Player_Advc3D_testPunishment = m_Player_Advc3D.FindAction("testPunishment", throwIfNotFound: true);
+        m_Player_Advc3D_Info = m_Player_Advc3D.FindAction("Info", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -3397,7 +3397,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Advc3D_NextCameraPos;
     private readonly InputAction m_Player_Advc3D_SwitchView;
     private readonly InputAction m_Player_Advc3D_Restart;
-    private readonly InputAction m_Player_Advc3D_testPunishment;
+    private readonly InputAction m_Player_Advc3D_Info;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player_Advc3D".
     /// </summary>
@@ -3438,9 +3438,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Restart => m_Wrapper.m_Player_Advc3D_Restart;
         /// <summary>
-        /// Provides access to the underlying input action "Player_Advc3D/testPunishment".
+        /// Provides access to the underlying input action "Player_Advc3D/Info".
         /// </summary>
-        public InputAction @testPunishment => m_Wrapper.m_Player_Advc3D_testPunishment;
+        public InputAction @Info => m_Wrapper.m_Player_Advc3D_Info;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -3488,9 +3488,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Restart.started += instance.OnRestart;
             @Restart.performed += instance.OnRestart;
             @Restart.canceled += instance.OnRestart;
-            @testPunishment.started += instance.OnTestPunishment;
-            @testPunishment.performed += instance.OnTestPunishment;
-            @testPunishment.canceled += instance.OnTestPunishment;
+            @Info.started += instance.OnInfo;
+            @Info.performed += instance.OnInfo;
+            @Info.canceled += instance.OnInfo;
         }
 
         /// <summary>
@@ -3523,9 +3523,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Restart.started -= instance.OnRestart;
             @Restart.performed -= instance.OnRestart;
             @Restart.canceled -= instance.OnRestart;
-            @testPunishment.started -= instance.OnTestPunishment;
-            @testPunishment.performed -= instance.OnTestPunishment;
-            @testPunishment.canceled -= instance.OnTestPunishment;
+            @Info.started -= instance.OnInfo;
+            @Info.performed -= instance.OnInfo;
+            @Info.canceled -= instance.OnInfo;
         }
 
         /// <summary>
@@ -3982,11 +3982,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRestart(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "testPunishment" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Info" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTestPunishment(InputAction.CallbackContext context);
+        void OnInfo(InputAction.CallbackContext context);
     }
 }

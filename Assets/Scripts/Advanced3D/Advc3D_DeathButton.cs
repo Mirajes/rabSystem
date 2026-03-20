@@ -52,9 +52,8 @@ public class Advc3D_DeathButton : Advc3D_Button
 
             _cts.Dispose();
             _cts = null;
+            this.gameObject.SetActive(false);
         }
-
-        this.gameObject.SetActive(false);
     }
 
     private void OnDestroy()

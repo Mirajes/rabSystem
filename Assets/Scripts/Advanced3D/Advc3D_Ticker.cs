@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Advc3D_Ticker : MonoBehaviour
+public class Advc3D_Ticker : MonoBehaviour // mayatnik
 {
     [SerializeField] private Transform _pivot;
     [SerializeField] private float _swingAngle = 90f;
@@ -21,6 +21,12 @@ public class Advc3D_Ticker : MonoBehaviour
         _pivot.localEulerAngles = new Vector3(_pivot.localEulerAngles.x, _pivot.localEulerAngles.y, _swingAngle);
 
         StartSwing();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            GM_Advc3D.Restart?.Invoke();
     }
 
     private void StartSwing()

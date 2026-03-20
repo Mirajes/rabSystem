@@ -1,3 +1,6 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 
 public abstract class Advc3D_Button : MonoBehaviour
@@ -10,8 +13,55 @@ public abstract class Advc3D_Button : MonoBehaviour
     [SerializeField] protected LayerMask _EntityLayerMask = 7;
     [SerializeField] protected string _Key;
     [SerializeField] protected Advc3D_InteractableObject _keyBox;
+
+    [Header("Visual")]
+    [SerializeField] protected Renderer _ButtonRenderer;
+    [SerializeField] protected Material _BaseMaterial;
+    [SerializeField] protected Material _IncorrentMaterial;
+    private CancellationTokenSource _cts;
+
     public string Key => _Key;
 
+
+    private void OnDestroy()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null;
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (_IsPressed) return;
+
+        if (_Key == "") // a dlya chego?
+        {
+            print("no key");
+            ButtonPressed();
+            _IsPressed = true;
+        }
+        else if (other.gameObject == _keyBox.gameObject) // zachem key
+        {
+            print("key correct");
+            ButtonPressed();
+            _IsPressed = true;
+        }
+        else
+        {
+            print("incorrect key");
+            _cts = new();
+            ShowIncorrect(_cts.Token).Forget();
+        }
+    }
+
+    protected virtual void OnTriggerExit(Collider other)
+    {
+        if (_IsPressed && !IsEntityInside())
+        {
+            ButtonReleased();
+            _IsPressed = false;
+        }
+    }
     protected virtual void ButtonPressed()
     {
         _ButtonTransform.localScale = new Vector3(
@@ -24,38 +74,6 @@ public abstract class Advc3D_Button : MonoBehaviour
         _ButtonTransform.localScale = Vector3.one;
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        if (_IsPressed) return;
-
-        if (_Key == "")
-        {
-            print("no key");
-            ButtonPressed();
-            _IsPressed = true;
-        }
-        else if (other.gameObject == _keyBox.gameObject) 
-        {
-            print("key correct");
-            ButtonPressed();
-            _IsPressed = true;
-        }
-        else
-        {
-            print("incorrect key");
-            // be red
-        }
-    }
-
-    protected virtual void OnTriggerExit(Collider other)
-    {
-        if (_IsPressed && !IsEntityInside())
-        {
-            ButtonReleased();
-            _IsPressed = false;
-        }
-    }
-
     private bool IsEntityInside()
     {
         Collider[] hit = Physics.OverlapBox(transform.position, _ButtonCollider.transform.localScale * 0.5f, Quaternion.identity, _EntityLayerMask);
@@ -63,9 +81,23 @@ public abstract class Advc3D_Button : MonoBehaviour
         return hit.Length > 0;
     }
 
+    private async UniTask ShowIncorrect(CancellationToken token)
+    {
+        token.ThrowIfCancellationRequested();
+
+        float duration = 1f;
+
+        _ButtonRenderer.material = _IncorrentMaterial;
+
+        await UniTask.Delay(TimeSpan.FromSeconds(duration));
+        _ButtonRenderer.material = _BaseMaterial;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, _ButtonCollider.transform.localScale);
     }
+
+
 }
