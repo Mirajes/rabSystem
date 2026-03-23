@@ -243,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: feebcadc6d028a241a6908ebc7fb1ac7, type: 2}
+  - {fileID: -2653651044934150266, guid: 169c3c434ae308243a5962d9ebb69090, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 10
   _rotateSpeed: 210
-  _jumpPower: 15
+  _jumpPower: 12
   _maxJumps: 1
   _gravity: -9.81
   _gravityMult: 3
@@ -333,6 +333,7 @@ MonoBehaviour:
   _isHandFull: 0
   _grabbedObj: {fileID: 0}
   _grabOffset: {x: 0, y: 2, z: 2}
+  _renderer: {fileID: 7244579478538694855}
 --- !u!54 &-91558335465495393
 Rigidbody:
   m_ObjectHideFlags: 0

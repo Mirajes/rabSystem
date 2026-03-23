@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2431776623735579563
+--- !u!1 &714552921161530333
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2324232297331741423}
-  - component: {fileID: 1380508191446901719}
-  - component: {fileID: 7095879471928144834}
-  - component: {fileID: 7699949284700260995}
-  - component: {fileID: 2325427826112474848}
+  - component: {fileID: 3556836370374234585}
+  - component: {fileID: 8282385299992695189}
+  - component: {fileID: 7162011211104223013}
+  - component: {fileID: 431670203252963481}
+  - component: {fileID: 5905646787904860851}
   m_Layer: 0
-  m_Name: MovingWall
+  m_Name: DeathZone_void
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2324232297331741423
+--- !u!4 &3556836370374234585
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431776623735579563}
+  m_GameObject: {fileID: 714552921161530333}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.02, y: -7.12, z: 0.9}
-  m_LocalScale: {x: 2.81584, y: 2.078456, z: 7.2373233}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -15.44, z: 0}
+  m_LocalScale: {x: 100, y: 2, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1380508191446901719
+--- !u!33 &8282385299992695189
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431776623735579563}
+  m_GameObject: {fileID: 714552921161530333}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7095879471928144834
+--- !u!23 &7162011211104223013
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431776623735579563}
+  m_GameObject: {fileID: 714552921161530333}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: feebcadc6d028a241a6908ebc7fb1ac7, type: 2}
+  - {fileID: 2100000, guid: a7e67ab925ce4cf4aa87fe52d96cc17f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7699949284700260995
+--- !u!65 &431670203252963481
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431776623735579563}
+  m_GameObject: {fileID: 714552921161530333}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -103,25 +103,22 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2325427826112474848
+--- !u!114 &5905646787904860851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431776623735579563}
+  m_GameObject: {fileID: 714552921161530333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35de9043e0637e4190d70e8c49ba264, type: 3}
+  m_Script: {fileID: 11500000, guid: 608f1db9221e32c41bc78daa953cc989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Key: 
-  _moveTime: 1
-  _startPos: {x: 0, y: 0, z: 0}
-  _endPosOffset: {x: 0, y: -15, z: 0}
+  _deathZone: {fileID: 431670203252963481}

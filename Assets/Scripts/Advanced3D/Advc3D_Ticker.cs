@@ -1,6 +1,12 @@
 using DG.Tweening;
 using UnityEngine;
 
+/*
+rabotaet uzhasno
+ne vorovat'
+na 180 lomaetca
+*/
+
 [RequireComponent(typeof(Rigidbody))]
 public class Advc3D_Ticker : MonoBehaviour // mayatnik
 {
@@ -12,15 +18,24 @@ public class Advc3D_Ticker : MonoBehaviour // mayatnik
     [SerializeField] private Vector3 _swingRotateAngle = Vector3.zero;
 
     private Rigidbody _rb;
+    private Sequence _swingTween;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
 
         _pivot.localEulerAngles = new Vector3(_pivot.localEulerAngles.x, _pivot.localEulerAngles.y, _swingAngle);
+    }
 
+    private void OnEnable()
+    {
         StartSwing();
+    }
+
+    private void OnDisable()
+    {
+        DOTween.Kill(_pivot);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,8 +49,8 @@ public class Advc3D_Ticker : MonoBehaviour // mayatnik
         if (_isUseDefaultAngle)
             _swingRotateAngle = new Vector3(_pivot.localEulerAngles.x, _pivot.localEulerAngles.y, -_swingAngle);
 
-        Sequence swingSequence = DOTween.Sequence(); // eto ne nuzhno
-        swingSequence.Append(_pivot.DORotate(_swingRotateAngle, _swingDuration)
+        _swingTween = DOTween.Sequence(_pivot); // eto ne nuzhno
+        _swingTween.Append(_pivot.DORotate(_swingRotateAngle, _swingDuration)
             .SetEase(Ease.InOutSine))
             .SetLoops(-1, LoopType.Yoyo);
     }

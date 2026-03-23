@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,11 @@ public class Advc3D_GameContext : MonoBehaviour
     public int CurrentLevelIndex => _currentLevelIndex;
     public List<Advc3D_Level> Levels => _levels;
     public List<int> CoinCollectedIndex => _coinCollectedIndex;
-    public Advc3D_PlayerController Player => _player;
     public Advc3D_Level CurrentLevel => _currentLevelObject;
 
     [SerializeField] private int _currentLevelIndex = 0;
     [SerializeField] private List<Advc3D_Level> _levels;
     [SerializeField] private List<int> _coinCollectedIndex = new();
-    private Advc3D_PlayerController _player;
     private Advc3D_Level _currentLevelObject;
 
     private void Awake()
@@ -40,6 +39,9 @@ public class Advc3D_GameContext : MonoBehaviour
             else
                 coin.gameObject.SetActive(true);
         }
+
+        var gameUI = UIService.Instance.Get<Advc3D_GameUI>();
+        gameUI.Tip(level.TipMessage).Forget();
     }
 
     public void AddCoinToCollected(int index)

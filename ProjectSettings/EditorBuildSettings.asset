@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Advanced2D.unity
     guid: bc70d78be4a7c97429c18cd9bffc546c
+  - enabled: 1
+    path: Assets/Scenes/Advanced3D.unity
+    guid: 00ac703972b2292458f663b70f57b256
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

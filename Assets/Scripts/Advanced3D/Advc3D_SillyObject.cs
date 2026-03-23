@@ -25,7 +25,7 @@ public class Advc3D_SillyObject : MonoBehaviour
 
         _spinTween = this.transform.DORotate(
             transform.eulerAngles + _spinTweenOffset,
-            _spinSpeed).SetLoops(-1, LoopType.Restart);
+            _spinSpeed).SetLoops(-1, LoopType.Incremental);
 
         _bounceTween = this.transform.DOMove(
             transform.position + _bounceTweenOffset,

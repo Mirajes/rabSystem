@@ -36,15 +36,15 @@ public abstract class Advc3D_Button : MonoBehaviour
 
         if (_Key == "") // a dlya chego?
         {
+            _IsPressed = true;
             print("no key");
             ButtonPressed();
-            _IsPressed = true;
         }
         else if (other.gameObject == _keyBox.gameObject) // zachem key
         {
+            _IsPressed = true;
             print("key correct");
             ButtonPressed();
-            _IsPressed = true;
         }
         else
         {

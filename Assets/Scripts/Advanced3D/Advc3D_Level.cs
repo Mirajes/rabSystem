@@ -9,10 +9,12 @@ public class Advc3D_Level : MonoBehaviour
     public Transform SpawnPos => _spawnPos;
     public List<Advc3D_Coin> Coins => _coins;
     public List<Transform> CameraPoses => _cameraPoses;
+    public string TipMessage => _tipMessage;
 
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private List<Advc3D_Coin> _coins;
     [SerializeField] private List<Transform> _cameraPoses;
+    [SerializeField] private string _tipMessage;
 
     public static Action<Transform, Transform> SpawnObjectInsideLevel;
 

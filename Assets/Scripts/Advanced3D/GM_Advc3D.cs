@@ -22,9 +22,13 @@ public class GM_Advc3D : GameManagerBase
     public static Action Restart;
     public static Action<Advc3D_Coin> CoinCollect;
     public static Action<int> SwitchLevel;
+    public static Action<Material, int> BuySkin;
 
     protected override void Init()
     {
+        if (_gameUI == null) { Debug.LogWarning("—сылки где"); }
+        UIService.Instance.Register(_gameUI);
+
         var gameContext = Advc3D_GameContext.Instance;
         var spawnPos = gameContext.Levels[gameContext.CurrentLevelIndex].SpawnPos;
         var level = gameContext.Levels[gameContext.CurrentLevelIndex];
@@ -38,8 +42,6 @@ public class GM_Advc3D : GameManagerBase
 
         gameContext.InitLevel(_level);
 
-        if (_gameUI == null) { Debug.LogWarning("—сылки где"); }
-        UIService.Instance.Register(_gameUI);
     }
 
     private void OnSwitchLevel(int lvlIndex)
@@ -53,9 +55,12 @@ public class GM_Advc3D : GameManagerBase
         var gameContext = Advc3D_GameContext.Instance;
         var spawnPos = gameContext.Levels[gameContext.CurrentLevelIndex].SpawnPos;
         var level = gameContext.Levels[gameContext.CurrentLevelIndex];
+        var gameUI = UIService.Instance.Get<Advc3D_GameUI>();
 
+        gameUI.OnRestart();
         DOTween.KillAll();
         Initializer.Instance.RemoveInputs(this);
+
 
         _cameraController.MainCamera.transform.parent = null;
 
@@ -63,11 +68,11 @@ public class GM_Advc3D : GameManagerBase
         Destroy(_level.gameObject);
         Destroy(_player.gameObject);
 
-        var playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
-        _player = Instantiate(playerPrefab, spawnPos.position,spawnPos.rotation);
-
         _level = Instantiate(level, Vector3.zero, Quaternion.identity);
         gameContext.InitLevel(_level); // бред
+
+        var playerPrefab = Resources.Load<Advc3D_PlayerController>("KT_Advc3D/Player");
+        _player = Instantiate(playerPrefab, spawnPos.position, spawnPos.rotation);
         
         _cameraController.SetPlayerTransform(_player.transform);
         _cameraController.OnLevelChange(_level.CameraPoses);
@@ -83,7 +88,7 @@ public class GM_Advc3D : GameManagerBase
         Restart?.Invoke();
     }
 
-    private void OnCoinCollect(Advc3D_Coin coin)
+    public void OnCoinCollect(Advc3D_Coin coin)
     {
         coin.gameObject.SetActive(false);
         Advc3D_GameContext.Instance.AddCoinToCollected(coin.Index);
@@ -92,6 +97,22 @@ public class GM_Advc3D : GameManagerBase
 
         var gameUI = UIService.Instance.Get<Advc3D_GameUI>();
         gameUI.UpdateCoinBagValue(_coinBag);
+    }
+
+    public void OnBuySkin(Material skin, int cost)
+    {
+        var gameUI = UIService.Instance.Get<Advc3D_GameUI>();
+
+        if (_coinBag < cost)
+        {
+            gameUI.ShowMsgPanel("u haven't enough money");
+            return;
+        }
+        else if (_coinBag >= cost)
+        {
+            _player.Renderer.material = skin;
+            gameUI.ShowMsgPanel("NOW U C-O-O-L");
+        }
     }
 
     private void Start()
@@ -107,6 +128,7 @@ public class GM_Advc3D : GameManagerBase
         Restart += OnRestart;
         CoinCollect += OnCoinCollect;
         SwitchLevel += OnSwitchLevel;
+        BuySkin += OnBuySkin;
     }
 
     private void OnDisable()
@@ -114,6 +136,8 @@ public class GM_Advc3D : GameManagerBase
         Restart -= OnRestart;
         CoinCollect -= OnCoinCollect;
         SwitchLevel -= OnSwitchLevel;
+        BuySkin -= OnBuySkin;
+
         Initializer.Instance.RemoveInputs(this);
     }
 
