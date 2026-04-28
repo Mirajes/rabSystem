@@ -10,11 +10,16 @@ public abstract class Singleton_Test<T> : MonoBehaviour where T : class
     protected virtual void Awake()
     {
         if (Instance == null)
+        {
             Instance = this as T;
-        else 
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
             Destroy(this.gameObject);
+            return;
+        }
 
-        DontDestroyOnLoad(this.gameObject);
         Init();
     }
 

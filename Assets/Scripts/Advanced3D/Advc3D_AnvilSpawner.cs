@@ -12,6 +12,7 @@ public class Advc3D_AnvilSpawner : MonoBehaviour
     private bool _debounce;
 
     private CancellationTokenSource _cts;
+    private UniTask _delayTask;
 
     private void SpawnAnvil()
     {
@@ -20,9 +21,9 @@ public class Advc3D_AnvilSpawner : MonoBehaviour
 
     private async UniTask DelaySpawner(CancellationToken token)
     {
-        token.ThrowIfCancellationRequested();
-
         await UniTask.Delay(TimeSpan.FromSeconds(_cd));
+
+        token.ThrowIfCancellationRequested();
         _debounce = false;
     }
 
@@ -34,7 +35,17 @@ public class Advc3D_AnvilSpawner : MonoBehaviour
             _cts = new();
 
             SpawnAnvil();
-            DelaySpawner(_cts.Token);
+            _delayTask = DelaySpawner(_cts.Token);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _debounce = false;
         }
     }
 
