@@ -202,10 +202,12 @@ public class Initializer : MonoBehaviour
         Inputs.Player_ProB.Move.performed += gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Move.canceled += gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Dash.started += gameManager.Player.OnDashInput;
-        Inputs.Player_ProB.Dash.canceled += gameManager.Player.OnDashInput;
 
         Inputs.Player_ProB.Jump.performed += gameManager.Player.OnJumpInput;
         Inputs.Player_ProB.Jump.canceled += gameManager.Player.OnJumpInput;
+
+        Inputs.Player_ProB.Look.performed += gameManager.Player.OnLookInput;
+        Inputs.Player_ProB.Look.canceled += gameManager.Player.OnLookInput;
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)
@@ -213,10 +215,12 @@ public class Initializer : MonoBehaviour
         Inputs.Player_ProB.Move.performed -= gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Move.canceled -= gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Dash.started -= gameManager.Player.OnDashInput;
-        Inputs.Player_ProB.Dash.canceled -= gameManager.Player.OnDashInput;
 
         Inputs.Player_ProB.Jump.performed -= gameManager.Player.OnJumpInput;
         Inputs.Player_ProB.Jump.canceled -= gameManager.Player.OnJumpInput;
+
+        Inputs.Player_ProB.Look.performed -= gameManager.Player.OnLookInput;
+        Inputs.Player_ProB.Look.canceled -= gameManager.Player.OnLookInput;
     }
 
     #endregion
