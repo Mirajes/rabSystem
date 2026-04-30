@@ -2199,6 +2199,195 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player_ProB"",
+            ""id"": ""c7688ab6-7b0f-4824-92f7-4cf0911350b1"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""b4ee0d35-1b92-4748-ab8b-a2da165c31b0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""094f3870-214f-4301-9498-ed920c863005"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cad390c-8037-4771-9d03-09ab509c0f95"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29efc48f-2099-49d3-9031-9e115a8295d3"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""c11ad334-755f-4f8b-9a2b-48c441c47430"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3aa68943-d23f-419c-96c7-415ac082b1ef"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""281bb5bc-cf65-438d-bebc-4ca1a430fea7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""3df346ce-e4f2-4082-89aa-32a2f36c0f87"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""583c3e06-dd01-4732-a9f5-f9ee730773a9"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""16589758-46ae-4762-a24c-09f88cc643fb"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d9cdeac0-2135-4c68-b4f0-419a12ba34c8"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""24b3f601-e51c-403e-90eb-4ae701036f0d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""06e06f29-b942-4d72-92e5-521e5b77c0c0"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef204516-c889-400a-87e1-df01b60896c9"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36895c96-ca47-417c-86bf-16b28542034c"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec72a23b-934a-43a6-b2e0-5d3c0720b327"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84578a42-fba1-45e7-917e-15641192e296"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -2323,6 +2512,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Advc3D_SwitchView = m_Player_Advc3D.FindAction("SwitchView", throwIfNotFound: true);
         m_Player_Advc3D_Restart = m_Player_Advc3D.FindAction("Restart", throwIfNotFound: true);
         m_Player_Advc3D_Info = m_Player_Advc3D.FindAction("Info", throwIfNotFound: true);
+        // Player_ProB
+        m_Player_ProB = asset.FindActionMap("Player_ProB", throwIfNotFound: true);
+        m_Player_ProB_Move = m_Player_ProB.FindAction("Move", throwIfNotFound: true);
+        m_Player_ProB_Dash = m_Player_ProB.FindAction("Dash", throwIfNotFound: true);
+        m_Player_ProB_Jump = m_Player_ProB.FindAction("Jump", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2335,6 +2529,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player_DOT.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_DOT.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Advc2D.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Advc2D.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Advc3D.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Advc3D.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player_ProB.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_ProB.Disable() has not been called.");
     }
 
     /// <summary>
@@ -3559,6 +3754,124 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="Player_Advc3DActions" /> instance referencing this action map.
     /// </summary>
     public Player_Advc3DActions @Player_Advc3D => new Player_Advc3DActions(this);
+
+    // Player_ProB
+    private readonly InputActionMap m_Player_ProB;
+    private List<IPlayer_ProBActions> m_Player_ProBActionsCallbackInterfaces = new List<IPlayer_ProBActions>();
+    private readonly InputAction m_Player_ProB_Move;
+    private readonly InputAction m_Player_ProB_Dash;
+    private readonly InputAction m_Player_ProB_Jump;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Player_ProB".
+    /// </summary>
+    public struct Player_ProBActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public Player_ProBActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Player_ProB/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Player_ProB_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_ProB/Dash".
+        /// </summary>
+        public InputAction @Dash => m_Wrapper.m_Player_ProB_Dash;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_ProB/Jump".
+        /// </summary>
+        public InputAction @Jump => m_Wrapper.m_Player_ProB_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Player_ProB; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="Player_ProBActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(Player_ProBActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="Player_ProBActions" />
+        public void AddCallbacks(IPlayer_ProBActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="Player_ProBActions" />
+        private void UnregisterCallbacks(IPlayer_ProBActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />.
+        /// </summary>
+        /// <seealso cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />
+        public void RemoveCallbacks(IPlayer_ProBActions instance)
+        {
+            if (m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="Player_ProBActions.AddCallbacks(IPlayer_ProBActions)" />
+        /// <seealso cref="Player_ProBActions.RemoveCallbacks(IPlayer_ProBActions)" />
+        /// <seealso cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />
+        public void SetCallbacks(IPlayer_ProBActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Player_ProBActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="Player_ProBActions" /> instance referencing this action map.
+    /// </summary>
+    public Player_ProBActions @Player_ProB => new Player_ProBActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -3988,5 +4301,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInfo(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_ProB" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="Player_ProBActions.AddCallbacks(IPlayer_ProBActions)" />
+    /// <seealso cref="Player_ProBActions.RemoveCallbacks(IPlayer_ProBActions)" />
+    public interface IPlayer_ProBActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Dash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDash(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnJump(InputAction.CallbackContext context);
     }
 }

@@ -32,7 +32,7 @@ public class Initializer : MonoBehaviour
         Inputs.Enable();
     }
 
-    #region InitInputs
+    #region NewInputSystem
     public void NIS_InitCarControll(GM_NewInputSystem gameManager)
     {
         //Transport
@@ -62,7 +62,26 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_NIS.CarSummon.started += _ => gameManager.PlayerController.OnCarSummonInput();
     }
+    public void RemoveInputs(GM_NewInputSystem gameManager)
+    {
+        Inputs.Transport.Zoom.performed -= context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
+        Inputs.Transport.Look.performed -= context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
+        Inputs.Transport.Look.canceled -= _ => gameManager.PlayerController.OnRotateInput(Vector2.zero);
+        Inputs.Transport.Move.performed -= context => gameManager.CurrentTransport.OnControllerInput(context.ReadValue<Vector2>());
+        Inputs.Transport.Move.canceled -= _ => gameManager.CurrentTransport.OnControllerInput(Vector2.zero);
+        Inputs.Transport.CarExit.started -= _ => gameManager.ChangeMap(false);
 
+        Inputs.Player_NIS.Move.performed -= context => gameManager.PlayerController.OnMoveInput(context.ReadValue<Vector2>());
+        Inputs.Player_NIS.Move.canceled -= context => gameManager.PlayerController.OnMoveInput(Vector2.zero);
+        Inputs.Player_NIS.Jump.started -= _ => gameManager.PlayerController.OnJumpInput();
+        Inputs.Player_NIS.Look.performed -= context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
+        Inputs.Player_NIS.Look.canceled -= context => gameManager.PlayerController.OnRotateInput(Vector2.zero);
+        Inputs.Player_NIS.Zoom.performed -= context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
+        Inputs.Player_NIS.CarSummon.started -= _ => gameManager.PlayerController.OnCarSummonInput();
+    }
+    #endregion
+
+    #region DOTween
     public void DOTween_InitDoomPlayerControll(GM_Doom gameManager)
     {
         Inputs.Player_DOT.Move.started += context => gameManager.Player.OnWalkDirectionChoose(context.ReadValue<float>(), ref gameManager.Player.WalkDirection);
@@ -89,57 +108,6 @@ public class Initializer : MonoBehaviour
         Inputs.Player_DOT.Rotate.started += _ => gameManager.Player.OnActionChoose(Actions.Rotate);
         Inputs.Player_DOT.Jump.started += _ => gameManager.Player.OnActionChoose(Actions.Jump);
     }
-
-    public void TileMap_InitPlayerController(GM_Tilemap gameManager)
-    {
-        Inputs.Player_Tilemap.Move.started += gameManager.Player.OnMoveInput;
-        Inputs.Player_Tilemap.Move.performed += gameManager.Player.OnMoveInput;
-        Inputs.Player_Tilemap.Move.canceled += gameManager.Player.OnMoveInput;
-
-        Inputs.Player_Tilemap.Jump.started += gameManager.Player.OnJumpInput;
-    }
-
-    public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
-    {
-        Inputs.Player_Advc2D.Move.performed += gameManager.Player.OnMoveInput;
-        Inputs.Player_Advc2D.Move.canceled += gameManager.Player.OnMoveInput;
-
-        Inputs.Player_Advc2D.Shoot.started += gameManager.Player.OnShootInput;
-        Inputs.Player_Advc2D.CrosshairPos.performed += gameManager.Player.OnMouseInput;
-    }
-
-    public void Advc3D_InitPlayerController(GM_Advc3D gameManager)
-    {
-        Inputs.Player_Advc3D.Controll.performed += gameManager.Player.OnControllInput;
-        Inputs.Player_Advc3D.Controll.canceled += gameManager.Player.OnControllInput;
-        Inputs.Player_Advc3D.Jump.started += gameManager.Player.OnJumpInput;
-        Inputs.Player_Advc3D.Interact.started += gameManager.Player.OnInteractInput;
-        Inputs.Player_Advc3D.Restart.started += gameManager.OnRestartInput;
-        Inputs.Player_Advc3D.PrevCameraPos.started += gameManager.CameraController.OnPrevPosInput;
-        Inputs.Player_Advc3D.NextCameraPos.started += gameManager.CameraController.OnNextPosInput;
-        Inputs.Player_Advc3D.SwitchView.started += gameManager.CameraController.OnSwitchViewInput;
-        Inputs.Player_Advc3D.Info.started += gameManager.GameUI.OnInfoInput;
-    }
-    #endregion
-
-    #region RemoveInputs
-    public void RemoveInputs(GM_NewInputSystem gameManager)
-    {
-        Inputs.Transport.Zoom.performed -= context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
-        Inputs.Transport.Look.performed -= context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
-        Inputs.Transport.Look.canceled -= _ => gameManager.PlayerController.OnRotateInput(Vector2.zero);
-        Inputs.Transport.Move.performed -= context => gameManager.CurrentTransport.OnControllerInput(context.ReadValue<Vector2>());
-        Inputs.Transport.Move.canceled -= _ => gameManager.CurrentTransport.OnControllerInput(Vector2.zero);
-        Inputs.Transport.CarExit.started -= _ => gameManager.ChangeMap(false);
-
-        Inputs.Player_NIS.Move.performed -= context => gameManager.PlayerController.OnMoveInput(context.ReadValue<Vector2>());
-        Inputs.Player_NIS.Move.canceled -= context => gameManager.PlayerController.OnMoveInput(Vector2.zero);
-        Inputs.Player_NIS.Jump.started -= _ => gameManager.PlayerController.OnJumpInput();
-        Inputs.Player_NIS.Look.performed -= context => gameManager.PlayerController.OnRotateInput(context.ReadValue<Vector2>());
-        Inputs.Player_NIS.Look.canceled -= context => gameManager.PlayerController.OnRotateInput(Vector2.zero);
-        Inputs.Player_NIS.Zoom.performed -= context => gameManager.PlayerController.OnZoomInput(context.ReadValue<Vector2>());
-        Inputs.Player_NIS.CarSummon.started -= _ => gameManager.PlayerController.OnCarSummonInput();
-    }
     public void RemoveInputs(GM_Doom gameManager)
     {
         Inputs.Player_DOT.Move.started -= context => gameManager.Player.OnWalkDirectionChoose(context.ReadValue<float>(), ref gameManager.Player.WalkDirection);
@@ -160,6 +128,17 @@ public class Initializer : MonoBehaviour
         Inputs.Player_DOT.Rotate.started -= _ => gameManager.Player.OnActionChoose(Actions.Rotate);
         Inputs.Player_DOT.Jump.started -= _ => gameManager.Player.OnActionChoose(Actions.Jump);
     }
+    #endregion
+
+    #region TileMap
+    public void TileMap_InitPlayerController(GM_Tilemap gameManager)
+    {
+        Inputs.Player_Tilemap.Move.started += gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.Player_Tilemap.Move.canceled += gameManager.Player.OnMoveInput;
+
+        Inputs.Player_Tilemap.Jump.started += gameManager.Player.OnJumpInput;
+    }
     public void RemoveInputs(GM_Tilemap gameManager)
     {
         Inputs.Player_Tilemap.Move.started -= gameManager.Player.OnMoveInput;
@@ -170,6 +149,17 @@ public class Initializer : MonoBehaviour
         //Inputs.Player_Tilemap.Move.Reset();
         //Inputs.Player_Tilemap.Jump.Reset();
     }
+    #endregion
+
+    #region Advanced2D
+    public void Advc2D_InitPlayerController(GM_Advanced2D gameManager)
+    {
+        Inputs.Player_Advc2D.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.Player_Advc2D.Move.canceled += gameManager.Player.OnMoveInput;
+
+        Inputs.Player_Advc2D.Shoot.started += gameManager.Player.OnShootInput;
+        Inputs.Player_Advc2D.CrosshairPos.performed += gameManager.Player.OnMouseInput;
+    }
     public void RemoveInputs(GM_Advanced2D gameManager)
     {
         Inputs.Player_Advc2D.Move.performed -= gameManager.Player.OnMoveInput;
@@ -177,7 +167,21 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc2D.Shoot.started -= gameManager.Player.OnShootInput;
         Inputs.Player_Advc2D.CrosshairPos.performed -= gameManager.Player.OnMouseInput;
     }
+    #endregion
 
+    #region Advanced3D
+    public void Advc3D_InitPlayerController(GM_Advc3D gameManager)
+    {
+        Inputs.Player_Advc3D.Controll.performed += gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Controll.canceled += gameManager.Player.OnControllInput;
+        Inputs.Player_Advc3D.Jump.started += gameManager.Player.OnJumpInput;
+        Inputs.Player_Advc3D.Interact.started += gameManager.Player.OnInteractInput;
+        Inputs.Player_Advc3D.Restart.started += gameManager.OnRestartInput;
+        Inputs.Player_Advc3D.PrevCameraPos.started += gameManager.CameraController.OnPrevPosInput;
+        Inputs.Player_Advc3D.NextCameraPos.started += gameManager.CameraController.OnNextPosInput;
+        Inputs.Player_Advc3D.SwitchView.started += gameManager.CameraController.OnSwitchViewInput;
+        Inputs.Player_Advc3D.Info.started += gameManager.GameUI.OnInfoInput;
+    }
     public void RemoveInputs(GM_Advc3D gameManager)
     {
         Inputs.Player_Advc3D.Controll.performed -= gameManager.Player.OnControllInput;
@@ -190,5 +194,30 @@ public class Initializer : MonoBehaviour
         Inputs.Player_Advc3D.SwitchView.started -= gameManager.CameraController.OnSwitchViewInput;
         Inputs.Player_Advc3D.Info.started -= gameManager.GameUI.OnInfoInput;
     }
+    #endregion
+
+    #region ProBuilder
+    public void ProB_InitPlayerController(GM_ProBuilder gameManager)
+    {
+        Inputs.Player_ProB.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.Player_ProB.Move.canceled += gameManager.Player.OnMoveInput;
+        Inputs.Player_ProB.Dash.started += gameManager.Player.OnDashInput;
+        Inputs.Player_ProB.Dash.canceled += gameManager.Player.OnDashInput;
+
+        Inputs.Player_ProB.Jump.performed += gameManager.Player.OnJumpInput;
+        Inputs.Player_ProB.Jump.canceled += gameManager.Player.OnJumpInput;
+    }
+
+    public void RemoveInputs(GM_ProBuilder gameManager)
+    {
+        Inputs.Player_ProB.Move.performed -= gameManager.Player.OnMoveInput;
+        Inputs.Player_ProB.Move.canceled -= gameManager.Player.OnMoveInput;
+        Inputs.Player_ProB.Dash.started -= gameManager.Player.OnDashInput;
+        Inputs.Player_ProB.Dash.canceled -= gameManager.Player.OnDashInput;
+
+        Inputs.Player_ProB.Jump.performed -= gameManager.Player.OnJumpInput;
+        Inputs.Player_ProB.Jump.canceled -= gameManager.Player.OnJumpInput;
+    }
+
     #endregion
 }
