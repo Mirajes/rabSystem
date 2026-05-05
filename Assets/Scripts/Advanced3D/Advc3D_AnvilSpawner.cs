@@ -27,7 +27,7 @@ public class Advc3D_AnvilSpawner : MonoBehaviour
         _debounce = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !_debounce)
         {
