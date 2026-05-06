@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController), typeof(Camera))]
+[RequireComponent(typeof(CharacterController))]
 public class PB_PlayerController : MonoBehaviour
 {
     [Header("CORE")]
@@ -40,10 +40,13 @@ public class PB_PlayerController : MonoBehaviour
     private void Start()
     {
         _cts = new();
+
+        _camera.transform.localPosition = _cameraOffset;
     }
 
     private void Update()
     {
+        HandleRotation();
         SetGravity();
 
         HandleJump();
@@ -86,7 +89,14 @@ public class PB_PlayerController : MonoBehaviour
     #region Handle
     private void HandleRotation()
     {
-        
+        float mouseX = _cameraInput.x * _mouseSensivity * Time.deltaTime;
+        float mouseY = _cameraInput.y * _mouseSensivity * Time.deltaTime;
+
+        _cameraVerticalAngle -= mouseY;
+        _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
+
+        _camera.transform.localRotation = Quaternion.Euler(_cameraVerticalAngle, 0, 0);
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     private void SetGravity()
@@ -115,7 +125,13 @@ public class PB_PlayerController : MonoBehaviour
             _moveVelocity += new Vector3(_dashVelocity.x, 0f, _dashVelocity.y);
         }
 
-        _characterController.Move(_moveVelocity * Time.deltaTime);
+        Vector3 move = (
+            transform.right * _moveVelocity.x
+            + transform.up * _moveVelocity.y
+            + transform.forward * _moveVelocity.z
+            );
+
+        _characterController.Move(move * Time.deltaTime);
     }
 
     private void HandleJump()

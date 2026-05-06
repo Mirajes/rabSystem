@@ -21,7 +21,7 @@ public class Advc3D_GameContext : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); // return?
     }
 
     private void OnDestroy()

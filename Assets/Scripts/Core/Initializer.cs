@@ -208,6 +208,8 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_ProB.Look.performed += gameManager.Player.OnLookInput;
         Inputs.Player_ProB.Look.canceled += gameManager.Player.OnLookInput;
+
+        Inputs.Player_ProB.Restart.started += gameManager.OnRestart;
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)

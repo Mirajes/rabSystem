@@ -2239,6 +2239,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""195e85d0-a420-4ad2-b84e-a9e439676880"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -2428,6 +2437,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58360507-5d42-4bc6-96c9-7b9d2e715b3f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -2560,6 +2580,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_ProB_Dash = m_Player_ProB.FindAction("Dash", throwIfNotFound: true);
         m_Player_ProB_Jump = m_Player_ProB.FindAction("Jump", throwIfNotFound: true);
         m_Player_ProB_Look = m_Player_ProB.FindAction("Look", throwIfNotFound: true);
+        m_Player_ProB_Restart = m_Player_ProB.FindAction("Restart", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -3805,6 +3826,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ProB_Dash;
     private readonly InputAction m_Player_ProB_Jump;
     private readonly InputAction m_Player_ProB_Look;
+    private readonly InputAction m_Player_ProB_Restart;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player_ProB".
     /// </summary>
@@ -3832,6 +3854,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player_ProB/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_ProB_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Player_ProB/Restart".
+        /// </summary>
+        public InputAction @Restart => m_Wrapper.m_Player_ProB_Restart;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -3870,6 +3896,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
         }
 
         /// <summary>
@@ -3893,6 +3922,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
         }
 
         /// <summary>
@@ -4391,5 +4423,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
