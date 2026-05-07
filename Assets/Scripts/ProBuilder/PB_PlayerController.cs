@@ -42,6 +42,7 @@ public class PB_PlayerController : MonoBehaviour
         _cts = new();
 
         _camera.transform.localPosition = _cameraOffset;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -89,8 +90,8 @@ public class PB_PlayerController : MonoBehaviour
     #region Handle
     private void HandleRotation()
     {
-        float mouseX = _cameraInput.x * _mouseSensivity * Time.deltaTime;
-        float mouseY = _cameraInput.y * _mouseSensivity * Time.deltaTime;
+        float mouseX = _cameraInput.x * _mouseSensivity;
+        float mouseY = _cameraInput.y * _mouseSensivity;
 
         _cameraVerticalAngle -= mouseY;
         _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
