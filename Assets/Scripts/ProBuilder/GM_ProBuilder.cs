@@ -8,11 +8,18 @@ public class GM_ProBuilder : MonoBehaviour
     public static GM_ProBuilder Instance => _instance;
     private static GM_ProBuilder _instance;
 
-    [SerializeField] private PB_PlayerController _playerPrefab;
-    [SerializeField] private Transform _spawn;
-    private PB_PlayerController _player;
+    public ProB_UIManager UIManager => _uiManager;
 
-    public PB_PlayerController Player => _player;
+    [Header("Links")]
+    private ProB_UIManager _uiManager;
+    private ProB_AudioManager _audioManager;
+
+    [Header("Player")]
+    [SerializeField] private ProB_PlayerController _playerPrefab;
+    [SerializeField] private Transform _spawn;
+    private ProB_PlayerController _player;
+    public ProB_PlayerController Player => _player;
+
 
     private void Awake()
     {
@@ -42,14 +49,11 @@ public class GM_ProBuilder : MonoBehaviour
         print("started");
     }
 
-    private void OnDestroy()
-    {
-             // question about it
-        // how to RemoveInput only when scene is different
-    }
-
     private void Init()
     {
+        _uiManager = FindFirstObjectByType<ProB_UIManager>();
+        _audioManager = FindFirstObjectByType<ProB_AudioManager>();
+
         _player = Instantiate(_playerPrefab, _spawn.position, _spawn.rotation);
 
         Initializer.Instance.ProB_InitPlayerController(this);
