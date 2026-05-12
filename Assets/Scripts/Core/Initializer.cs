@@ -199,6 +199,7 @@ public class Initializer : MonoBehaviour
     #region ProBuilder
     public void ProB_InitPlayerController(GM_ProBuilder gameManager)
     {
+        #region PlayerConroller
         Inputs.Player_ProB.Move.performed += gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Move.canceled += gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Dash.started += gameManager.Player.OnDashInput;
@@ -208,14 +209,15 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_ProB.Look.performed += gameManager.Player.OnLookInput;
         Inputs.Player_ProB.Look.canceled += gameManager.Player.OnLookInput;
+        #endregion
 
         Inputs.Player_ProB.Restart.started += gameManager.OnRestart;
-
         Inputs.Player_ProB.Settings.started += gameManager.UIManager.OnSettingsInput;
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)
     {
+        #region PlayerConroller
         Inputs.Player_ProB.Move.performed -= gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Move.canceled -= gameManager.Player.OnMoveInput;
         Inputs.Player_ProB.Dash.started -= gameManager.Player.OnDashInput;
@@ -225,6 +227,10 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_ProB.Look.performed -= gameManager.Player.OnLookInput;
         Inputs.Player_ProB.Look.canceled -= gameManager.Player.OnLookInput;
+        #endregion
+
+        Inputs.Player_ProB.Restart.started -= gameManager.OnRestart;
+        Inputs.Player_ProB.Settings.started -= gameManager.UIManager.OnSettingsInput;
     }
 
     #endregion

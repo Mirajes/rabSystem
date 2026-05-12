@@ -34,15 +34,25 @@ public class ProB_UIManager : MonoBehaviour
     {
         if (_settingsCanvas.gameObject.activeSelf)
         {
-            _settingsCanvas.gameObject.SetActive(false);
+            GM_ProBuilder.Instance.SaveManager.Save();
             Cursor.lockState = CursorLockMode.Locked;
             Debug.Log($"[{this.name}] - Cursor Locked");
+
+            _settingsCanvas.gameObject.SetActive(false);
         }
         else
         {
-            _settingsCanvas.gameObject.SetActive(true);
+            UpdateUI();
             Cursor.lockState = CursorLockMode.None;
             Debug.Log($"[{this.name}] - Cursor Unlocked");
+
+            _settingsCanvas.gameObject.SetActive(true);
         }
+    }
+
+    private void UpdateUI()
+    {
+        _musicSlider.value = _audioManager.MusicVolume;
+        OnMusicVolumeChange(_musicSlider.value);
     }
 }

@@ -9,6 +9,10 @@ public class GM_ProBuilder : MonoBehaviour
     private static GM_ProBuilder _instance;
 
     public ProB_UIManager UIManager => _uiManager;
+    public ProB_SaveManager SaveManager => _saveManager;
+
+    [Header("Core")]
+    private ProB_SaveManager _saveManager = new();
 
     [Header("Links")]
     private ProB_UIManager _uiManager;
@@ -46,13 +50,14 @@ public class GM_ProBuilder : MonoBehaviour
     private void Start()
     {
         Init();
-        print("started");
     }
 
     private void Init()
     {
         _uiManager = FindFirstObjectByType<ProB_UIManager>();
         _audioManager = FindFirstObjectByType<ProB_AudioManager>();
+
+        SaveManager.Load();
 
         _player = Instantiate(_playerPrefab, _spawn.position, _spawn.rotation);
 

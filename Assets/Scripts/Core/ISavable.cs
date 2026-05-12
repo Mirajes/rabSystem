@@ -1,5 +1,5 @@
 public interface ISavable
 {
-    void OnSave();
-    void OnLoad();
+    void OnSave(SaveData data);
+    void OnLoad(SaveData data);
 }
