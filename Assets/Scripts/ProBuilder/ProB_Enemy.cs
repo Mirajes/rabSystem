@@ -10,8 +10,7 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
 
     private string _id;
 
-    private const string _posParamName = "_pos";
-    private const string _materialParamName = "_material";
+
 
     private void SetFear(bool isScared)
     {
@@ -31,23 +30,30 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
 
     private void OnEnable()
     {
-        ProB_SaveManager.OnSave += OnSave;
-        ProB_SaveManager.OnLoad += OnLoad;
+        //ProB_SaveManager.OnSave += OnSave;
+        //ProB_SaveManager.OnLoad += OnLoad;
 
         _id = gameObject.GetInstanceID().ToString();
     }
 
     private void OnDisable()
     {
-        ProB_SaveManager.OnSave -= OnSave;
-        ProB_SaveManager.OnLoad -= OnLoad;
+        //ProB_SaveManager.OnSave -= OnSave;
+        //ProB_SaveManager.OnLoad -= OnLoad;
+    }
+
+    private void OnMouseDown()
+    {
+        print("oi");
     }
 
     public void OnSave(SaveData data)
     {
         data.Data.Add(_id, JsonUtility.ToJson(_isScared));
-        data.Data.Add(_id + _posParamName, JsonUtility.ToJson(transform.position));
-        data.Data.Add(_id + _materialParamName, JsonUtility.ToJson(_renderer.material));
+        data.Data.Add(_id + ProB_GameContext.Instance.PosParamName, JsonUtility.ToJson(transform.position));
+        //data.Data.Add(_id + ProB_GameContext.Instance.MaterialParamName, JsonUtility.ToJson());
+
+        Debug.Log($"[Enemy] - Saved to {transform.position}");
     }
 
     public void OnLoad(SaveData data)
@@ -56,8 +62,10 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
             return;
 
         SetFear(JsonUtility.FromJson<bool>(data.Data[_id]));
-        transform.position = JsonUtility.FromJson<Vector3>(data.Data[_id +_posParamName]);
-        _renderer.material = JsonUtility.FromJson<Material>(data.Data[_id + _materialParamName]);
+        transform.position = JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName]);
+        //_renderer.material = JsonUtility.FromJson<Material>(data.Data[_id + ProB_GameContext.Instance.MaterialParamName]);
+
+        Debug.Log($"[Enemy] - Loaded at {JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName])}");
     }
 
     public void HandleInteractive()

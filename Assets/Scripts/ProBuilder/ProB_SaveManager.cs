@@ -30,3 +30,8 @@ public class ProB_SaveManager
         OnLoad?.Invoke(data);
     }
 }
+
+/*
+sohranyaem vragov vo vremya zakritiya UI => klass :)
+eshe i perezapisivaem absolute vse :)))
+*/ 
