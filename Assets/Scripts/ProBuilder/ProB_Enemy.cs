@@ -30,16 +30,16 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
 
     private void OnEnable()
     {
-        //ProB_SaveManager.OnSave += OnSave;
-        //ProB_SaveManager.OnLoad += OnLoad;
+        ProB_SaveManager.OnSave += OnSave;
+        ProB_SaveManager.OnLoad += OnLoad;
 
         _id = gameObject.GetInstanceID().ToString();
     }
 
     private void OnDisable()
     {
-        //ProB_SaveManager.OnSave -= OnSave;
-        //ProB_SaveManager.OnLoad -= OnLoad;
+        ProB_SaveManager.OnSave -= OnSave;
+        ProB_SaveManager.OnLoad -= OnLoad;
     }
 
     private void OnMouseDown()
