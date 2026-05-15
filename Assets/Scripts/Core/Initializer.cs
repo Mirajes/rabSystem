@@ -30,6 +30,8 @@ public class Initializer : MonoBehaviour
     public void EnableInputs()
     {
         Inputs.Enable();
+
+        Debug.Log("inputs enabled");
     }
 
     #region NewInputSystem
@@ -213,6 +215,8 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_ProB.Restart.started += gameManager.OnRestart;
         Inputs.Player_ProB.Settings.started += gameManager.UIManager.OnSettingsInput;
+
+        Debug.Log("inputs inited");
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)
@@ -231,6 +235,8 @@ public class Initializer : MonoBehaviour
 
         Inputs.Player_ProB.Restart.started -= gameManager.OnRestart;
         Inputs.Player_ProB.Settings.started -= gameManager.UIManager.OnSettingsInput;
+
+        Debug.Log("inputs removed");
     }
 
     #endregion

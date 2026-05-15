@@ -7,6 +7,7 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
     [SerializeField] private Renderer _renderer;
 
     [SerializeField] private ProB_Skulls _skull = ProB_Skulls.No;
+    [SerializeField] private ProB_State _state = ProB_State.Calm;
 
     private string _id;
 
@@ -19,13 +20,13 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         if (!_isScared)
         {
             _face.sprite = ProB_GameContext.Instance.CalmSprite;
+            _state = ProB_State.Calm;
         }
         else
         {
             _face.sprite = ProB_GameContext.Instance.ScareSprite;
+            _state = ProB_State.Scared;
         }
-        
-        GM_ProBuilder.Instance.SaveManager.Save();
     }
 
     private void OnEnable()
@@ -52,13 +53,11 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         Debug.Log(_renderer.material);
 
         Vector3 position = transform.position;
-        string matName = ProB_GameContext.Instance.GetKeyByMaterial(_renderer.material);
 
         data.Data.Add(_id, JsonUtility.ToJson(_isScared));
-        data.Data.Add(_id + ProB_GameContext.Instance.PosParamName, JsonUtility.ToJson(transform.position));
-        data.Data.Add(_id + ProB_GameContext.Instance.MaterialParamName, JsonUtility.ToJson(matName));
+        data.Data.Add(_id + ProB_GameContext.Instance.PosParamName, JsonUtility.ToJson(position));
 
-        Debug.Log($"[Enemy] - Saved to {transform.position}");
+        Debug.Log($"[Enemy] - Saved to {position}");
     }
 
     public void OnLoad(SaveData data)
@@ -66,15 +65,15 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         if (!data.Data.ContainsKey(_id))
             return;
 
-        Material material = ProB_GameContext.Instance.GetMaterialByName(
-            JsonUtility.FromJson<string>
-            (data.Data[_id + ProB_GameContext.Instance.MaterialParamName]));
+        bool isScared = JsonUtility.FromJson<bool>(data.Data[_id]);
+        Vector3 position = JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName]);
+        Material material = ProB_GameContext.Instance.GetMaterialByState(_state);
 
-        SetFear(JsonUtility.FromJson<bool>(data.Data[_id]));
-        transform.position = JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName]);
+        SetFear(isScared);
+        transform.position = position;
         _renderer.material = material;
 
-        Debug.Log($"[Enemy] - Loaded at {JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName])}");
+        Debug.Log($"[Enemy] - Loaded at {position}");
     }
 
     public void HandleInteractive()

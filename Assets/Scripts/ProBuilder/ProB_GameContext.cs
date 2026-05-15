@@ -8,14 +8,14 @@ public class ProB_GameContext : MonoBehaviour
 
     [SerializeField]
     [SerializedDictionary("MaterialKey", "Material")]
-    private SerializedDictionary<string, Material> _materialDictionary = new();
-    private SerializedDictionary<Material, string> _reversedMaterialDictionary = new();
+    private SerializedDictionary<ProB_State, Material> _materialDictionary = new();
 
     public Sprite ScareSprite => _scareSprite;
     public Sprite CalmSprite => _calmSprite;
 
     public readonly string MaterialParamName = "_material";
     public readonly string PosParamName = "_pos";
+    public readonly string StateParamName = "_state";
 
     public static ProB_GameContext Instance => _instance;
     private static ProB_GameContext _instance;
@@ -32,38 +32,16 @@ public class ProB_GameContext : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
-        BuildReversedMaterialDictionary();
     }
 
-    private void BuildReversedMaterialDictionary()
+    public Material GetMaterialByState(ProB_State state)
     {
-        _reversedMaterialDictionary.Clear();
-        foreach (var item in _materialDictionary)
+        if (!_materialDictionary.ContainsKey(state))
         {
-            _reversedMaterialDictionary[item.Value] = item.Key;
-        }
-    }
-
-    public Material GetMaterialByName(string key)
-    {
-        if (!_materialDictionary.ContainsKey(key)) 
-        {
-            Debug.LogWarning($"[GameContext] - No {key} for material");
+            Debug.LogWarning($"[GameContext] - No {state} for material");
             return null;
         }
 
-        return _materialDictionary[key];
-    }
-
-    public string GetKeyByMaterial(Material mat)
-    {
-        if (!_reversedMaterialDictionary.ContainsKey(mat))
-        {
-            Debug.LogWarning($"[GameContext] - No {mat} for keyString");
-            return null;
-        }
-
-        return _reversedMaterialDictionary[mat];
+        return _materialDictionary[state];
     }
 }
