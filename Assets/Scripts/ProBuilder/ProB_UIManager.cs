@@ -38,6 +38,7 @@ public class ProB_UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Debug.Log($"[{this.name}] - Cursor Locked");
 
+            Initializer.Inputs.ProB_Player.Enable();
             _settingsCanvas.gameObject.SetActive(false);
         }
         else
@@ -46,6 +47,7 @@ public class ProB_UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Debug.Log($"[{this.name}] - Cursor Unlocked");
 
+            Initializer.Inputs.ProB_Player.Disable();
             _settingsCanvas.gameObject.SetActive(true);
         }
     }

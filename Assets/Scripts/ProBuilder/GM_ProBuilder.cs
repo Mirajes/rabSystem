@@ -57,7 +57,7 @@ public class GM_ProBuilder : MonoBehaviour
         _uiManager = FindFirstObjectByType<ProB_UIManager>();
         _audioManager = FindFirstObjectByType<ProB_AudioManager>();
 
-        //SaveManager.Load();
+        SaveManager.Load();
 
         _player = Instantiate(_playerPrefab, _spawn.position, _spawn.rotation);
 

@@ -37,6 +37,9 @@ public class ProB_PlayerController : MonoBehaviour
     private Vector2 _cameraInput;
     private float _cameraVerticalAngle = 0f;
 
+    [Header("FUNNY")]
+    [SerializeField] private A_ItemTool_ProB _currentTool;
+
     private void Start()
     {
         _cts = new();

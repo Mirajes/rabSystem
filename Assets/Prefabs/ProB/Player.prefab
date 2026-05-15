@@ -290,6 +290,7 @@ MonoBehaviour:
   _dashSpeed: 0.2
   _mouseSensivity: 0.5
   _cameraOffset: {x: 0, y: 0.85, z: 0}
+  _currentTool: {fileID: 7872343810989154065}
 --- !u!1001 &831224013020696800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,10 +302,6 @@ PrefabInstance:
     - target: {fileID: 2779188961610744505, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
       propertyPath: m_Name
       value: Cursor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3874480928538542827, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.3341004
       objectReference: {fileID: 0}
     - target: {fileID: 3874480928538542827, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,8 +346,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2779188961610744505, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7872343810989154065}
   m_SourcePrefab: {fileID: 100100000, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
+--- !u!1 &3249541157312615001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2779188961610744505, guid: 382d8ba278446144d9e6833b8673b437, type: 3}
+  m_PrefabInstance: {fileID: 831224013020696800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7872343810989154065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249541157312615001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597ededcd2c235847869be06f2e73554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Prefab: {fileID: 3249541157312615001}
 --- !u!4 &4489510715460112907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3874480928538542827, guid: 382d8ba278446144d9e6833b8673b437, type: 3}

@@ -2115,7 +2115,7 @@
             ]
         },
         {
-            "name": "Player_ProB",
+            "name": "ProB_Player",
             "id": "c7688ab6-7b0f-4824-92f7-4cf0911350b1",
             "actions": [
                 {
@@ -2155,18 +2155,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Restart",
+                    "name": "LMB",
                     "type": "Button",
-                    "id": "195e85d0-a420-4ad2-b84e-a9e439676880",
+                    "id": "ea340b51-42d3-411e-a03a-828df6a29545",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Settings",
+                    "name": "RMB",
                     "type": "Button",
-                    "id": "b817a805-ae96-4fd4-a095-58755ccc501c",
+                    "id": "30f3cacb-6be6-48d9-a2a3-8f9454edb8c8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -2363,23 +2363,71 @@
                 },
                 {
                     "name": "",
-                    "id": "58360507-5d42-4bc6-96c9-7b9d2e715b3f",
-                    "path": "<Keyboard>/r",
+                    "id": "c17d6fed-c16d-4160-adfd-c7543d412ab1",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Restart",
+                    "action": "LMB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8bcec47b-3930-4a18-91a3-fe50f5d052c1",
+                    "id": "629f10cb-a5c6-4d13-803d-bc69e2c2f894",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RMB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ProB_Maintance",
+            "id": "7a77fb00-ef55-402b-a166-5ee79c7f6c11",
+            "actions": [
+                {
+                    "name": "Settings",
+                    "type": "Button",
+                    "id": "f0633222-47ac-4150-aefc-630762e1dd2c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "5911929e-482d-448c-bc9b-b5e39f46ddd8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0ac31ff7-228c-498a-b1a3-f5abae579027",
                     "path": "<Keyboard>/backquote",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cabf944-2d94-4c4e-afa5-6494510239f4",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -44,4 +44,18 @@ public class ProB_GameContext : MonoBehaviour
 
         return _materialDictionary[state];
     }
+
+    public Vector3 SelectRandomFromCollider(Collider col)
+    {
+        Bounds bounds = col.bounds;
+
+        Vector3 min = bounds.min;
+        Vector3 max = bounds.max;
+
+        return new Vector3(
+            Random.Range(min.x, max.x),
+            bounds.center.y,
+            Random.Range(min.z, max.z)
+            );
+    }
 }

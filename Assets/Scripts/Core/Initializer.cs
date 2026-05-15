@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+never do inputs by init from GameManager
+only from Action or from this script
+*/
+
 public class Initializer : MonoBehaviour
 {
     public static Initializer Instance { get; private set; }
@@ -12,6 +17,9 @@ public class Initializer : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
 
+            Inputs?.Disable();
+            Inputs?.Dispose();
+
             Inputs = new();
         }
         else
@@ -21,17 +29,9 @@ public class Initializer : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        Inputs.Disable();
-        Inputs.Dispose();
-    }
-
     public void EnableInputs()
     {
         Inputs.Enable();
-
-        Debug.Log("inputs enabled");
     }
 
     #region NewInputSystem
@@ -202,41 +202,38 @@ public class Initializer : MonoBehaviour
     public void ProB_InitPlayerController(GM_ProBuilder gameManager)
     {
         #region PlayerConroller
-        Inputs.Player_ProB.Move.performed += gameManager.Player.OnMoveInput;
-        Inputs.Player_ProB.Move.canceled += gameManager.Player.OnMoveInput;
-        Inputs.Player_ProB.Dash.started += gameManager.Player.OnDashInput;
+        Inputs.ProB_Player.Move.performed += gameManager.Player.OnMoveInput;
+        Inputs.ProB_Player.Move.canceled += gameManager.Player.OnMoveInput;
+        Inputs.ProB_Player.Dash.started += gameManager.Player.OnDashInput;
 
-        Inputs.Player_ProB.Jump.performed += gameManager.Player.OnJumpInput;
-        Inputs.Player_ProB.Jump.canceled += gameManager.Player.OnJumpInput;
+        Inputs.ProB_Player.Jump.performed += gameManager.Player.OnJumpInput;
+        Inputs.ProB_Player.Jump.canceled += gameManager.Player.OnJumpInput;
 
-        Inputs.Player_ProB.Look.performed += gameManager.Player.OnLookInput;
-        Inputs.Player_ProB.Look.canceled += gameManager.Player.OnLookInput;
+        Inputs.ProB_Player.Look.performed += gameManager.Player.OnLookInput;
+        Inputs.ProB_Player.Look.canceled += gameManager.Player.OnLookInput;
         #endregion
 
-        Inputs.Player_ProB.Restart.started += gameManager.OnRestart;
-        Inputs.Player_ProB.Settings.started += gameManager.UIManager.OnSettingsInput;
-
-        Debug.Log("inputs inited");
+        Inputs.ProB_Maintance.Restart.started += gameManager.OnRestart;
+        Inputs.ProB_Maintance.Settings.started += gameManager.UIManager.OnSettingsInput;
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)
     {
         #region PlayerConroller
-        Inputs.Player_ProB.Move.performed -= gameManager.Player.OnMoveInput;
-        Inputs.Player_ProB.Move.canceled -= gameManager.Player.OnMoveInput;
-        Inputs.Player_ProB.Dash.started -= gameManager.Player.OnDashInput;
+        Inputs.ProB_Player.Move.performed -= gameManager.Player.OnMoveInput;
+        Inputs.ProB_Player.Move.canceled -= gameManager.Player.OnMoveInput;
+        Inputs.ProB_Player.Dash.started -= gameManager.Player.OnDashInput;
 
-        Inputs.Player_ProB.Jump.performed -= gameManager.Player.OnJumpInput;
-        Inputs.Player_ProB.Jump.canceled -= gameManager.Player.OnJumpInput;
+        Inputs.ProB_Player.Jump.performed -= gameManager.Player.OnJumpInput;
+        Inputs.ProB_Player.Jump.canceled -= gameManager.Player.OnJumpInput;
 
-        Inputs.Player_ProB.Look.performed -= gameManager.Player.OnLookInput;
-        Inputs.Player_ProB.Look.canceled -= gameManager.Player.OnLookInput;
+        Inputs.ProB_Player.Look.performed -= gameManager.Player.OnLookInput;
+        Inputs.ProB_Player.Look.canceled -= gameManager.Player.OnLookInput;
         #endregion
 
-        Inputs.Player_ProB.Restart.started -= gameManager.OnRestart;
-        Inputs.Player_ProB.Settings.started -= gameManager.UIManager.OnSettingsInput;
+        Inputs.ProB_Maintance.Restart.started -= gameManager.OnRestart;
+        Inputs.ProB_Maintance.Settings.started -= gameManager.UIManager.OnSettingsInput;
 
-        Debug.Log("inputs removed");
     }
 
     #endregion

@@ -11,8 +11,6 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
 
     private string _id;
 
-
-
     private void SetFear(bool isScared)
     {
         _isScared = isScared;
@@ -50,8 +48,6 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
 
     public void OnSave(SaveData data)
     {
-        Debug.Log(_renderer.material);
-
         Vector3 position = transform.position;
 
         data.Data.Add(_id, JsonUtility.ToJson(_isScared));
@@ -63,7 +59,10 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
     public void OnLoad(SaveData data)
     {
         if (!data.Data.ContainsKey(_id))
+        {
+            Debug.Log($"no {data}");
             return;
+        }
 
         bool isScared = JsonUtility.FromJson<bool>(data.Data[_id]);
         Vector3 position = JsonUtility.FromJson<Vector3>(data.Data[_id + ProB_GameContext.Instance.PosParamName]);

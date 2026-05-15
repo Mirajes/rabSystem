@@ -2201,7 +2201,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Player_ProB"",
+            ""name"": ""ProB_Player"",
             ""id"": ""c7688ab6-7b0f-4824-92f7-4cf0911350b1"",
             ""actions"": [
                 {
@@ -2241,18 +2241,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Restart"",
+                    ""name"": ""LMB"",
                     ""type"": ""Button"",
-                    ""id"": ""195e85d0-a420-4ad2-b84e-a9e439676880"",
+                    ""id"": ""ea340b51-42d3-411e-a03a-828df6a29545"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Settings"",
+                    ""name"": ""RMB"",
                     ""type"": ""Button"",
-                    ""id"": ""b817a805-ae96-4fd4-a095-58755ccc501c"",
+                    ""id"": ""30f3cacb-6be6-48d9-a2a3-8f9454edb8c8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -2449,23 +2449,71 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""58360507-5d42-4bc6-96c9-7b9d2e715b3f"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""c17d6fed-c16d-4160-adfd-c7543d412ab1"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Restart"",
+                    ""action"": ""LMB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8bcec47b-3930-4a18-91a3-fe50f5d052c1"",
+                    ""id"": ""629f10cb-a5c6-4d13-803d-bc69e2c2f894"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RMB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""ProB_Maintance"",
+            ""id"": ""7a77fb00-ef55-402b-a166-5ee79c7f6c11"",
+            ""actions"": [
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0633222-47ac-4150-aefc-630762e1dd2c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""5911929e-482d-448c-bc9b-b5e39f46ddd8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0ac31ff7-228c-498a-b1a3-f5abae579027"",
                     ""path"": ""<Keyboard>/backquote"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cabf944-2d94-4c4e-afa5-6494510239f4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2594,14 +2642,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Advc3D_SwitchView = m_Player_Advc3D.FindAction("SwitchView", throwIfNotFound: true);
         m_Player_Advc3D_Restart = m_Player_Advc3D.FindAction("Restart", throwIfNotFound: true);
         m_Player_Advc3D_Info = m_Player_Advc3D.FindAction("Info", throwIfNotFound: true);
-        // Player_ProB
-        m_Player_ProB = asset.FindActionMap("Player_ProB", throwIfNotFound: true);
-        m_Player_ProB_Move = m_Player_ProB.FindAction("Move", throwIfNotFound: true);
-        m_Player_ProB_Dash = m_Player_ProB.FindAction("Dash", throwIfNotFound: true);
-        m_Player_ProB_Jump = m_Player_ProB.FindAction("Jump", throwIfNotFound: true);
-        m_Player_ProB_Look = m_Player_ProB.FindAction("Look", throwIfNotFound: true);
-        m_Player_ProB_Restart = m_Player_ProB.FindAction("Restart", throwIfNotFound: true);
-        m_Player_ProB_Settings = m_Player_ProB.FindAction("Settings", throwIfNotFound: true);
+        // ProB_Player
+        m_ProB_Player = asset.FindActionMap("ProB_Player", throwIfNotFound: true);
+        m_ProB_Player_Move = m_ProB_Player.FindAction("Move", throwIfNotFound: true);
+        m_ProB_Player_Dash = m_ProB_Player.FindAction("Dash", throwIfNotFound: true);
+        m_ProB_Player_Jump = m_ProB_Player.FindAction("Jump", throwIfNotFound: true);
+        m_ProB_Player_Look = m_ProB_Player.FindAction("Look", throwIfNotFound: true);
+        m_ProB_Player_LMB = m_ProB_Player.FindAction("LMB", throwIfNotFound: true);
+        m_ProB_Player_RMB = m_ProB_Player.FindAction("RMB", throwIfNotFound: true);
+        // ProB_Maintance
+        m_ProB_Maintance = asset.FindActionMap("ProB_Maintance", throwIfNotFound: true);
+        m_ProB_Maintance_Settings = m_ProB_Maintance.FindAction("Settings", throwIfNotFound: true);
+        m_ProB_Maintance_Restart = m_ProB_Maintance.FindAction("Restart", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2614,7 +2666,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player_DOT.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_DOT.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Advc2D.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Advc2D.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player_Advc3D.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_Advc3D.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Player_ProB.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player_ProB.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ProB_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.ProB_Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ProB_Maintance.enabled, "This will cause a leak and performance issues, InputSystem_Actions.ProB_Maintance.Disable() has not been called.");
     }
 
     /// <summary>
@@ -3840,54 +3893,54 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// </summary>
     public Player_Advc3DActions @Player_Advc3D => new Player_Advc3DActions(this);
 
-    // Player_ProB
-    private readonly InputActionMap m_Player_ProB;
-    private List<IPlayer_ProBActions> m_Player_ProBActionsCallbackInterfaces = new List<IPlayer_ProBActions>();
-    private readonly InputAction m_Player_ProB_Move;
-    private readonly InputAction m_Player_ProB_Dash;
-    private readonly InputAction m_Player_ProB_Jump;
-    private readonly InputAction m_Player_ProB_Look;
-    private readonly InputAction m_Player_ProB_Restart;
-    private readonly InputAction m_Player_ProB_Settings;
+    // ProB_Player
+    private readonly InputActionMap m_ProB_Player;
+    private List<IProB_PlayerActions> m_ProB_PlayerActionsCallbackInterfaces = new List<IProB_PlayerActions>();
+    private readonly InputAction m_ProB_Player_Move;
+    private readonly InputAction m_ProB_Player_Dash;
+    private readonly InputAction m_ProB_Player_Jump;
+    private readonly InputAction m_ProB_Player_Look;
+    private readonly InputAction m_ProB_Player_LMB;
+    private readonly InputAction m_ProB_Player_RMB;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Player_ProB".
+    /// Provides access to input actions defined in input action map "ProB_Player".
     /// </summary>
-    public struct Player_ProBActions
+    public struct ProB_PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public Player_ProBActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public ProB_PlayerActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Move".
+        /// Provides access to the underlying input action "ProB_Player/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Player_ProB_Move;
+        public InputAction @Move => m_Wrapper.m_ProB_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Dash".
+        /// Provides access to the underlying input action "ProB_Player/Dash".
         /// </summary>
-        public InputAction @Dash => m_Wrapper.m_Player_ProB_Dash;
+        public InputAction @Dash => m_Wrapper.m_ProB_Player_Dash;
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Jump".
+        /// Provides access to the underlying input action "ProB_Player/Jump".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Player_ProB_Jump;
+        public InputAction @Jump => m_Wrapper.m_ProB_Player_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Look".
+        /// Provides access to the underlying input action "ProB_Player/Look".
         /// </summary>
-        public InputAction @Look => m_Wrapper.m_Player_ProB_Look;
+        public InputAction @Look => m_Wrapper.m_ProB_Player_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Restart".
+        /// Provides access to the underlying input action "ProB_Player/LMB".
         /// </summary>
-        public InputAction @Restart => m_Wrapper.m_Player_ProB_Restart;
+        public InputAction @LMB => m_Wrapper.m_ProB_Player_LMB;
         /// <summary>
-        /// Provides access to the underlying input action "Player_ProB/Settings".
+        /// Provides access to the underlying input action "ProB_Player/RMB".
         /// </summary>
-        public InputAction @Settings => m_Wrapper.m_Player_ProB_Settings;
+        public InputAction @RMB => m_Wrapper.m_ProB_Player_RMB;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Player_ProB; }
+        public InputActionMap Get() { return m_Wrapper.m_ProB_Player; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -3895,9 +3948,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="Player_ProBActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="ProB_PlayerActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(Player_ProBActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(ProB_PlayerActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -3905,11 +3958,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="Player_ProBActions" />
-        public void AddCallbacks(IPlayer_ProBActions instance)
+        /// <seealso cref="ProB_PlayerActions" />
+        public void AddCallbacks(IProB_PlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_ProB_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ProB_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -3922,12 +3975,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Restart.started += instance.OnRestart;
-            @Restart.performed += instance.OnRestart;
-            @Restart.canceled += instance.OnRestart;
-            @Settings.started += instance.OnSettings;
-            @Settings.performed += instance.OnSettings;
-            @Settings.canceled += instance.OnSettings;
+            @LMB.started += instance.OnLMB;
+            @LMB.performed += instance.OnLMB;
+            @LMB.canceled += instance.OnLMB;
+            @RMB.started += instance.OnRMB;
+            @RMB.performed += instance.OnRMB;
+            @RMB.canceled += instance.OnRMB;
         }
 
         /// <summary>
@@ -3936,8 +3989,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="Player_ProBActions" />
-        private void UnregisterCallbacks(IPlayer_ProBActions instance)
+        /// <seealso cref="ProB_PlayerActions" />
+        private void UnregisterCallbacks(IProB_PlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -3951,21 +4004,21 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Restart.started -= instance.OnRestart;
-            @Restart.performed -= instance.OnRestart;
-            @Restart.canceled -= instance.OnRestart;
-            @Settings.started -= instance.OnSettings;
-            @Settings.performed -= instance.OnSettings;
-            @Settings.canceled -= instance.OnSettings;
+            @LMB.started -= instance.OnLMB;
+            @LMB.performed -= instance.OnLMB;
+            @LMB.canceled -= instance.OnLMB;
+            @RMB.started -= instance.OnRMB;
+            @RMB.performed -= instance.OnRMB;
+            @RMB.canceled -= instance.OnRMB;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ProB_PlayerActions.UnregisterCallbacks(IProB_PlayerActions)" />.
         /// </summary>
-        /// <seealso cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />
-        public void RemoveCallbacks(IPlayer_ProBActions instance)
+        /// <seealso cref="ProB_PlayerActions.UnregisterCallbacks(IProB_PlayerActions)" />
+        public void RemoveCallbacks(IProB_PlayerActions instance)
         {
-            if (m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_ProB_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -3975,21 +4028,128 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="Player_ProBActions.AddCallbacks(IPlayer_ProBActions)" />
-        /// <seealso cref="Player_ProBActions.RemoveCallbacks(IPlayer_ProBActions)" />
-        /// <seealso cref="Player_ProBActions.UnregisterCallbacks(IPlayer_ProBActions)" />
-        public void SetCallbacks(IPlayer_ProBActions instance)
+        /// <seealso cref="ProB_PlayerActions.AddCallbacks(IProB_PlayerActions)" />
+        /// <seealso cref="ProB_PlayerActions.RemoveCallbacks(IProB_PlayerActions)" />
+        /// <seealso cref="ProB_PlayerActions.UnregisterCallbacks(IProB_PlayerActions)" />
+        public void SetCallbacks(IProB_PlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_Player_ProBActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_ProB_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_Player_ProBActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_ProB_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="Player_ProBActions" /> instance referencing this action map.
+    /// Provides a new <see cref="ProB_PlayerActions" /> instance referencing this action map.
     /// </summary>
-    public Player_ProBActions @Player_ProB => new Player_ProBActions(this);
+    public ProB_PlayerActions @ProB_Player => new ProB_PlayerActions(this);
+
+    // ProB_Maintance
+    private readonly InputActionMap m_ProB_Maintance;
+    private List<IProB_MaintanceActions> m_ProB_MaintanceActionsCallbackInterfaces = new List<IProB_MaintanceActions>();
+    private readonly InputAction m_ProB_Maintance_Settings;
+    private readonly InputAction m_ProB_Maintance_Restart;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ProB_Maintance".
+    /// </summary>
+    public struct ProB_MaintanceActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ProB_MaintanceActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ProB_Maintance/Settings".
+        /// </summary>
+        public InputAction @Settings => m_Wrapper.m_ProB_Maintance_Settings;
+        /// <summary>
+        /// Provides access to the underlying input action "ProB_Maintance/Restart".
+        /// </summary>
+        public InputAction @Restart => m_Wrapper.m_ProB_Maintance_Restart;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ProB_Maintance; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ProB_MaintanceActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ProB_MaintanceActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ProB_MaintanceActions" />
+        public void AddCallbacks(IProB_MaintanceActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ProB_MaintanceActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ProB_MaintanceActionsCallbackInterfaces.Add(instance);
+            @Settings.started += instance.OnSettings;
+            @Settings.performed += instance.OnSettings;
+            @Settings.canceled += instance.OnSettings;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ProB_MaintanceActions" />
+        private void UnregisterCallbacks(IProB_MaintanceActions instance)
+        {
+            @Settings.started -= instance.OnSettings;
+            @Settings.performed -= instance.OnSettings;
+            @Settings.canceled -= instance.OnSettings;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ProB_MaintanceActions.UnregisterCallbacks(IProB_MaintanceActions)" />.
+        /// </summary>
+        /// <seealso cref="ProB_MaintanceActions.UnregisterCallbacks(IProB_MaintanceActions)" />
+        public void RemoveCallbacks(IProB_MaintanceActions instance)
+        {
+            if (m_Wrapper.m_ProB_MaintanceActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ProB_MaintanceActions.AddCallbacks(IProB_MaintanceActions)" />
+        /// <seealso cref="ProB_MaintanceActions.RemoveCallbacks(IProB_MaintanceActions)" />
+        /// <seealso cref="ProB_MaintanceActions.UnregisterCallbacks(IProB_MaintanceActions)" />
+        public void SetCallbacks(IProB_MaintanceActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ProB_MaintanceActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ProB_MaintanceActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ProB_MaintanceActions" /> instance referencing this action map.
+    /// </summary>
+    public ProB_MaintanceActions @ProB_Maintance => new ProB_MaintanceActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -4421,11 +4581,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnInfo(InputAction.CallbackContext context);
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player_ProB" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ProB_Player" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="Player_ProBActions.AddCallbacks(IPlayer_ProBActions)" />
-    /// <seealso cref="Player_ProBActions.RemoveCallbacks(IPlayer_ProBActions)" />
-    public interface IPlayer_ProBActions
+    /// <seealso cref="ProB_PlayerActions.AddCallbacks(IProB_PlayerActions)" />
+    /// <seealso cref="ProB_PlayerActions.RemoveCallbacks(IProB_PlayerActions)" />
+    public interface IProB_PlayerActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -4456,12 +4616,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "LMB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRestart(InputAction.CallbackContext context);
+        void OnLMB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RMB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRMB(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ProB_Maintance" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ProB_MaintanceActions.AddCallbacks(IProB_MaintanceActions)" />
+    /// <seealso cref="ProB_MaintanceActions.RemoveCallbacks(IProB_MaintanceActions)" />
+    public interface IProB_MaintanceActions
+    {
         /// <summary>
         /// Method invoked when associated input action "Settings" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -4469,5 +4644,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSettings(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
