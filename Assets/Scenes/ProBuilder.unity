@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 134110289}
   - component: {fileID: 134110288}
   - component: {fileID: 134110287}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22434,7 +22434,7 @@ GameObject:
   - component: {fileID: 1771011456}
   - component: {fileID: 1771011458}
   - component: {fileID: 1771011457}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}

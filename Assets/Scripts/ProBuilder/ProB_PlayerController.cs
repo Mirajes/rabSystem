@@ -55,6 +55,10 @@ public class ProB_PlayerController : MonoBehaviour
 
         HandleJump();
         HandleMove();
+
+        Vector3 screenPos = Input.mousePosition;
+        Vector3 screenToWorld = _camera.ScreenToWorldPoint(screenPos);
+        Debug.DrawRay(screenToWorld, _camera.transform.forward * 100);
     }
 
     private void OnDestroy()
@@ -87,6 +91,16 @@ public class ProB_PlayerController : MonoBehaviour
             _dashVelocity = _moveInput * _dashDistance;
             DashTask(_cts.Token).Forget();
         }
+    }
+
+    public void OnMainClickInput(InputAction.CallbackContext context) 
+    {
+        _currentTool.MainActivate(); 
+    }
+
+    public void OnSecondaryClickInput(InputAction.CallbackContext context) 
+    {
+        _currentTool.SecondaryActivate();
     }
     #endregion
 

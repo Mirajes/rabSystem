@@ -33,6 +33,7 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         ProB_SaveManager.OnLoad += OnLoad;
 
         _id = gameObject.GetInstanceID().ToString();
+        Debug.Log($"ID is {_id}");
     }
 
     private void OnDisable()
@@ -41,10 +42,7 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         ProB_SaveManager.OnLoad -= OnLoad;
     }
 
-    private void OnMouseDown()
-    {
-        print("oi");
-    }
+    
 
     public void OnSave(SaveData data)
     {
@@ -72,11 +70,19 @@ public class ProB_Enemy : MonoBehaviour, ISavable, IInteractive
         transform.position = position;
         _renderer.material = material;
 
+        Debug.Log($"[Enemy] - {_isScared}");
         Debug.Log($"[Enemy] - Loaded at {position}");
     }
 
     public void HandleInteractive()
     {
         
+    }
+
+    private void OnMouseDown()
+    {
+        print("ouch");
+        _isScared = !_isScared;
+        SetFear(_isScared);
     }
 }

@@ -211,6 +211,9 @@ public class Initializer : MonoBehaviour
 
         Inputs.ProB_Player.Look.performed += gameManager.Player.OnLookInput;
         Inputs.ProB_Player.Look.canceled += gameManager.Player.OnLookInput;
+
+        Inputs.ProB_Player.LMB.started += gameManager.Player.OnMainClickInput;
+        Inputs.ProB_Player.RMB.started += gameManager.Player.OnSecondaryClickInput;
         #endregion
 
         Inputs.ProB_Maintance.Restart.started += gameManager.OnRestart;
@@ -229,6 +232,9 @@ public class Initializer : MonoBehaviour
 
         Inputs.ProB_Player.Look.performed -= gameManager.Player.OnLookInput;
         Inputs.ProB_Player.Look.canceled -= gameManager.Player.OnLookInput;
+
+        Inputs.ProB_Player.LMB.started -= gameManager.Player.OnMainClickInput;
+        Inputs.ProB_Player.RMB.started -= gameManager.Player.OnSecondaryClickInput;
         #endregion
 
         Inputs.ProB_Maintance.Restart.started -= gameManager.OnRestart;

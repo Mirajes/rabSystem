@@ -95,8 +95,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3874480928538542827}
+  - component: {fileID: 5052964855416665119}
   m_Layer: 0
-  m_Name: Cursor
+  m_Name: CursorItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2779188961610744505}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.111024275, y: -0.13704792, z: -0.016607419, w: 0.9841828}
+  m_LocalRotation: {x: 0.11102489, y: -0.1370464, z: -0.016608527, w: 0.9841829}
   m_LocalPosition: {x: 2.158, y: 0.419, z: 1.636}
   m_LocalScale: {x: 0.33410043, y: 0.33410043, z: 0.33410043}
   m_ConstrainProportionsScale: 0
@@ -119,6 +120,20 @@ Transform:
   - {fileID: 8313522731521069160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 12.356, y: -16.256, z: -3.705}
+--- !u!114 &5052964855416665119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779188961610744505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597ededcd2c235847869be06f2e73554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Prefab: {fileID: 2779188961610744505}
+  _rayDistance: 15
 --- !u!1 &4712923149761430333
 GameObject:
   m_ObjectHideFlags: 0
