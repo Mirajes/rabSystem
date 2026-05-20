@@ -15,8 +15,8 @@ public class GM_ProBuilder : MonoBehaviour
     private ProB_SaveManager _saveManager = new();
 
     [Header("Links")]
-    private ProB_UIManager _uiManager;
-    private ProB_AudioManager _audioManager;
+    [SerializeField] private ProB_UIManager _uiManager;
+    [SerializeField] private ProB_AudioManager _audioManager;
 
     [Header("Player")]
     [SerializeField] private ProB_PlayerController _playerPrefab;

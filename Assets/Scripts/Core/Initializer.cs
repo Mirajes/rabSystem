@@ -218,6 +218,7 @@ public class Initializer : MonoBehaviour
 
         Inputs.ProB_Maintance.Restart.started += gameManager.OnRestart;
         Inputs.ProB_Maintance.Settings.started += gameManager.UIManager.OnSettingsInput;
+        Inputs.ProB_Maintance.Inventory.started += gameManager.UIManager.OnInventoryInput;
     }
 
     public void RemoveInputs(GM_ProBuilder gameManager)
@@ -239,7 +240,7 @@ public class Initializer : MonoBehaviour
 
         Inputs.ProB_Maintance.Restart.started -= gameManager.OnRestart;
         Inputs.ProB_Maintance.Settings.started -= gameManager.UIManager.OnSettingsInput;
-
+        Inputs.ProB_Maintance.Inventory.started -= gameManager.UIManager.OnInventoryInput;
     }
 
     #endregion

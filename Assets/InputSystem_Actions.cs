@@ -2492,6 +2492,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""164df786-1c8c-4368-9c74-f06bf179df7d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -2514,6 +2523,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05b53ec4-8cf3-4510-95cd-05475e0e07fc"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2654,6 +2674,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_ProB_Maintance = asset.FindActionMap("ProB_Maintance", throwIfNotFound: true);
         m_ProB_Maintance_Settings = m_ProB_Maintance.FindAction("Settings", throwIfNotFound: true);
         m_ProB_Maintance_Restart = m_ProB_Maintance.FindAction("Restart", throwIfNotFound: true);
+        m_ProB_Maintance_Inventory = m_ProB_Maintance.FindAction("Inventory", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -4049,6 +4070,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IProB_MaintanceActions> m_ProB_MaintanceActionsCallbackInterfaces = new List<IProB_MaintanceActions>();
     private readonly InputAction m_ProB_Maintance_Settings;
     private readonly InputAction m_ProB_Maintance_Restart;
+    private readonly InputAction m_ProB_Maintance_Inventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "ProB_Maintance".
     /// </summary>
@@ -4068,6 +4090,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ProB_Maintance/Restart".
         /// </summary>
         public InputAction @Restart => m_Wrapper.m_ProB_Maintance_Restart;
+        /// <summary>
+        /// Provides access to the underlying input action "ProB_Maintance/Inventory".
+        /// </summary>
+        public InputAction @Inventory => m_Wrapper.m_ProB_Maintance_Inventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -4100,6 +4126,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Restart.started += instance.OnRestart;
             @Restart.performed += instance.OnRestart;
             @Restart.canceled += instance.OnRestart;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         /// <summary>
@@ -4117,6 +4146,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Restart.started -= instance.OnRestart;
             @Restart.performed -= instance.OnRestart;
             @Restart.canceled -= instance.OnRestart;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         /// <summary>
@@ -4651,5 +4683,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRestart(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventory(InputAction.CallbackContext context);
     }
 }
