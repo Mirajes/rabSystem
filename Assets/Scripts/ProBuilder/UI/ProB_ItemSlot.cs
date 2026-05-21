@@ -7,4 +7,10 @@ public class ProB_ItemSlot : MonoBehaviour
     [SerializeField] private Image _icon;
 
     public ProB_SO_Item ItemData => _itemData;
+    public Image Icon => _icon;
+
+    public void UpdateSlot()
+    {
+        _icon.sprite = _itemData?.Sprite;
+    }
 }
