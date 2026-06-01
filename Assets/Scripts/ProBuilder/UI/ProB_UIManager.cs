@@ -92,6 +92,7 @@ public class ProB_UIManager : MonoBehaviour
 
             Initializer.Inputs.ProB_Player.Disable();
             _invTransform.gameObject.SetActive(true);
+
         }
     }
 

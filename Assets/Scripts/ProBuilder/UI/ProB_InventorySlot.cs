@@ -10,7 +10,6 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
     [Header("const")]
     [SerializeField] private Canvas _mainParent;
     [SerializeField] private RectTransform _rectTransform;
-    [SerializeField] private CanvasGroup _canvasGroup;
 
     public ProB_ItemSlot ItemSlot => _itemSlot;
 
@@ -23,13 +22,13 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_itemSlot.ItemData == null) return;
+        if (_itemSlot.ItemData == null) return; // no item inside slot
 
         _parentBeforeDrag = this.transform;
         _itemSlot.transform.SetParent(_mainParent.transform);
 
-        _canvasGroup.alpha = 0.4f;
-        _canvasGroup.blocksRaycasts = false;
+        _itemSlot.CanvasGroup.alpha = 0.4f;
+        _itemSlot.CanvasGroup.blocksRaycasts = false;
 
         eventData.Use(); // bol'she ne buget iskat' drugih obj pod nim
     }
@@ -38,7 +37,7 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         if (_itemSlot.ItemData == null) return;
 
-        // correct transformation for dragging
+        // correct transformation for dragging // prosto podrugomu shitaet gde slot
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             _rectTransform,
             eventData.position,
@@ -64,8 +63,11 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
         //print(isWasDroppedOnSlot);
         //print(targetSlot);
 
+        _itemSlot.CanvasGroup.alpha = 1f;
+        _itemSlot.CanvasGroup.blocksRaycasts = true;
+
         if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent<ProB_InventorySlot>(out var targetSlot) 
-            //&& targetSlot != this)
+            && targetSlot != this
             )
         {
             SwapItems(targetSlot);
@@ -76,9 +78,6 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
             ReturnItemToOriginalSlot();
             print("returned");
         }
-
-        _canvasGroup.alpha = 1f;
-        _canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -90,14 +89,14 @@ public class ProB_InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private void SwapItems(ProB_InventorySlot targetSlot)
     {
-        var tempItem = targetSlot.ItemSlot;
+        var tempSlot = targetSlot.ItemSlot;
         targetSlot._itemSlot = this._itemSlot;
-        this._itemSlot = tempItem;
+        this._itemSlot = tempSlot;
 
-        if (this._itemSlot.ItemData != null)
-            this._itemSlot.transform.SetParent(targetSlot.transform);
+        //if (this._itemSlot.ItemData != null)
+            this._itemSlot.transform.SetParent(this.transform);
 
-        if (targetSlot._itemSlot.ItemData != null)
+        //if (targetSlot._itemSlot.ItemData != null)
             targetSlot._itemSlot.transform.SetParent(targetSlot.transform);
     }
 
